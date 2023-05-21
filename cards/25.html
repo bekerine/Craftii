@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+  --purple: #603f8b;
+  --aqua: #b4fee7;
+  --violet: #a16ae8;
+  --fuchsia: #fd49a0;
+  --white: #efefef;
+  --black: #222;
+  --trueBlack: #000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--black);
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cards {
+  display: grid;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.cards_item {
+  display: flex;
+}
+
+.card_image {
+  display: flex;
+  height: 250px;
+  box-shadow: 0 50px 100px 0 var(--violet);
+}
+
+.card_image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--purple);
+  border-radius: 5px 25px 5px 50px;
+  transition: transform 0.1s linear, box-shadow 0.2s;
+}
+
+.card_text:focus,
+.card:focus {
+  outline: 2px dashed var(--aqua);
+}
+
+.card:focus,
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card_content {
+  padding: 0.5rem 1rem 1rem;
+  color: var(--white);
+}
+
+.card_title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 90%;
+  height: auto;
+  color: var(--black);
+  padding: 0.5rem;
+  border-radius: 5px 0 0 5px;
+  transform: rotate(-3.3deg);
+  transform-origin: left top;
+  font-family: Georgia, Times, serif;
+  font-weight: 600;
+  font-size: 1.325rem;
+  overflow: hidden;
+  z-index: 1;
+  background-color: rgba(253, 73, 160, 0.75);
+  animation: 0s 0s fly-in 0 reverse both;
+}
+
+@media (min-width: 535px) {
+  .card_title {
+    animation: 0.5s 0.25s fly-out 1 both;
+  }
+}
+
+.card:focus .card_title,
+.card:hover .card_title {
+  animation: 0.5s ease-in 0s fly-in 1 both;
+}
+
+.card_text {
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica,
+    Helvetica Neue, Arial, sans-serif;
+  line-height: 1.5;
+  text-size-adjust: 0.2px;
+  padding: 0 1rem;
+}
+
+.card_text p:first-of-type:first-letter {
+  font-size: 1.8em;
+  font-family: Georgia, Times, serif;
+  margin-right: 0.05em;
+}
+
+@media (min-width: 480px) {
+  .card_text {
+    overflow: auto;
+    max-height: 20rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--aqua) var(--violet);
+  }
+
+  .card_text::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .card_text::-webkit-scrollbar-track {
+    background: var(--violet);
+  }
+
+  .card_text::-webkit-scrollbar-thumb {
+    background-color: var(--aqua);
+  }
+}
+
+.card_text strong {
+  color: var(--aqua);
+}
+
+.upcharge {
+  position: relative;
+  font-weight: 600;
+  background-color: var(--violet);
+  padding: 0.5rem 0.75rem;
+  color: var(--trueBlack);
+  border-radius: 0 10px;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.upcharge::after,
+.upcharge::before {
+  content: "+";
+  display: block;
+  line-height: 0;
+  font-size: 3rem;
+  position: absolute;
+  color: var(--purple);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.upcharge::before {
+  left: 0;
+  top: 0.5rem;
+}
+
+.upcharge::after {
+  right: 0;
+  bottom: 1.25rem;
+}
+
+.note {
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: 900;
+  background-image: linear-gradient(
+    -45deg,
+    transparent 10%,
+    var(--aqua) 10.5%,
+    var(--aqua) 90%,
+    transparent 90.5%
+  );
+  color: var(--black);
+  font-size: 1.3em;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+@keyframes fly-in {
+  0% {
+    top: 0;
+    right: 0;
+    font-size: 1.325rem;
+  }
+
+  25% {
+    top: 0;
+    right: -200%;
+    font-size: 1.325rem;
+  }
+
+  26% {
+    font-size: 2rem;
+  }
+
+  100% {
+    top: 2rem;
+    right: 0;
+    font-size: 2rem;
+  }
+}
+
+@keyframes fly-out {
+  0% {
+    top: 2rem;
+    right: 0;
+    font-size: 2rem;
+  }
+
+  50% {
+    top: 0;
+    right: -200%;
+    font-size: 1.325rem;
+  }
+
+  100% {
+    top: 0;
+    right: 0;
+    font-size: 1.325rem;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul class="cards">
+          <li class="cards_item">
+            <div class="card" tabindex="0">
+              <div class="card_image"><img src="https://assets.codepen.io/652/photo-1468777675496-5782faaea55b.jpeg" alt="mixed vegetable salad in a mason jar. "></div>
+              <div class="card_content">
+                <h2 class="card_title">Farmstand Salad &#x2022; $9</h2>
+                <div class="card_text">
+                  <p>Dig into the freshest veggies of the season! This salad-in-a-jar features a mixture of leafy greens and seasonal vegetables, fresh from the farmer's market.</p>
+                  <p>Served with your choice of dressing on the side: <strong>housemade ranch, cherry balsamic vinaigrette, creamy chipotle, avocado green goddess, or honey mustard.</strong></p>
+                  <p class="upcharge">Add your choice of protein for $2 more. </p>
+                </div>
+              </div>
+            </div>
+          </li>
+      
+          <li class="cards_item">
+            <div class="card" tabindex="0">
+              <div class="card_image"><img src="https://assets.codepen.io/652/photo-1520174691701-bc555a3404ca.jpeg" alt="a Reuben sandwich on wax paper. "></div>
+              <div class="card_content">
+                <h2 class="card_title">Ultimate Reuben &#x2022; $18</h2>
+                <div class="card_text">
+                  <p>All great meals take time, but this one takes it to the next level! More than 650 hours of fermenting, brining, aging, and curing goes into each and every one of our legendary Reuben sandwiches.
+                  </p>
+                  <p>Every element of this extraordinary sandwich is handcrafted in our kitchens, from the rye bread baked from our secret recipe to the cave-aged Swiss cheese, right down to the pickle. The only thing we didn't make on the premises is the toothpick ( but we're looking into how to do that). </p>
+                  <p>This unforgettable sandwich has all of the classic Reuben elements: <strong>corned beef, rye bread, creamy Russian dressing, sauerkraut, plus a sweet gherkin pickle.</strong> <em>No substitions please!</em>
+                  <p>
+                    <p class="upcharge">Add a side of french fries or sweet potato fries for $2 more, or our housemade pub chips for $1.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card" tabindex="0">
+              <div class="card_image"><img src="https://assets.codepen.io/652/photo-1544510808-91bcbee1df55.jpeg" alt="A side view of a plate of figs and berries. "></div>
+              <div class="card_content">
+                <h2 class="card_title">Fig &amp; Berry Plate &#x2022; $16</h2>
+                <div class="card_text">
+                  <span class="note">Seasonal.</span>
+                  <p>A succulent sextet of fresh figs join with a selection of bodacious seasonal berries in this refreshing, shareable dessert.</p>
+                  <p>Choose your drizzle: <strong>cherry-balsamic vinegar, local honey, or housemade chocolate sauce.</strong> </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+</body>
+</html>
