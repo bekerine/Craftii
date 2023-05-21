@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+
+html {
+  height: 100%;
+  overflow: hidden;
+  background: hsl(0,0%,95%);
+}
+body {
+  font-family: 'Staatliches', cursive;
+  margin: 0;  
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+
+#home {
+  width: 100vw; 
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.wrapper {
+  
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  width: 900px;
+  height: 450px;
+  
+  background: hsl(0,0%,95%);
+  box-shadow: 1px 1px 25px 3px rgba(0,0,0,.3); 
+}
+
+/*************/
+.nav {
+  position: relative;
+  left: 2%;
+  height: 10%;
+  width: max-content;
+  padding-bottom: 1em;
+}
+.navbar {
+  padding-top: 2%;
+}
+.navbar li {
+  position: relative;
+  list-style: none;
+  display:inline;
+  margin-right: 1vw;
+  
+  font-size: 1.225rem;
+}
+.navbar li::after {
+  content:"";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  
+  width: 100%;
+  height: 2px;
+  
+  background: black;
+  
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease;
+}
+.navbar li:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  
+  box-shadow: 0px 4px 5px 2px rgba(0,0,0,.1);
+}
+
+
+/*************/
+.header{
+  width: max-content;
+  font-size: 2.875rem;
+
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px #222222;
+  
+}
+.header::after {
+  content:'';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5%;
+  
+  background: black;
+}
+
+
+/*************/
+.content-splitter {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+  padding: 0 3em;
+  width: minmax(80px, 80%);
+}
+.block { 
+  display: flex;
+  flex-direction: column;
+  gap: .75em;
+}
+.content {
+  font-size: 1.5em;
+  color: #404040;
+}
+
+.c2a {
+  font-size: 1.6em;
+  color: white;
+  padding: .4em .8em;
+  width: max-content;
+  background: #222222;
+  border-radius: 4px;
+  transition: all 250 ease-in-out;
+  cursor: pointer;
+}
+.c2a:hover{
+  background: #444444;
+}
+
+.right {
+  overflow: hidden;
+  clip-path: polygon(35% 0%, 100% 0, 100% 100%, 8% 100%); 
+  object-fit: cover;
+}
+
+/*  */
+@media screen and (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    width: 90vw;
+    height: auto;
+  }
+  .content-splitter {
+    gap: 1em;
+  }
+  .left {
+    gap: 2em;
+    padding: 0 2em;
+  }
+  .right {
+    display: none;
+  }
+}
+    </style>
+</head>
+<body>
+<div id="home" class="first_page">
+  <div class="wrapper">
+    <div class="content-splitter">
+      <div class="nav">
+        <ul class="navbar">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="left">
+        <div class="block">
+          <div class="header">Hi, I'm Micheal</div>
+          <div class="content">I am a Freelance Designer and Photographer, each experience is for me a unique mean of growing as a person and delivering great content. (And this is some dummy text to fill more space.)</div>
+        </div>
+        <div class="c2a">Contact me!</div>
+      </div>
+    </div>
+    <div class="right">
+        <img src="https://images.unsplash.com/photo-1580707578919-892eb22db615?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1hbiUyMHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" alt="">
+      </div>
+
+  </div>
+</div>
+</div>
+
+</body>
+</html>
