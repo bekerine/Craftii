@@ -66,3 +66,25 @@ input{
     color: red;
     font-size: 2rem;
 }
+
+.card{
+    background-image: url("allenp1.jpg");
+
+  height: 15rem;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-size: cover;
+  width: 15rem;
+  
+  /* Needed to position the navbar */
+  position: relative;
+}
+
+.course{
+    margin-left: 1rem;
+}
+
+h1{
+    margin-left: .5rem;
+}
