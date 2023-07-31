@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background-color: #22475E;
+  overflow:hidden;
+}
+div {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background-color: #ccc;
+  top: 45%;
+  border-radius: 50%;
+}
+
+div:nth-child(1) {
+  background-color: #FF5460;
+  animation: move 2s infinite cubic-bezier(.2,.64,.81,.23);
+}
+div:nth-child(2) {
+  background-color: #FF9D84;
+  animation: move 2s 150ms infinite cubic-bezier(.2,.64,.81,.23);
+}
+div:nth-child(3) {
+  background-color: #F0E797;
+  animation: move 2s 300ms infinite cubic-bezier(.2,.64,.81,.23);
+}
+div:nth-child(4) {
+  background-color: #75B08A;
+  animation: move 2s 450ms infinite cubic-bezier(.2,.64,.81,.23);
+}
+
+
+@keyframes move {
+  0% {left: 0%;}
+  100% {left:100%;}
+}
+</style>
+</head>
+<body>
+<div class="preloader">
+<section id="global">
+
+    <div id="top" class="mask">
+      <div class="plane"></div>
+    </div>
+    <div id="middle" class="mask">
+      <div class="plane"></div>
+    </div>
+
+    <div id="bottom" class="mask">
+      <div class="plane"></div>
+    </div>
+    
+  <p><i>LOADING...</i></p>
+    
+</section>
+</div>
+</body>
+</html>
