@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+svg {
+	stroke-dasharray: 200px;
+	stroke-dashoffset: 0;
+	animation: heartBeat 10s linear reverse infinite;
+	transform: rotate(-90deg);
+    height: 200px;
+    width: 200px;
+    margin-top: 10%;
+    margin-left: 30%;
+}
+
+@keyframes heartBeat {
+	50% {
+		stroke-dashoffset: 269.7405090332031px;
+	}
+	50.01% {
+		stroke-dashoffset: -269.7405090332031px;
+	}
+}
+</style>
+</head>
+<body>
+<div id="preloader">
+<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+		<circle id="c" fill="none" stroke-width="4" stroke-linecap="round" stroke="red" cx="45" cy="45" r="43" />
+	</svg>
+</div>
+</body>
+</html>
