@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiple Choice Quiz</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+      body {
+  font-family: Arial, sans-serif;
+  margin: 0px;
+  padding:0;
+}
+
+img{
+  margin-left:10%;
+  margin-right:10%;
+  margin-top:5%;
+  width:20%;
+}
+
+@media only screen and (max-width: 600px) {
+  img {
+    width:80%;
+  }
+}
+
+#quiz-container {
+  margin-bottom: 20px;
+  text-align:center;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+}
+
+#result {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+}
+/*input{
+    width:20px;
+    height:20px;
+}*/
+
+
+
+
+
+
+
+
+
+button{
+color:white;
+font-size:1.4rem;
+    background:orangered;
+    position:relative;
+    padding:15px 25px;
+    box-shadow:-6px 6px 0 red;
+    outline:none;
+    border:none;
+    font-family:italic;
+}
+button:hover{
+    background:red;
+}
+button:active{
+    background:red;
+    top:3px;
+    left:-3px;
+    box-shadow:-3px 3px 0 red;
+}
+button::before{
+    position:absolute;
+    display:block;
+    content:"";
+    height:0;
+    width:0;
+    border:solid 6px transparent;
+    border-right:solid 6px red;
+    border-left-width:0;
+    top:0;
+    left:-6px;
+}
+button::after{
+    position:absolute;
+    display:block;
+    content:"";
+    height:0;
+    width:0;
+    border:solid 6px transparent;
+    border-top: solid 6px red;
+    border-bottom-width:0;
+    right:0;
+    bottom:-6px;
+}
+button:active::before{
+    border:solid 3px transparent;
+    border-right:solid 3px red;
+    border-left-width:0;
+    left:-3px;
+}
+button:active::after{
+    border:solid 3px transparent;
+    border-top:solid 3px red;
+    border-bottom-width:0;
+    bottom:-3px;
+}
+  </style>
+</head>
+<body>
+  <div id="quiz-container">
+    <h2>Question 1:</h2>
+    <p>Find the length of the opposite side and the adjacent side of the triangle?</p>
+      <img src="https://bekerine.github.io/Start-ups/Question.jpg"><br>
+    <label><input type="checkbox" name="q1" value="A">Adjacent side: cos(x+y) and opposite side: sin(x+y)</label><br>
+    <label><input type="checkbox" name="q1" value="B">Adjacent side: sin(x+y) and opposite side: cos(x+y)</label><br>
+    <label><input type="checkbox" name="q1" value="C">Adjacent side: tan(x+y) and opposite side: cot(x+y)</label><br>
+    <label><input type="checkbox" name="q1" value="london">Adjacent side: sec(x+y) and opposite side: coses(x+y)</label><br>
+  </div>
+
+  <button onclick="checkAnswers()">Submit</button>
+
+  <div id="result"></div>
+
+  <script src="script.js"></script>
+  <script>
+      function checkAnswers() {
+  var correctAnswers = ['A']; // Array of correct answers
+  var selectedAnswers = [];
+
+  var checkboxes = document.getElementsByName('q1');
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      selectedAnswers.push(checkboxes[i].value);
+    }
+  }
+
+  var resultContainer = document.getElementById('result');
+
+  if (selectedAnswers.length === 0) {
+    resultContainer.textContent = 'Please select at least one answer.';
+  } else {
+    var allCorrect = true;
+
+    for (var i = 0; i < selectedAnswers.length; i++) {
+      if (!correctAnswers.includes(selectedAnswers[i])) {
+        allCorrect = false;
+        break;
+      }
+    }
+
+    if (allCorrect) {
+      resultContainer.textContent = 'All answers is correct!';
+    } else {
+      resultContainer.innerHTML += '<p>Answer is incorrect!</p> <a href="#"><button>get explanation</button></a> <br><br> <a href="#"><span>retry</span></a>';
+    }
+  }
+}
+
+  </script>
+</body>
+</html>
