@@ -43,7 +43,10 @@ button {
     height:20px;
 }*/
 
-
+.option {
+    display: block;
+    margin-bottom: 5px;
+  }
 
 
 
@@ -113,53 +116,58 @@ button:active::after{
   <div id="quiz-container">
     <h2>Question 1:</h2>
     <p>Find the length of the opposite side and the adjacent side of the triangle?</p>
-      <img src="https://bekerine.github.io/Start-ups/Question.jpg"><br>
-    <label><input type="checkbox" name="q1" value="A">Adjacent side: cos(x+y) and opposite side: sin(x+y)</label><br>
-    <label><input type="checkbox" name="q1" value="B">Adjacent side: sin(x+y) and opposite side: cos(x+y)</label><br>
-    <label><input type="checkbox" name="q1" value="C">Adjacent side: tan(x+y) and opposite side: cot(x+y)</label><br>
-    <label><input type="checkbox" name="q1" value="london">Adjacent side: sec(x+y) and opposite side: coses(x+y)</label><br>
-  </div>
+      <img src="https://bekerine.github.io/Craftii/modules/index-0-img.jpg"><br>
+    <label class="option">
+    <input type="checkbox" name="answer" value="mercury" onclick="updateCheckboxes('mercury')">Adjacent side: cos(x+y) and opposite side: sin(x+y)
+  </label>
+  <label class="option">
+    <input type="checkbox" name="answer" value="venus" onclick="updateCheckboxes('venus')">Adjacent side: sin(x+y) and opposite side: cos(x+y)
+  </label>
+  <label class="option">
+    <input type="checkbox" name="answer" value="earth" onclick="updateCheckboxes('earth')">Adjacent side: tan(x+y) and opposite side: cot(x+y)
+  </label>
+  <label class="option">
+    <input type="checkbox" name="answer" value="jupiter" onclick="updateCheckboxes('jupiter')">Adjacent side: sec(x+y) and opposite side: coses(x+y)
+  </label>
+</div>
+<button onclick="checkAnswer()">Submit</button>
 
-  <button onclick="checkAnswers()">Submit</button>
-
-  <div id="result"></div>
 
   <script src="script.js"></script>
   <script>
-      function checkAnswers() {
-  var correctAnswers = ['A']; // Array of correct answers
-  var selectedAnswers = [];
+const correctAnswer = "jupiter"; // Set the correct answer value here
 
-  var checkboxes = document.getElementsByName('q1');
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].checked) {
-      selectedAnswers.push(checkboxes[i].value);
+function updateCheckboxes(selectedValue) {
+  const checkboxes = document.querySelectorAll('input[name="answer"]');
+  checkboxes.forEach(checkbox => {
+    if (checkbox.value !== selectedValue) {
+      checkbox.checked = false;
     }
-  }
-
-  var resultContainer = document.getElementById('result');
-
-  if (selectedAnswers.length === 0) {
-    resultContainer.textContent = 'Please select at least one answer.';
-  } else {
-    var allCorrect = true;
-
-    for (var i = 0; i < selectedAnswers.length; i++) {
-      if (!correctAnswers.includes(selectedAnswers[i])) {
-        allCorrect = false;
-        break;
-      }
-    }
-
-    if (allCorrect) {
-      resultContainer.textContent = 'All answers is correct!';
-    } else {
-      resultContainer.innerHTML += '<p>Answer is incorrect!</p> <a href="#"><button>get explanation</button></a> <br><br> <a href="#"><span>retry</span></a>';
-    }
-  }
+  });
 }
 
-  </script>
+function checkAnswer() {
+  const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+
+  if (selectedAnswer) {
+    if (selectedAnswer.value === correctAnswer) {
+      alert("Correct answer!");
+    } else {
+      alert("Wrong answer. Try again.");
+      
+// Display the alert
+alert("want to get explanation for the correct answer than click OK if not click anwhere on the screen and try again");
+
+// Redirect the user after they dismiss the alert
+window.location.href = "https://www.example.com/otherpage";
+
+
+    }
+  } else {
+    alert("Please select an answer.");
+  }
+}
+</script>
+  
 </body>
 </html>
