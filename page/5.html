@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">        <meta name="viewport" content="width=width-device, initial-scale=1.0">
+        <title>Red store | E-commerse webstite design</title>
+        <style>
+            * {
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+body {
+   font-family: 'Poppins', sans-serif;
+}
+
+.header {
+   background:radial-gradient(#fff,#ffd6d6);
+}
+.navbar {
+   display:flex;
+   align-items:center;
+   padding:20px;
+}
+
+nav {
+   flex:1;
+   text-align:right;
+}
+
+nav ul {
+   list-style:none;
+   display:inline-block;
+}
+
+nav ul li {
+   display:inline-block;
+   margin-right:20px;
+}
+
+a {
+   text-decoration:none;
+   color:#555;
+}
+
+p {
+   color:#555;
+}
+
+.container {
+   max-width:1300px;
+   margin:0;
+   padding:0 25px;
+}
+
+.row {
+   display:flex;
+   align-items:center;
+   flex-wrap:wrap;
+   justify-content:space-around;
+}
+
+.col-2 {
+   flex-basis:50%;
+   min-width:300px;
+}
+
+.col-2 img {
+   max-width:100%;
+   padding:50px 0;
+}
+
+.col-2 h1 {
+   font-size:50px;
+   line-height:60px;
+   margin:25px 0;
+}
+.btn {
+   background:#ff523b;
+   display:inline-block;
+   color:#fff;
+   padding:8px 30px;
+   margin:30px 0;
+   border-radius:30px;
+   transition:background 0.5s;
+}
+
+.btn:hover {
+   background:#563434;
+}
+
+.header .row {
+   margin-top:70px;
+}
+
+.categories {
+   margin:70px 0;
+}
+
+.col-3 {
+   flex-basis:30%;
+   margin-bottom:30px;
+   min-width:250px;
+}
+
+.col-3 img {
+   width:100%;
+}
+
+.small-container {
+   max-width:1080px;
+   margin:auto;
+   padding:0 25px;
+}
+
+.col-4 {
+   flex-basis:25%;
+   padding:10px;
+   min-width:200px;
+   margin-bottom:50px;
+   transition:transform 0.5s;
+}
+
+.col-4 img {
+   width:100%;
+}
+
+.title {
+   text-align:center;
+   margin:0 auto;
+   position:relative;
+   line-height:60px;
+   color:#555;
+}
+
+.title::after {
+   content:"";
+   background:#ff523b;
+   width:80px;
+   height:5px;
+   border-radius:5px;
+   position:absolute;
+   bottom:0;
+   left:50%;
+   transform:translate(-50%);
+}
+
+h4 {
+   color:#555;
+   font-weight:normal;
+}
+
+.col-4 p {
+   font-size:14px;
+}
+
+.rating .fa {
+   color:#ff523b;
+}
+
+.col-4:hover {
+   transform:translateY(-5px);
+}
+
+/* ##### offer ######*/
+
+.offer {
+   margin-top:80px;
+   background:radial-gradient(#fff,#ffd6d6);
+   padding:30px 0;
+}
+
+.col-2 .offer-img {
+   padding:50px;
+}
+
+small {
+   color:#555;
+}
+
+/*######### testimonial #########*/
+
+.testimonial {
+   padding-top:100px;
+}
+
+.testimonial .col-3 {
+   text-align:center;
+   padding:40px 20px;
+   box-shadow:0 0 20px 0 rgba(0,0,0,0.1);
+   cursor:pointer;
+   transition:transform 0.5s;
+}
+
+.testimonial .col-3 img {
+   margin-top:20px;
+   width:50px;
+   border-radius:50px;
+}
+
+.testimonial .col-3:hover {
+   transform:translateY(-10px);
+}
+.fa.fa-quote-left {
+   font-size:34px;
+   color:#ff523b;
+}
+
+.col-3 p {
+   font-size:12px;
+   margin:12px 0;
+   color:#777;
+}
+
+.testimonial .col-3 h3 {
+   font-size:16px;
+   font-weight:600;
+   color:#555;
+}
+
+/*------- brands --------*/
+
+.brands {
+   margin:100px auto;
+}
+
+.col-5 {
+   width:160px;
+}
+
+.col-5 h1 {
+   width:100%;
+   cursor:pointer;
+   filter:grayscale(100%);
+   font-size:20px;
+}
+
+.col-5 h1:hover {
+   filter:grayscale(0);
+}
+
+/*--------- footer -------*/
+
+.footer {
+   background:#000;
+   color:#8a8a8a;
+   font-size:14px;
+   padding:60px 0 20px;
+}
+
+.footer p {
+   color:#8a8a8a;
+}
+
+.footer h3 {
+   color:#fff;
+   margin-bottom:20px;
+}
+
+.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
+   min-width:250px;
+   margin-bottom:20px;
+}
+
+.footer-col-1 {
+   flex-basis:30%;
+}
+
+.footer-col-2 {
+   flex:1;
+   text-align:center;
+}
+
+.footer-col-2 img {
+   width:180px;
+   margin-bottom:20px;
+}
+
+.footer-col-3, .footer-col-4 {
+   text-align:center ;
+   flex-basis:12%;
+}
+
+ul {
+   list-style-type:none;
+}
+
+.footer hr {
+   border:none;
+   background:#b5b5b5;
+   height:1px;
+   margin:20px 0;
+}
+
+.copyright {
+   text-align:center;
+}
+
+.menu-icon {
+   width:28px;
+   margin-left:20px;
+   display:none;
+}
+
+/*----- media query for menu icon -----*/
+
+@media only screen and (max-width:800px){
+   nav ul {
+       position:absolute;
+       top:70px;
+       left:0;
+       width:100%;
+       background:#333;
+       overflow:hidden;
+       transition:max-height 0.5s;
+   }
+   
+   nav ul li {
+       margin-top:10px;
+       margin-bottom:10px;
+       margin-right:50px;
+       display:block;
+   }
+   
+   nav ul li a {
+       color:#fff;
+   }
+   
+   .menu-icon {
+       display:block;
+       cursor:pointer;
+   }
+}
+
+/*- media queries for less than 600px -*/
+
+@media only screen and (max-width:800px){
+   .row {
+       text-align:center;
+   }
+   
+   .col-2, .col-3, .col-4 {
+       flex-basis:100%;
+   }
+} 
+        </style>
+    </head>
+    <body>
+
+        <div class="header">
+        <div class="container">
+            <div class="navbar">
+            <div class="logo">
+                <h1>AC</h1>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Product</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Account</a></li>
+                  </ul>
+                </nav>
+                <img src="https://dl.dropbox.com/s/6tau9l1cua5jxwz/cart.png?dl=0" width="30px" height="30px">
+                <i class="fa fa-bars menu-icon" onclick="menutoggle()"></i>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <h1>Give Your Workout <br />A New Style!</h1>
+                    <p>Success isn't always about greatness. It's about consistency. Consistent<br> hard work gains success. Greatness will come.</p>
+                    <a href="#" class="btn">Explore Now &#8594;</a>
+                </div>
+                <div class="col-2">
+                    <img src="https://dl.dropbox.com/s/xxwml6yk5sbrwgt/image1.png?dl=0">  
+            </div>
+        </div>
+        </div>
+        </div>      
+
+ <!--------- featured catagories---------> 
+ <div class="categories">
+   <div class="small container">
+     <div class="row">
+       <div class="col-3">
+         <img src="https://dl.dropbox.com/s/ehsos7gmbzwz8bz/category-1.jpg?dl=0"> 
+       </div>  
+       <div class="col-3">
+         <img src="https://dl.dropbox.com/s/i72n9igqsfgid80/category-2.jpg?dl=0">
+       </div>  
+       <div class="col-3">
+         <img src="https://dl.dropbox.com/s/tp78hxs64540vc1/category-3.jpg?dl=0">
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+ <!--------- featured Products --------->
+ 
+ <div class="small-container">
+     <h2 class="title">Featured Products</h2>
+     <div class="row">
+         <div class="col-4">
+             <img src="https://1.bp.blogspot.com/-Vd7_gK6HG6Y/Xtj0jeR8e4I/AAAAAAAANqI/4qLXrvoPoUIu9PpcGynmFZQ4xJA2eXQtACLcBGAsYHQ/s1600/IMG-20200602-WA0045.jpg">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://cdn-images.farfetch-contents.com/12/21/78/47/12217847_22359993_480.jpg">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-half-o"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTgcJ1RxRAzBvDLm8KhFWxvS93H1XAX7g4eg&usqp=CAU">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-half-o"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://freepngimg.com/thumb/categories/627.png">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+     </div>
+     <h2 class="title">Latest Products</h2>
+     <div class="row">
+         <div class="col-4">
+             <img src="https://res.cloudinary.com/dhktoeo0l/image/upload/v1608983915/download-removebg-preview_k1ng9j.png">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-o" aria-hidden="true"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGfqnxytUpie117zLoV0IL76RnGtgLGJ8oAg&usqp=CAU">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-half-o"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://res.cloudinary.com/dhktoeo0l/image/upload/v1608970734/images__1_-removebg-preview_qfki9d.png">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-half-o"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://www.pngarts.com/files/7/Modern-Furniture-PNG-Image-Background.png">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-4">
+             <img src="https://res.cloudinary.com/dhktoeo0l/image/upload/v1608983915/download-removebg-preview_k1ng9j.png">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-o" aria-hidden="true"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGfqnxytUpie117zLoV0IL76RnGtgLGJ8oAg&usqp=CAU">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-half-o"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://res.cloudinary.com/dhktoeo0l/image/upload/v1608970734/images__1_-removebg-preview_qfki9d.png">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-half-o"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+         <div class="col-4">
+             <img src="https://www.pngarts.com/files/7/Modern-Furniture-PNG-Image-Background.png">
+             <h4>White Shirt</h4>
+             
+             <div class="rating">
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star"></i>
+                 <i class="fa fa-star-o"></i>
+             </div>
+             <p>$50.00</p>
+         </div>
+     </div>
+ </div>
+ 
+ <!----- offer ----->
+        <div class="offer">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="https://freepngimg.com/thumb/shoes/28530-3-nike-shoes-transparent.png" class="offer-img">
+                    </div>
+                    <div>
+                        <p>Exclusively available on Redstore</p>
+                        <h1>Small band 4</h1>
+                        <small>The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) Amoled color-touch full display with adjustable brightness. So everything is clear as can be.</small>
+                        <a href="#" class="btn">Buy Now &#8594;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!------- testimonial --------->
+    <div class="testimonial">
+        <dir class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem ipsem is simply dummy text of printing and typesetting industry. Lorem ipsum has been industry's standard dummy text ever</p>
+                 <div class="rating">
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star-o"></i>
+                </div>
+                <img src="https://www.dropbox.com/s/0p9499y21f5y8rx/Screenshot_2020_0805_114136.png?dl=1" alt="">
+                 <h3>Sean parker</h3>
+            </div>
+        </div>
+        <div class="row">
+              <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem ipsem is simply dummy text of printing and typesetting industry. Lorem ipsum has been industry's standard dummy text ever</p>
+                 <div class="rating">
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star-o"></i>
+                 </div>
+                 <img src="https://dl.dropbox.com/s/3uppmy460qeg7aj/pexels-tatiana-twinslol-5444997.jpg" alt="">
+                  <h3>scarlet parker</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem ipsem is simply dummy text of printing and typesetting industry. Lorem ipsum has been industry's standard dummy text ever</p>
+                 <div class="rating">
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star"></i>
+                   <i class="fa fa-star-o"></i>
+                </div>
+                <img src="https://api.sololearn.com/Uploads/Avatars/11816327.jpg" alt="Mairuna"/>
+                 <h3>Sea parker</h3>
+             </div>
+         </div>
+       </div>
+    </div>
+    
+<!--------- Brands ---------->
+<div class="brands">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-5">
+                <i><h1>godrej</h1></i>
+            </div>
+            <div class="col-5">
+                <i><h1>oppo</h1></i>
+            </div>
+            <div class="col-5">
+                <i><h1>CocaCola</h1></i>
+            </div>
+            <div class="col-5">
+                <i><h1>paypal</h1></i>
+            </div>
+            <div class="col-5">
+                <i><h1>PHILIPS</h1></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------- footer ----------->
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Downloads our apps</h3>
+                <p>Download App for Android and ios mobile phones.</p>
+            </div>
+            <div class="footer-col-2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx3xFC6FRAz44KvRBNOFJ4q6C1hjpy_hxFyw&usqp=CAU">
+                <p>Our Purpose Is To Sustainably Make The Pleasure and Benefits of Sports accessible to the many</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affilitate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>You Tube</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">copyright 2021 - abhi project</p>
+    </div>
+</div>
+
+<!--------- js for toggle menu --------->
+
+<script>
+    var MenuItems = document.getElementById("MenuItems");
+  MenuItems.style.maxHeight = "0px";
+    function menutoggle(){
+        if(MenuItems.style.maxHeight == "0px")
+            {
+                MenuItems.style.maxHeight = "200px";
+            }
+        else 
+           {
+               MenuItems.style.maxHeight = "0px";
+           }
+    }
+</script>
+   </body>
+</html>

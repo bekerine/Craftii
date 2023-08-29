@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> home page Designing</title>
+<style>
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html{
+  -webkit-scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+body{
+  width: 100vw;
+  height: 100%;
+  background: #fff;
+  color: #333;
+  font-family: 'Lato', sans-serif;
+  /*display: flex;*/
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+img{
+  max-width: 100%;
+}
+nav{
+  position: relative
+}
+.navDiv{
+  background: transparent;
+  height: 60px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  z-index: 2;
+  transition: all 0.5s ease-in;
+}
+.logo{
+  width: 60%;
+  height: 100%;
+}
+.logo img{
+  width: 100%;
+  height: 100%;
+}
+.hamburger{
+  width: 30%;
+  height: 40px;
+}
+.hamburger .icon{
+  width: 60px;
+  height: 100%;
+  display: flex;
+  float: right;
+  border-radius: 2px;
+  justify-content: space-around;
+  align-items: flex-end;
+  flex-direction: column;
+  position: relative;
+  right: 5px;
+  top: 0px;
+  z-index: 100;
+  transition: transform 0.50s linear;
+}
+.icon div{
+  width: 50px;
+  height: 5px;
+  background: white;
+  border-radius: 5px;
+  transition: all 0.5s linear;
+}
+.icon.trans .hamburger2{
+  transform: translateX(-35px);
+  opacity: 0;
+  /*background: transparent;*/
+}
+.icon.trans .hamburger1{
+  transform: rotate(45deg) translate(15px,5px)
+}
+.icon.trans .hamburger3{
+  transform: rotate(-48deg) translate(15px, -4px);
+}
+ul{
+  width: 80%;
+  height: 100vh;
+  background: #001040;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: left 0.50s linear;
+}
+ul.open{
+  left: 0;
+}
+ul li{
+  font-size: 25px;
+  color: white;
+  width: 100%;
+  list-style: none;
+}
+
+ul li a{
+  color: #fff;
+  width: 80%;
+ /* background: #000830;*/
+  padding: 20px 0;
+  padding-left: 10px;
+  text-decoration: none;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+ul li a:hover{
+  background: #000830;
+}
+header{
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://www.dropbox.com/s/3s764vfp4brhki6/bg2.jpg?dl=1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  color: #fff;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+}
+main{
+  display: flex;
+ flex-direction: column; 
+ justify-content: space-around;
+ align-items: center;
+}
+.Line{
+  width: 50px;
+  height: 8px;
+  background-color: #000140;
+  margin: 10px auto;
+  border-radius: 20px;
+}
+.hireBtn{
+  width: 50%;
+  height: 50px;
+  background: #001040;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 800;
+  display: block;
+  margin: auto;
+  margin-top: 300px;
+  border: 2px solid white;
+  outline: none;
+  border-radius: 10px;
+  opacity: 0;
+  position: relative;
+  transition: all 1s ease;
+  animation: hireBtn 1s ease-out 1s forwards;
+}
+@keyframes hireBtn{
+  from{
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hireBtn:hover{
+  background: #fff;
+  color: #001040;
+  border: 2px solid #001040;
+}
+
+.slide{
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0px 20px 20px 0px;
+  border-color: transparent transparent #fff transparent;
+ transform: rotate(-45deg);
+ margin-bottom: -10px;
+ opacity: 0;
+ animation: scroll 2s ease-in-out 1s infinite;
+}
+@keyframes scroll {
+  from{
+    margin-bottom: 30px;
+    opacity: 0;
+  }
+  to{
+    margin-bottom: 10px;
+    opacity: 1;
+  }
+}
+
+#InfoSection{
+  width: 100vw;
+  padding: 15px;
+  padding-top: 65px;
+  background-color: white;
+  margin: 0px 0;
+  margin-bottom: 20px;
+}
+/* colors
+0000B3
+333333
+141823
+292733
+#F0E8F0
+#E8E8F0
+#C8C8C8
+#D0C8D0
+#707078
+
+*****"*****fonts**************
+
+font-family: 'Lato', sans-serif;
+font-family: 'Lora', serif;
+*/
+#InfoSection img{
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+#InfoSection h2{
+  color: #707078;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  margin-top: 10px;
+  text-align: center;
+  letter-spacing: 5px;
+  font-weight: 800;
+}
+
+#InfoSection h2 span{
+  color: #000140;
+}
+#InfoSection p{
+  font-size: 18px;
+  line-height: 1.5;
+  font-family: 'Lora', serif;
+  padding-top: 50px;
+}
+#InfoSection p:first-letter{
+  font-size: 30px
+}
+.divInfo{
+  width: 100%;
+  margin: 20px 0px;
+  height: 70px;
+  border: 2px solid #efefef;
+  border-radius: 10px;
+ 
+  display: block;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden
+}
+.divInfo div{
+  width: 25%;
+  background: #fff;
+  height: 100%;
+}
+.divInfo h3{
+  width: 75%;
+  text-align: center;
+  color: #333;
+}
+.icon-check{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.divInfo .icon-check i{
+  font-size: 28px;
+}
+#InfoSection .slogan{
+  color: #333;
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 30px;
+  
+}
+
+.achivements{
+  width: 100%;
+  height: 500px;
+  background: #efefef;
+  padding-top: 20px;
+  vertical-align: middle;
+  padding-bottom: 20px;
+  position: relative;
+  background-color: #efefef;
+}
+#modal{
+  width: 80%;
+  background: #fff;
+  height: 90%;
+  margin: auto;
+  border-radius: 10px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+#modal div h2{
+  font-size: 25px;
+  margin: 5px 0;
+}
+#modal div h3{
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif; 
+}
+
+.slideLeft{ 
+  animation: slideLeft 2s ease-in forwards;
+}
+
+@keyframes sldeLeft{
+  from{
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#description{
+  width: 100vw;
+  height: 100%;
+ position: relative;
+ padding-top: 80px;
+ 
+}
+
+#descriptionTitle{
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+} 
+.descriptionLine{
+  width: 50px;
+  height: 8px;
+  background-color: #000140;
+  margin: 10px auto;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+#description .WorkTitle{
+ text-align: center;
+ font-family: "lato" sans-serif;
+ font-size: 22px;
+ text-transform: uppercase
+}
+.descriptionText{
+  font-family: "Lora" serif;
+  line-height: 1.5;
+  text-align: cener;
+  font-size: 18px;
+  padding: 20px 10px;
+  padding-bottom: 80px;
+}
+.learnMoreBtn{
+  width: 100px;
+  height: 50px;
+  background: #000140;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 10px;
+  outline: none;
+  display: block;
+  border: none;
+  margin: 20px auto 80px auto;
+  
+} 
+.prospect-container{
+  position: relative;
+}
+.prospect{
+  width: 100vw;
+  height: 150px;
+  background: #000140;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: -20px;
+}
+.prospect div{
+  display: flex;
+  align-items: center;
+  padding-left: 55px;
+  padding-top: 20px;
+} 
+.prospect h1{
+  padding-top: 5px;
+  font-size: 30px;
+  color: #fff;
+  width: 20%;
+  font-family: "Lora" serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+.prospect div span{
+  display: inline-block;
+  padding-top: 2px;
+  font-size: 30px;
+  height: 100%;
+  color: #fff;
+  font-family: "Lora" serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  padding-left: 3px;
+}
+.spanned{
+  text-align: left;
+  float: left;
+}
+.prospect button {
+  width: 80%;
+  height: 50px;
+  background: #001040;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 800;
+  display: block;
+  margin: auto;
+  border: 2px solid white;
+  outline: none;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
+#portfolio{
+  width: 100vw;
+  height: 100%;
+  padding-top: 80px;
+  background: url(/Imges/Portfolio.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 15px;
+}
+.portfolioTitle{
+  color: #333;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "lato" sans-serif;
+}
+.portfolioDescription{
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  font-family: "lora" serif;
+}
+.portfolios{
+  padding-top: 80px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.portfolios p{
+  text-align: center;
+  line-height: 1.5;
+  padding-top: 20px;
+  font-size: 18px;
+  font-family: "lora" serif;
+}
+.portfolios img{
+  width: 90vw;
+  height: 200px;
+  display: block;
+  border-radius: 10px;
+}
+.portfolios div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.portfolios div button{
+  width: 150px;
+  height: 50px;
+
+  color: #000140;
+  font-size: 20px;
+  font-weight: 500;
+  display: block;
+  margin: 10px auto;
+  border: 2px solid white;
+  outline: none;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+.reviews{
+  width: 80vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  position: relative; 
+  margin: 20px auto;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 0px 5px grey;
+}
+.reviews h1{
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "lato" sans-serif;
+  margin-bottom: 0px;
+}
+.reviewLine{
+  width: 50px;
+  height: 8px;
+  background-color: #000140;
+  margin: 5px auto;
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+.reviews img{
+  width: 200px;
+  height: 200px;
+  display: block;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.reviews h2{
+   text-transform: uppercase;
+   margin: 2px auto;
+}
+.job{
+  color: #000140;
+  font-size: 20px;
+}
+blockquote{
+  text-align: center;
+  font-size: 18px;
+  font-family: "lora" serif;
+  padding: 10px;
+  line-height: 1.2;
+}
+
+blockquote::before{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f10d";
+  font-size: 25px;
+  margin-right: 5px;
+}
+blockquote::after{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f10e";
+  font-size: 25px;
+  margin-left: 5px;
+}
+
+.reviewBtns{
+  display: flex;
+  width: 80%;
+  margin: 10px auto;
+  align-items: center;
+  height: 50px;
+  justify-content: space-around;
+}
+.reviewBtns .fas{
+  background: #000140;
+  width: 30px;
+  color: #fff;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius:50% ;
+}
+.reviews button{
+  width: 100px;
+  height: 100px;
+  background: #001040;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  display: none;
+  border: 2px solid white;
+  outline: none;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 10px;
+}
+.team{
+  width: 100vw;
+  height: 100%;
+  padding-top: 50px;
+}
+.team .teamTitle{
+  text-align: center;
+  font-size: 25px;
+  font-family: "Lato" sans-serif;
+  text-transform: uppercase;
+}
+.team p {
+  padding-top: 10px;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  font-family: "lora" serif;
+  text-transform: capitalize;
+}
+.team-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  position: relative;
+  justify-content: space-around;
+  margin: 50px 0;
+}
+
+.teamImg{
+  width: 90%;
+  border-radius: 20px;
+  height: 250px;
+}
+.details{ 
+  width: 100vw;
+  float: left;
+  text-transform: uppercase;
+  padding-left: 20px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+.details h3{
+  font-family: "lato" sans-serif;
+  margin: 5px 0;
+}
+.team-container > button{
+  width: 200px;
+  height: 50px;
+  background: #fff;
+  color: #333;
+  font-size: 20px;
+  font-weight: 800;
+  display: block;
+  border: 2px solid #000;
+  outline: none;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.more-info{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top:0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 10000;
+  cursor: none;
+  backdrop-filter: blur(8px);
+  display: none;
+  transition: all 1s linear;
+}
+
+.more-info .infos{
+  width: 80%;
+  height: 80%;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  border-radius: 20px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.infos p{
+  height: 60%;
+  text-align: center;
+  vertical-align: middle;
+  padding: 40px 10px;
+}
+.infos .buttons{
+  height: 40%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.infos .buttons button a{
+  color: #333;
+  text-decoration: none;
+}
+.buttons button a:link {
+  color: black;
+}
+.visit{
+  width: 200px;
+  height: 50px;
+  background: #fff;
+  color: #000140;
+  font-size: 20px;
+  font-weight: 800;
+  display: block;
+  border: 2px solid #000140;
+  outline: none;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 10px;
+}
+.cancel{
+  width: 200px;
+  height: 50px;
+  background: red!important;
+  color: #fff!important;
+  font-size: 20px;
+  font-weight: 800;
+  display: block;
+  border: 0px solid white;
+  outline: none;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 10px;
+}
+.icon{
+  width: 30px;
+  height: 30px;
+}
+#Blogs{
+  width: 100%;
+  background: #efefef;
+  padding-top: 50px
+}
+#Blogs h2{
+  text-transform: uppercase;
+  padding:  15px 15px;
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+#Blogs .blog{
+  width: 90vw;
+  height: 100vh;
+  border-radius: 5px;
+  margin: 20px auto;
+  background-color: #fff!important;
+  box-shadow: 1px 1px 5px rgba(0, 0,0,0.2);
+  padding: 15px;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+.blog h1{
+  /*font-family: Georgia, 'Times New Roman', Times, serif;*/
+  color: #333;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5em;
+}
+.blog p{
+  line-height: 1.5;
+  font-family: 'Lora', serif;
+  
+}
+.blog img{
+  width: 100%;
+}
+.blog .about-blog{
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  justify-content: space-around;
+}
+.blog .about-blog i{
+  display: inline-block;
+  color: #000140;
+  font-size: 18px;
+}
+.fa-user::after{
+  content: " By Godwin";
+}
+.fa-comment:after{
+  content: " 5 comments";
+}
+.blog button{
+  width: 100px;
+  font-family: "lato" , sans-serif;
+  height: 50px;
+  border: none;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  display: block;
+  color: #000140;
+  font-size: 1.2em;
+  outline: none;
+  text-align: center;
+  padding: 5px;
+  float: left;
+  margin-bottom:20px;
+  font-weight: 600;
+}
+ main {
+  flex: 1 0 auto;
+  height: 100%;
+ }
+#contacts{
+  background: #ffffff;
+  width: 100vw;
+  padding: 25px 5px;
+ padding-top: 50px;
+  
+}
+#contacts h1{
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "lato" sans-serif;
+  padding-top: 10px;
+  margin-bottom: 30px;
+  }
+.contact-icons{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.contact-icons div{
+  width: 100%;
+  height: 30px;
+  margin: 10px 0;
+}
+.contact-icons div i{
+  width: 40px;
+  height: 40px;
+  background: #000140;
+  font-size: 30px;
+  border-radius: 100%;
+  text-align: center;
+  padding-top: 8px;
+  color: #fff;
+  display: inline-block;
+  margin: auto;
+  margin-right: 8px;
+}
+.contact-icons div a{
+  text-decoration: none;
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.contact-icons div p{
+  display: inline-block;
+  font-size: 18px;
+  color: #333;
+  width: 250px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+form{
+  padding-top: 30px;
+}
+#contacts input{
+  width: 99%; 
+  height: 50px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000140;
+  padding: 10px;
+  padding-left: 5;
+  border: 1px solid #000140;
+  border-radius: 10px;
+  margin: 10px auto;
+  display: block;
+}
+textarea{
+  display: block;
+  margin: auto;
+  color: #000140;
+  outline: none;
+  border: none;
+  border: 1px solid #000140;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  resize: none;
+  font-weight: 600;
+}
+#send{
+  width: 50%!important;
+  background: #000140;
+  margin: 40px auto!important;
+  border-radius: 10px;
+  font-size: 25px!important;
+  font-weight: 600;
+  display: block;
+  text-transform: uppercase;
+  color: #fff!important;
+  letter-spacing: 10px;
+}
+#contacts ::-webkit-input-placeholder{
+ font-size: 18px;
+ font-weight: 400;
+ padding-left: 5px;
+}
+
+footer{
+  width: 100vw;
+  background-color:#000140;
+  color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(50% 21%, 100% 0, 100% 59%, 100% 100%, 0 100%, 0% 60%, 0 0);
+
+}
+
+.footer-copyright {
+  width: 100%;
+  height: 40px;
+  padding: 20px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+/*
+.footer-body::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+*/
+.footer-body > div {
+  padding: 20px;
+}
+
+.f-div {
+  font-size: 150%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-body .f-div img{
+  float: left;
+  padding-right: 20px;
+  width: 50%;
+}
+.f-div div{
+  width: 2px;
+  height: 80px;
+  background: #fff;
+  border-radius: 10px;
+  margin: 0 0px;
+}
+.footer-body p{
+  text-align: left;
+  font-size: 20px;
+  padding-left: 10px;
+  width: 50%;
+}
+.footer-body .socials{
+  width: 80%;
+  margin: 20px auto!important;
+  display: block;
+  background: #000830;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.socials i {
+  width: 50px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 22px;
+}
+.image{
+  opacity: 0;
+  transition: all 0.5s ease-in;
+  transform: translateY(40px);
+}
+.show-work-image{
+  opacity: 1;
+  transform: translateY(-20px);
+  margin-bottom: 0px
+}
+.change-background{
+  transition: all 1s linear;
+  background-color: red;
+}
+.spanned{
+  border-radius: 2px;
+  border-right: 2px solid #ffffff;
+}
+ 
+.loadCan{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  background: #000140;
+  top: 0;
+  z-index: 1000;
+}
+.loader {
+  position: relative;
+  width: 75px;
+  height: 100px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  top: 50%;
+}
+.loader div{
+  background: #f1f5f8;
+}
+.loader__bar {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 50%;
+  background: #fff;
+  transform-origin: center bottom;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.loader__bar:nth-child(1) {
+  left: 0px;
+  transform: scale(1, 0.2);
+  -webkit-animation: barUp1 4s infinite;
+          animation: barUp1 4s infinite;
+}
+.loader__bar:nth-child(2) {
+  left: 15px;
+  transform: scale(1, 0.4);
+  -webkit-animation: barUp2 4s infinite;
+          animation: barUp2 4s infinite;
+}
+.loader__bar:nth-child(3) {
+  left: 30px;
+  transform: scale(1, 0.6);
+  -webkit-animation: barUp3 4s infinite;
+          animation: barUp3 4s infinite;
+}
+.loader__bar:nth-child(4) {
+  left: 45px;
+  transform: scale(1, 0.8);
+  -webkit-animation: barUp4 4s infinite;
+          animation: barUp4 4s infinite;
+}
+.loader__bar:nth-child(5) {
+  left: 60px;
+  transform: scale(1, 1);
+  -webkit-animation: barUp5 4s infinite;
+          animation: barUp5 4s infinite;
+}
+.loader__ball {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-animation: ball 4s infinite;
+          animation: ball 4s infinite;
+}
+
+@-webkit-keyframes ball {
+  0% {
+    transform: translate(0, 0);
+  }
+  5% {
+    transform: translate(8px, -14px);
+  }
+  10% {
+    transform: translate(15px, -10px);
+  }
+  17% {
+    transform: translate(23px, -24px);
+  }
+  20% {
+    transform: translate(30px, -20px);
+  }
+  27% {
+    transform: translate(38px, -34px);
+  }
+  30% {
+    transform: translate(45px, -30px);
+  }
+  37% {
+    transform: translate(53px, -44px);
+  }
+  40% {
+    transform: translate(60px, -40px);
+  }
+  50% {
+    transform: translate(60px, 0);
+  }
+  57% {
+    transform: translate(53px, -14px);
+  }
+  60% {
+    transform: translate(45px, -10px);
+  }
+  67% {
+    transform: translate(37px, -24px);
+  }
+  70% {
+    transform: translate(30px, -20px);
+  }
+  77% {
+    transform: translate(22px, -34px);
+  }
+  80% {
+    transform: translate(15px, -30px);
+  }
+  87% {
+    transform: translate(7px, -44px);
+  }
+  90% {
+    transform: translate(0, -40px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes ball {
+  0% {
+    transform: translate(0, 0);
+  }
+  5% {
+    transform: translate(8px, -14px);
+  }
+  10% {
+    transform: translate(15px, -10px);
+  }
+  17% {
+    transform: translate(23px, -24px);
+  }
+  20% {
+    transform: translate(30px, -20px);
+  }
+  27% {
+    transform: translate(38px, -34px);
+  }
+  30% {
+    transform: translate(45px, -30px);
+  }
+  37% {
+    transform: translate(53px, -44px);
+  }
+  40% {
+    transform: translate(60px, -40px);
+  }
+  50% {
+    transform: translate(60px, 0);
+  }
+  57% {
+    transform: translate(53px, -14px);
+  }
+  60% {
+    transform: translate(45px, -10px);
+  }
+  67% {
+    transform: translate(37px, -24px);
+  }
+  70% {
+    transform: translate(30px, -20px);
+  }
+  77% {
+    transform: translate(22px, -34px);
+  }
+  80% {
+    transform: translate(15px, -30px);
+  }
+  87% {
+    transform: translate(7px, -44px);
+  }
+  90% {
+    transform: translate(0, -40px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes barUp1 {
+  0% {
+    transform: scale(1, 0.2);
+  }
+  40% {
+    transform: scale(1, 0.2);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  90% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 0.2);
+  }
+}
+@keyframes barUp1 {
+  0% {
+    transform: scale(1, 0.2);
+  }
+  40% {
+    transform: scale(1, 0.2);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  90% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 0.2);
+  }
+}
+@-webkit-keyframes barUp2 {
+  0% {
+    transform: scale(1, 0.4);
+  }
+  40% {
+    transform: scale(1, 0.4);
+  }
+  50% {
+    transform: scale(1, 0.8);
+  }
+  90% {
+    transform: scale(1, 0.8);
+  }
+  100% {
+    transform: scale(1, 0.4);
+  }
+}
+@keyframes barUp2 {
+  0% {
+    transform: scale(1, 0.4);
+  }
+  40% {
+    transform: scale(1, 0.4);
+  }
+  50% {
+    transform: scale(1, 0.8);
+  }
+  90% {
+    transform: scale(1, 0.8);
+  }
+  100% {
+    transform: scale(1, 0.4);
+  }
+}
+@-webkit-keyframes barUp3 {
+  0% {
+    transform: scale(1, 0.6);
+  }
+  100% {
+    transform: scale(1, 0.6);
+  }
+}
+@keyframes barUp3 {
+  0% {
+    transform: scale(1, 0.6);
+  }
+  100% {
+    transform: scale(1, 0.6);
+  }
+}
+@-webkit-keyframes barUp4 {
+  0% {
+    transform: scale(1, 0.8);
+  }
+  40% {
+    transform: scale(1, 0.8);
+  }
+  50% {
+    transform: scale(1, 0.4);
+  }
+  90% {
+    transform: scale(1, 0.4);
+  }
+  100% {
+    transform: scale(1, 0.8);
+  }
+}
+@keyframes barUp4 {
+  0% {
+    transform: scale(1, 0.8);
+  }
+  40% {
+    transform: scale(1, 0.8);
+  }
+  50% {
+    transform: scale(1, 0.4);
+  }
+  90% {
+    transform: scale(1, 0.4);
+  }
+  100% {
+    transform: scale(1, 0.8);
+  }
+}
+@-webkit-keyframes barUp5 {
+  0% {
+    transform: scale(1, 1);
+  }
+  40% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 0.2);
+  }
+  90% {
+    transform: scale(1, 0.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+@keyframes barUp5 {
+  0% {
+    transform: scale(1, 1);
+  }
+  40% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 0.2);
+  }
+  90% {
+    transform: scale(1, 0.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+</style>
+</head>
+<body>
+<nav>
+<div id="menu" class="navDiv">
+  <div class="logo">
+    <img class="lo" src="https://www.dropbox.com/s/yaaehz2rbs44gwn/20210809_220120.png?dl=1" alt="" />
+  </div>
+  
+<div class="hamburger">
+<div class="icon">
+ <div class="hamburger1"></div>
+ <div class="hamburger2"></div>
+ <div class="hamburger3 hamburger"></div>
+</div>
+</div>
+</div>
+
+  <ul class="nav-links">
+    <li>
+    <a href="#"you>
+      Home 
+    </a>
+    </li>
+        <li>
+    <a href="#InfoSection">
+      About us
+    </a>
+    </li>
+        <li>
+    <a href="#portfolio">
+      portfolio
+    </a>
+    </li>
+        <li>
+    <a href="#Blogs">
+      Blog
+    </a>
+    </li>
+        <li>
+    <a href="#contacts">
+      Contact
+    </a>
+    </li>
+  </ul>
+</nav>
+
+<header>
+  <button class="hireBtn"> Hire Now</button>
+  <div class="slide"></div>
+</header>
+
+<main>
+ 
+<section id="InfoSection">
+  
+<img  class="company-image anime" src="https://www.dropbox.com/s/6iezim6vpqkgixj/undraw_team_spirit_hrr4.png?dl=1" alt="" />
+
+ <h2>About <span>us</span></h2>
+ <div class="Line"></div>
+  <p>code moder is a one stop tech and business outsourcing platform. We’re an incorporation of various elements of a business starting from idea growth and scale to the finished product. With a team of highly motivated and skilled persons, we’re well poised to optimize your resources to achieve success.
+ </p>
+  <div class="divInfo anime">
+   
+<div class="icon-check">
+  
+    <i class="fas fa-check"></i>
+    
+</div>
+<h3> solution for small businesses 
+  </h3>
+ </div>
+  <div class="divInfo anime">
+  <div class="icon-check">
+    <i class="fas fa-check"></i>
+ </div>
+ 
+  <h3>solution for large businesses </h3>
+  
+ </div>
+</section>
+<div class="prospect-container">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000140" fill-opacity="1" d="M0,64L60,96C120,128,240,192,360,197.3C480,203,600,149,720,133.3C840,117,960,139,1080,133.3C1200,128,1320,96,1380,80L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+<div class="prospect">
+ <div>
+    <h1>we</h1>
+    <span class="typeText" data-wait="2000" data-words ='["promise", "deliver"]'>
+      
+    </span>
+</div>
+  <button class="consult" type="button"> Let's work together</button>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000140" fill-opacity="1" d="M0,64L48,96C96,128,192,192,288,192C384,192,480,128,576,112C672,96,768,128,864,154.7C960,181,1056,203,1152,208C1248,213,1344,203,1392,197.3L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+</div>
+
+<section id="description">
+  <h1 id="descriptionTitle">
+     we are the best at
+  </h1>
+  <div class="descriptionLine"></div>
+  <img  class="image" src="https://www.dropbox.com/s/8y4fm6qs72rlkcq/undraw_logo_design_re_gfu6.png?dl=1" alt="" />
+<h2 class="WorkTitle"> Logo & Branding</h2>
+<p class="descriptionText">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+<img class="image" src="https://www.dropbox.com/s/dwba7a49rvcpfr7/undraw_design_tools_42tf.png?dl=1" alt="" />
+<h2 class="WorkTitle">UI design</h2>
+<p class="descriptionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+
+<img class="image" src="https://www.dropbox.com/s/yioscojggsde22h/undraw_User_flow_re_bvfx.png?dl=1" alt="" />
+<h2 class="WorkTitle"> Ux design</h2>
+<p class="descriptionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<img class="image" src="https://www.dropbox.com/s/4yc85dl4wgfujsj/undraw_building_websites_i78t.png?dl=1" alt="" />
+<h2 class="WorkTitle"> Website Design</h2>
+<p class="descriptionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+
+<img class="image" src="https://www.dropbox.com/s/2vnd8z1f1fl2og1/undraw_web_development_w2vv.png?dl=1" alt="" />
+<h2 class="WorkTitle"> Website Development</h2>
+<p class="descriptionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<img class="image" src="https://www.dropbox.com/s/dvjtfo9zlbdeelq/undraw_gaming_6oy3.png?dl=1" alt="" />
+<h2 class="WorkTitle"> Game Development</h2>
+<p class="descriptionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+
+
+
+<img class="image" src="https://www.dropbox.com/s/p3j3pwg0wp85k9c/undraw_software_engineer_lvl5.png?dl=1" alt="" />
+<h2 class="WorkTitle"> software development</h2>
+<p class="descriptionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+
+
+
+<img class="image" src="https://www.dropbox.com/s/i2zwgdgo2rjmgnd/undraw_Data_report_re_p4so.png?dl=1" alt="" />
+<h2 class="WorkTitle"> Data Analysis</h2>
+<p class="descriptionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+
+
+
+<img class="image" src="https://www.dropbox.com/s/v1ulcqnzxnqtax5/undraw_Marketing_re_7f1g.png?dl=1" alt="" />
+<h2 class="WorkTitle"> Marketing</h2>
+<p class="descriptionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+</section>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000140" fill-opacity="1" d="M0,64L26.7,96C53.3,128,107,192,160,208C213.3,224,267,192,320,176C373.3,160,427,160,480,133.3C533.3,107,587,53,640,58.7C693.3,64,747,128,800,138.7C853.3,149,907,107,960,117.3C1013.3,128,1067,192,1120,218.7C1173.3,245,1227,235,1280,202.7C1333.3,171,1387,117,1413,90.7L1440,64L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"></path></svg>
+<div class="prospect">
+  <button class="consult" type="button">
+     Free Consultation
+  </button>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000140" fill-opacity="1" d="M0,64L26.7,96C53.3,128,107,192,160,208C213.3,224,267,192,320,176C373.3,160,427,160,480,133.3C533.3,107,587,53,640,58.7C693.3,64,747,128,800,138.7C853.3,149,907,107,960,117.3C1013.3,128,1067,192,1120,218.7C1173.3,245,1227,235,1280,202.7C1333.3,171,1387,117,1413,90.7L1440,64L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
+
+<section id="portfolio" class="portfolio">
+<h1 class="portfolioTitle">
+ our portfolio
+</h1>
+<div class="Line"></div>
+<p class="portfolioDescription">At code moda we aim to build, and to last as well. Below are some sample client sites built by our team for you to take a look at:
+</p>
+
+<div class="portfolios">
+  <img class="portfolioImage image" src="https://www.dropbox.com/s/19fibvspqu2x22n/dele-3-768x364.png?dl=1" alt="" />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+  </p>
+  <div>
+    <button type="button">
+      learn more 
+    </button>
+    <button type="button"> 
+      visit site
+    </button>
+  </div>
+</div>
+
+
+<div class="portfolios">
+  <img class="portfolioImage image" src="https://www.dropbox.com/s/xx0aufhq44gjfbk/skyloan.today_-768x354.png?dl=1" alt="" />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+  </p>
+  <div>
+    <button type="button">
+      learn more 
+    </button>
+    <button type="button"> 
+      visit site
+    </button>
+  </div>
+  </div>
+  
+  
+  <div class="portfolios">
+  <img class="portfolioImage image" src="https://www.dropbox.com/s/celkxtaybxpt4x6/loan.mymquid.com_-768x366.png?dl=1" alt="" />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+  </p>
+  <div>
+    <button type="button">
+      learn more 
+    </button>
+    <button type="button"> 
+      visit site
+    </button>
+  </div>
+  </div>
+  
+  
+  <div class="portfolios">
+  <img class="portfolioImage image" src="https://www.dropbox.com/s/ewohc44ht7djvu0/ampcorporation.com_-768x360.png?dl=1" alt="" />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+  </p>
+  <div>
+    <button type="button">
+      learn more 
+    </button>
+    <button type="button"> 
+      visit site
+    </button>
+  </div>
+  </div>
+  
+  
+  <div class="portfolios">
+  <img class="portfolioImage image" src="https://www.dropbox.com/s/5dplszmvic7k3td/mymquid.com_-768x365.png?dl=1" alt="" />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+  </p>
+  <div>
+    <button type="button">
+      learn more 
+    </button>
+    <button type="button"> 
+      visit site
+    </button>
+  </div>
+  </div>
+ 
+  
+  <div class="portfolios">
+  <img class="portfolioImage image" src="https://www.dropbox.com/s/1yzxkqrdlamnrsr/cashdown-1-1-768x349.png?dl=1" alt="" />
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+  </p>
+  <div>
+    <button type="button">
+      learn more 
+    </button>
+    <button type="button"> 
+      visit site
+    </button>
+  </div>
+ </div> 
+ 
+<div id="countingBox" class="achivements">
+  <div id="modal">
+   <div >
+      
+      <img class="icon" src="https://www.dropbox.com/s/vafy6z0n9oqeffd/icons8-intelligence-50.png?dl=1" alt="" />
+      
+      <h2 id="numbers" data-target="5" class="count">0</h2>
+      <h3> Years Of Experience</h3>
+    </div>
+
+<div >
+      
+      <img class="icon" src="https://www.dropbox.com/s/oo98rqxldwf6cty/icons8-group-of-projects-80.png?dl=1" alt="" />
+      
+      <h2 id="numbers" data-target="125" class="count">0</h2>
+      <h3>Active projects</h3>
+    </div>
+
+    <div >
+      <img class="icon" src="https://www.dropbox.com/s/83fqq9xdqoass8t/icons8-project-management-80.png?dl=1" alt="" />
+      <h2 id="numbers" data-target="5200" class="count">0</h2>
+      <h3>completed projects</h3>
+    </div>
+    
+    
+    <div>
+      <img class="icon" src="https://www.dropbox.com/s/wt0b47d4cskf0cc/icons8-customers-128.png?dl=1" alt="" />
+      <h2 id="numbers" data-target="1500" class="count">0</h2>
+      <h3>Happy clients</h3>
+    </div>
+    <div >
+      <img class="icon" src="https://www.dropbox.com/s/vc8wt817pke19wq/icons8-medal-48.png?dl=1" alt="" />
+      
+      <h2 id="numbers" data-target="15" class="count">0</h2>
+      <h3>Awards</h3>
+    </div>
+
+  </div>
+  
+</div>
+<div class="reviews">
+  <h1> our reviews</h1>
+  <div class="reviewLine"></div>
+    <img class="reviewImg" src="Images/Generated-face1.jpg" alt="" />
+    <h2 class="name">
+      
+    </h2>
+    <h2 class="job">
+      
+     </h2>
+<blockquote class="reviewQuote">
+   &nbsp; &nbsp; &nbsp;
+</blockquote>
+<div class="reviewBtns">
+ <i id="prev" class="fas fa-chevron-left"></i>
+ <i id="next" class="fas fa-chevron-right"></i>
+</div>
+</div>
+</section>
+
+<section class="team">
+  <h1 class="teamTitle">
+    Meet the team
+  </h1>
+  <div class="Line"></div>
+  <p>
+    here are some of the highly skilled <br /> individuals who came together <br /> to form this great agency
+  </p>
+  <div class="team-container">
+    <img class="teamImg" src="https://www.dropbox.com/s/crqjnyvjzy31hwf/images%20%2812%29.jpeg?dl=1" alt="" />
+    <div class="details">
+      <h3> name: Mitali</h3>
+      <h3> role: website designer</h3>
+    </div>
+    <button class="openModal" type="button">
+      more details
+    </button>
+    <div class="more-info">
+       <div class="infos">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+         </p>
+         <div class="buttons">
+         <button type="button" class="visit">
+           <a class="" href="#">visit</a>
+         </button>
+         <button type="button" class="cancel">
+           cancel
+         </button>
+         </div>
+       </div>
+    </div>
+  </div>
+  
+  <div class="team-container">
+    <img class="teamImg" src="https://www.dropbox.com/s/nxhfpjnt03hifx7/images%20%287%29.jpeg?dl=1" alt="" />
+    <div class="details">
+      <h3> name: Mikola</h3>
+      <h3> 
+          role: software developer
+      </h3>
+    </div>
+    <button class="openModal" type="button">
+      more details
+    </button>
+    <div class="more-info">
+       <div class="infos">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+         </p>
+         <div class="buttons">
+         <button type="button" class="visit">
+           <a class="" href="#">visit</a>
+         </button>
+         <button type="button" class="cancel">
+           cancel
+         </button>
+         </div>
+       </div>
+    </div>
+  </div>
+  
+  
+  <div class="team-container">
+    <img class="teamImg" src="https://www.dropbox.com/s/tosa59wfcuu7q41/images%20%2811%29.jpeg?dl=1" alt="" />
+    <div class="details">
+      <h3> name: Ankashika</h3>
+      <h3> 
+          role: ui design
+      </h3>
+    </div>
+    <button class="openModal" type="button">
+      more details
+    </button>
+    <div class="more-info">
+       <div class="infos">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+         </p>
+         <div class="buttons">
+         <button type="button" class="visit">
+           <a class="" href="#">visit</a>
+         </button>
+         <button type="button" class="cancel">
+           cancel
+         </button>
+         </div>
+       </div>
+    </div>
+  </div>
+  <div class="team-container">
+    <img class="teamImg" src="https://www.dropbox.com/s/5ktxrlg7r6njhrh/download%20%282%29.jpeg?dl=1" alt="" />
+    <div class="details">
+      <h3> name: Chillpill</h3>
+      <h3> role: Game development</h3>
+    </div>
+    <button class="openModal" type="button">
+      more details
+    </button>
+    <div class="more-info">
+       <div class="infos">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+         </p>
+         <div class="buttons">
+         <button type="button" class="visit">
+           <a class="" href="#">visit</a>
+         </button>
+         <button type="button" class="cancel">
+           cancel
+         </button>
+         </div>
+       </div>
+    </div>
+  </div>
+  <div class="team-container">
+    <img class="teamImg" src="https://www.dropbox.com/s/utxqw9y4anexrqb/images.jpeg?dl=1" alt="" />
+    <div class="details">
+      <h3> name: LoLo</h3>
+      <h3> role: Game development</h3>
+    </div>
+    <button class="openModal" type="button">
+      more details
+    </button>
+    <div class="more-info">
+       <div class="infos">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+         </p>
+         <div class="buttons">
+         <button type="button" class="visit">
+           <a class="" href="#">visit</a>
+         </button>
+         <button type="button" class="cancel">
+           cancel
+         </button>
+         </div>
+       </div>
+    </div>
+  </div>
+  
+  <div class="team-container">
+    <img class="teamImg" src="https://www.dropbox.com/s/x4kfwkwkatdfwis/images%20%289%29.jpeg?dl=1" alt="" />
+    <div class="details">
+      <h3> name: joy</h3>
+      <h3> 
+          role: website development
+      </h3>
+    </div>
+    <button class="openModal" type="button">
+      more details
+    </button>
+    <div class="more-info">
+       <div class="infos">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+         </p>
+         <div class="buttons">
+         <button type="button" class="visit">
+           <a class="" href="#">visit</a>
+         </button>
+         <button type="button" class="cancel">
+           cancel
+         </button>
+         </div>
+       </div>
+    </div>
+  </div>
+  <div class="team-container">
+    <img class="teamImg" src="https://www.dropbox.com/s/9xf8mmf5ruvt0pa/download.jpeg?dl=1" alt="" />
+    <div class="details">
+      <h3>
+         name: Godwin
+       </h3>
+      <h3> role: graphics design
+      
+      </h3>
+    </div>
+    <button class="openModal" type="button">
+      more details
+    </button>
+    <div class="more-info">
+       <div class="infos">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+         </p>
+         <div class="buttons">
+         <button type="button" class="visit">
+           <a class="" href="#">visit</a>
+         </button>
+         <button type="button" class="cancel">
+           cancel
+         </button>
+         </div>
+       </div>
+    </div>
+  </div>
+  
+  
+  <div class="team-container">
+    <img class="teamImg" src="https://www.dropbox.com/s/l3r2qqncycu45bi/images%20%2810%29.jpeg?dl=1" alt="" />
+    <div class="details">
+      <h3>
+         name: Priya 
+      </h3>
+     <h3> role: Website promotion</h3>
+    </div>
+    <button class="openModal" type="button">
+      more details
+    </button>
+    <div class="more-info">
+       <div class="infos">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida rutrum quisque non tellus orci. Odio tempor orci dapibus ultrices in.
+         </p>
+         <div class="buttons">
+         <button type="button" class="visit">
+           <a class="" href="#">visit</a>
+         </button>
+         <button type="button" class="cancel">
+           cancel
+         </button>
+         </div>
+       </div>
+    </div>
+  </div>
+</section>
+
+<section id="Blogs">
+  <h2> latest from our blog</h2>
+  <div class="Line"></div>
+  <div class="blog">
+    <img src="https://www.dropbox.com/s/m5a2qs2yjfj3su6/running%20a%20web%20agency.jpg?dl=1" alt="" />
+    <div class="about-blog">
+      <i class="fas fa-user"></i>
+      <i class="fas fa-comment"></i>
+    </div>
+    <h1 class="blog-title">
+      Basic rule of running a web agency business
+    </h1>
+    <p>
+       Amet, consectetur adipiscing elit. Donec dictum vel enim ut iaculis. Donec volutpat diam sed iaculis pulvinar. Aenean sit amet risus ut velit sodales vehicula. Etiam sed ullamcorper sapien.
+    </p>
+    <button type="button">
+      Read more
+    </button>
+  </div>
+  <div class="blog">
+    <img src="https://www.dropbox.com/s/97vpr81jn6u9f1i/blog-1-2.jpg?dl=1" alt="" />
+    <div class="about-blog">
+      <i class="fas fa-user"></i>
+      <i class="fas fa-comment"></i>
+    </div>
+    <h1 class="blog-title">
+      Leverage frameworks to provide a robust 
+    </h1>
+    <p>
+       Amet, consectetur adipiscing elit. Donec dictum vel enim ut iaculis. Donec volutpat diam sed iaculis pulvinar. Aenean sit amet risus ut velit sodales vehicula. Etiam sed ullamcorper sapien.
+    </p>
+    <button type="button">
+      Read more
+    </button>
+  </div>
+  <div class="blog">
+    <img src="https://www.dropbox.com/s/ci2kvqsrsf64ulb/blog-1-3.jpg?dl=1" alt="" />
+    <div class="about-blog">
+      <i class="fas fa-user"></i>
+      <i class="fas fa-comment"></i>
+    </div>
+    <h1 class="blog-title">
+      Organically grow the holistic world view
+    </h1>
+    <p>
+       Amet, consectetur adipiscing elit. Donec dictum vel enim ut iaculis. Donec volutpat diam sed iaculis pulvinar. Aenean sit amet risus ut velit sodales vehicula. Etiam sed ullamcorper sapien.
+    </p>
+    <button type="button">
+      Read more
+    </button>
+  </div>
+</section>
+
+
+<div id="contacts">
+  <h1>contact us now</h1>
+<div class="contact-icons">
+  <div>
+    <i class="fa fa-phone-alt"></i>
+    <a href="tel:23466016501">+12466016501</a>
+  </div>
+  <div>
+    <i class="fas fa-building"></i>
+     <p>66 Broklyn Street New York United States of America</p>
+  </div>
+</div>
+  <form action="mailto:webrooter1@gmail.com" method="get" accept-charset="utf-8">
+    <input type="email" name="email" id="email" placeholder ="Your email" />
+    <input type="text" name="name" id="name" placeholder="Your name" />
+    <textarea rows="5" cols="30" placeholder="Your messages"></textarea>
+    <input type="submit" name="send" id="send" value="send" />
+  </form>
+</div>
+<div class="loadCan">
+<div class="loader">
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__ball"></div>
+  </div>
+</div>
+</main>
+
+<footer>
+<div class="footer-body">
+ <div class="f-div">
+ 
+    <img class="lo" src="https://www.dropbox.com/s/yaaehz2rbs44gwn/20210809_220120.png?dl=1" alt="" />
+ <div></div>
+   <p> Your website is like a business card, it should look good.
+   </p>
+  </div>
+ <div class="socials">
+     <i class="fa fa-facebook"></i>
+     <i class="fa fa-instagram"></i>
+     <i class="fa fa-twitter"></i>
+     <i class="fa fa-youtube"></i>
+ </div>
+ <div class="footer-copyright">
+         &copy; <span class="year"></span> CODE MODA
+ </div>
+</footer>
+<script>
+    
+let hamburger = document.querySelector(".icon");
+let ul = document.querySelector(".nav-links");
+let icon = document.querySelector(".icon");
+let slideIcon = document.querySelector(".slide");
+
+let ulOpen = false;
+let clicked = false;
+hamburger.addEventListener("click", () => {
+  if (!ulOpen) {
+    ul.classList.add("open");
+    icon.classList.add("trans");
+    
+    ulOpen = true;
+  } else{
+    ul.classList.remove("open");
+    icon.classList.remove("trans");
+    ulOpen = false;
+}});
+
+let links = document.querySelectorAll(" ul li");
+links.forEach((el)=>{
+  el.addEventListener("click", ()=>{
+   ul.classList.remove("open");
+    icon.classList.remove("trans");
+    ulOpen = false;
+
+  })
+})
+
+window.addEventListener("scroll",() => {
+  
+  if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+    document.getElementById("menu").style.backgroundColor = "#000140";
+slideIcon.style.display = "none";
+  } else {
+    document.getElementById("menu").style.backgroundColor = "transparent";
+    slideIcon.style.display = "block"
+  }
+});
+
+let reviews = [
+  {
+    img: "https://www.dropbox.com/s/rgyty1yhfuv1ezf/cropped-image-serious-black-man-with-full-lips-thick-beard-wears-optical-glasses.jpg?dl=1 ",
+    name : "Brain nack",
+    job: "teacher",
+    qoute: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do suspendisse potenti nullam ac tortor. "
+  },
+  {
+    img: "https://www.dropbox.com/s/dnyv119d3n3lbh5/img_20210910_183230_241.webp?dl=1",
+    name : " Arto morgan",
+    job: " Actress",
+    qoute: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et d pellentesque. "
+  },
+  {
+    img: "   https://www.dropbox.com/s/46n01lcn92cm53s/cropped-image-pretty-dark-skinned-girl-has-afro-haircut.jpg?dl=1",
+    name : "Amanda peter",
+    job: "Chef",
+    qoute: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Porttitor eget dolor morbi non arcu risus.. "
+  },
+  {
+    img: "https://www.dropbox.com/s/60lvbyocul84wgv/9af112d2-65ef-47bc-8c7f-eef980d209ec-01.jpeg?dl=1",
+    name : "Matter Nicholas",
+    job: "Entrepreneur",
+    qoute: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu Porttitor eget dolor mo. "
+  },
+  {
+    img: "https://www.dropbox.com/s/r1zh96z3p5faasc/images%20%283%29.jpeg?dl=1",
+    name : "Bob Martin",
+    job: "Activist",
+    qoute: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ale. "
+  },
+  ];
+  let reviewerImg = document.querySelector(".reviewImg");
+  let reviewer = document.querySelector(".name");
+  let reviewersJob = document.querySelector(".job");
+  let reviewQuote = document.querySelector(".reviewQuote");
+  let nextBtn = document.querySelector("#next");
+  let prevBtn = document.querySelector("#prev");
+  let current = 0;
+  
+  window.addEventListener("load",() => {
+    updateReview();
+  });
+  
+  
+  function updateReview(){
+    reviewerImg.src = reviews[current].img;
+    reviewer.innerHTML = reviews[current].name;
+    reviewersJob.innerHTML = reviews[current].job;
+    reviewQuote.innerHTML = reviews[current].qoute;
+  }
+  nextBtn.addEventListener("click", ()=>{
+    current++;
+    if (current > reviews.length - 1) {
+      current = 0;
+    }
+    updateReview();
+  })
+  
+  prevBtn.addEventListener("click", ()=>{
+    current--;
+    if (current < 0) {
+      current = reviews.length - 1;;
+    }
+    updateReview();
+  });
+  const modalBox = document.querySelector(".more-info");
+  modalBox.style.display = "none";
+  
+const openModals = document.querySelectorAll(".openModal");
+/**/
+openModals.forEach(openModal =>{
+  openModal.addEventListener("click", () => {
+    modalBox.style.display = "block";
+  })
+})
+const closeModals = document.querySelectorAll(".cancel");
+closeModals.forEach(closeModal =>{
+  closeModal.addEventListener("click", () => {
+    modalBox.style.display = "none";
+  })
+})
+
+
+let date = new Date();
+let thisYear = date.getFullYear();
+let year = document.querySelector(".year");
+year.innerHTML = thisYear;
+
+const workImages = document.querySelectorAll(".image");
+const countContainer = document.querySelector("#countingBox");
+
+//console.log(countContainer)
+  const fadeOptions = {threshold: 0.6};
+  const fader = new IntersectionObserver(fadeIn, fadeOptions);
+  function fadeIn(entries,observer) {
+    
+    entries.forEach(entry =>{
+  
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show-work-image");
+        observer.unobserve(entry.target)
+      }
+     else{
+        entry.target.classList.remove("show-work-image")
+      }
+
+    })
+  }
+  workImages.forEach(workImage => {
+    fader.observe(workImage);
+  })
+  
+
+
+const countChecker = new IntersectionObserver(countNow, fadeOptions);
+
+let counters = document.querySelectorAll("#numbers");
+let Speed = 200;
+    
+function countNow(entries, observer) {
+
+entries.forEach(entry => {
+ if(entry.isIntersecting) {
+/* =================================*/
+ counters.forEach(counter => {
+  const letsCount = function() {
+    
+  let targetNumer = +counter.getAttribute("data-target");
+
+  let toCount = +counter.innerHTML;
+  
+  let countSpeed = Math.ceil(targetNumer / Speed);
+  
+  if(toCount < targetNumer) {
+ counter.innerHTML = toCount + countSpeed;
+ setTimeout(letsCount,10)
+  } else {
+    counter.innerHTML = targetNumer;
+  }
+      }
+      
+ letsCount();
+      })
+      
+/* =================================*/
+ 
+      //observer.unobserve(entry.target)
+    }
+
+  })
+}
+
+countChecker.observe(countContainer);
+
+class Typewriter {
+  constructor(textElement, textDelay, textToType){
+      this.textElement = textElement;
+      this.textToType = textToType;
+      this.wait = parseInt(textDelay, 10);
+      this.txt = " ";
+      this.wordIndex = 0;
+      this.type();
+      this.isDeleting = false;
+  }
+  type(){
+      let currentWord = this.wordIndex % this.textToType.length;
+  let oneWord = this.textToType[currentWord];
+// console.log(this.wordIndex++);
+  if (this.isDeleting) {
+ 
+    this.txt = oneWord.substring(0, this.txt.length - 1);
+    
+  } else {
+this.txt = oneWord.substring(0, this.txt.length + 1);
+  };
+  
+  this.textElement.innerHTML = ` <span class="spanned"> ${this.txt} </span>`;
+  
+  let typeSpeed = 300;
+  if (this.isDeleting) {
+    typeSpeed /= 2;
+  };
+  if(!this.isDeleting && this.txt === oneWord) {
+    
+    typeSpeed = this.wait;
+    this.isDeleting = true;
+  }else if(this.isDeleting && this.txt === ""){
+    this.isDeleting = false;
+    this.wordIndex++;
+    
+    typeSpeed = 500;
+  }
+setTimeout(() => this.type(), typeSpeed);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", startTyping());
+
+function startTyping() {
+let textElement = document.querySelector(".typeText");
+
+
+
+const loader = document.querySelector(".loadCan");
+loader.style.display = "none";
+let typeDelay = textElement.getAttribute("data-wait");
+
+let textToType = JSON.parse(textElement.getAttribute("data-words"));
+
+new Typewriter(textElement, typeDelay, textToType)
+}
+//console.log(this.wordIndex);
+
+</script>
+</body>
+</html>

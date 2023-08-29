@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+    
+<html lang="en">
+    
+<head>
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+<style>
+    body { 
+margin: 0; 
+background-color: #000; 
+height: 100vh; 
+display: flex; 
+justify-content: center; 
+align-items: center;
+} 
+
+.button { 
+color: #2196f3; 
+position: relative; 
+text-decoration: none; 
+text-transform: uppercase; 
+font-size: 24px; 
+letter-spacing: 4px; 
+font-family: sans-serif; 
+padding: 15px 30px; 
+overflow: hidden; 
+display: inline-block; 
+transition: 0.2s;} 
+
+.button__line { 
+position: absolute; 
+display: block;} 
+
+.button__line_top { 
+top: 0; 
+left: -100%; 
+width: 100%; 
+height: 2px; 
+background: linear-gradient(90deg,transparent,#2196f3);
+} .button:hover 
+
+.button__line_top { 
+left: 100%; 
+transition: 1s; 
+transition-delay: 0.25s;} 
+
+.button__line_bottom { bottom: 0; right: -100%; width: 100%; height: 2px; background: linear-gradient(270deg,transparent,#2196f3);} .button:hover .button__line_bottom { right: 100%; transition: 1s; transition-delay: 0.25s;} .button__line_left { bottom: -100%; left: 0; width: 2px; height: 100%; background: linear-gradient(0deg,transparent,#2196f3);} .button:hover .button__line_left { bottom: 100%; transition: 1s; transition-delay: 0s;} .button__line_right { top: -100%; right: 0; width: 2px; height: 100%; background: linear-gradient(180deg,transparent,#2196f3);} .button:hover .button__line_right { top: 100%; transition: 1s; transition-delay: 0s;} .button:hover { box-shadow: 0 0 10px #2196f3,0 0 40px #2196f3,0 0 80px #2196f3; color: #000; background-color: #2196f3; transition-delay: 0.7s; }
+
+
+</style>
+</head>
+<body>
+<a href="#" class="button"> 
+<span class="button__line button__line_top"></span> 
+<span class="button__line button__line_right"></span> 
+<span class="button__line button__line_bottom"></span> 
+<span class="button__line button__line_left"></span> Follow Me </a>
+</body>
+    
+</html>

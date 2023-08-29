@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <style>
+            *{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+.container{
+    min-height:100vh;
+    width:100%;
+    background-color:#485461;
+    background-image:linear-gradient(135deg,
+    #485461 10%, #28313b 74%);
+    top:0;
+    left:0;
+    width:100%;
+    z-index:10;
+    height:3rem;
+    overflow:hidden;
+    transform-style:preserve-3d;
+}
+
+.menu{
+    max-width:72rem;
+    width:100%;
+    margin:0 auto;
+    padding:0 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#fff;
+    z-index:5;
+}
+.logo{
+    font-size:1.1rem;
+    font-weight:600;
+    text-transform:uppercase ;
+    letter-spacing:2px;
+    line-height:4rem;
+}
+.logo span{
+    font-weight:300;
+}
+.mymenu{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    width:3rem;
+    height:4rem;
+}
+.bar{
+    position:absolute;
+    width:1.9rem;
+    height:1.5px;
+    border-radius:2px;
+    z-index:5;
+    background:#eee;
+    transition:0.5s;
+}
+.bar::before, .bar::after{
+        content:'';
+        position:absolute;
+        width:inherit ;
+        height:inherit ;
+        background:#eee ;
+        transition:0.5s;
+}
+.bar::before{
+    transform:translateY(-9px);
+}
+.bar::after{
+    transform:translateY(9px);
+}
+.main{
+    position:relative;
+    width:100%;
+    left:0;
+    overflow:hidden;
+    z-index:5;
+    transform-origin:left; 
+    transform-style:preserve-3d;
+}
+header{
+    min-height:100vh;
+    width:100%;
+    margin-bottom:5%; background:url('https://www.pexels.com/photo/3408552/download/') center top ;
+    background-size:cover;
+    background-repeat:no-repeat;
+    position:relative;
+}
+.inner{
+    position:absolute;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    max-width:35rem;
+    padding:0.2rem;
+    color:#fff;
+    margin-top:50%;
+}
+.title{
+    font-size:2.2rem;
+    letter-spacing:2px;
+    text-transform:uppercase ;
+}
+p{
+    text-align:center;
+}
+.btn{
+    margin-top:1rem;
+    padding:10px 10px;
+    background-color:#485461;
+    border:none;
+    border-radius:20px;
+    color:#fff;
+    text-decoration:none;
+}
+.btn:hover{
+    background:none;
+    border:2px solid #485461;
+    padding:10px 10px;
+}
+.zar{
+    padding-top:10%;
+}
+.container.active .bar{
+    transform:rotate(360deg);
+    background-color:transparent;
+}
+.container.active .bar:before{
+    transform:translateY(0) rotate(45deg);
+}
+.container.active .bar:after{
+    transform:translateY(0) rotate(-45deg);
+}
+
+.container.active .main{
+    animation:main-animation 0.5s ease;
+    transition:0.5s;
+    transform:perspective(1200px) rotateY(25deg) translateZ(150px) scale(.4);
+}
+
+@keyframes main-animation {
+    form{
+      transform:translate(0);
+    }
+    to{
+   transform:perspective(1200px) rotateY(25deg) translateZ(190px) scale(.4); 
+   transition:0.5s;
+    }
+}
+.links{
+    position:absolute;
+    width:30%;
+    right:0;
+    top:0;
+    height:100vh;
+    z-index:2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:5%;
+}
+ul{
+    list-style:none;
+}
+.links ul li{
+    padding:.6rem 0;
+}
+.links a{
+    text-decoration:none ;
+    color:#eee;
+    display:inline-block ;
+    font-size:1rem;
+    font-weight:300;
+    text-transform:uppercase ;
+    letter-spacing:1px;
+    opacity:0;
+    transition:.5s;
+    transform:translateY(10px);
+   animation:hide 0.5s forwards;
+}
+.links a:hover{
+    color:#888;
+}
+.container.active .links a{
+    animation:apper forwards ease var(--i);
+}
+@keyframes apper{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0px);
+    }
+}
+@keyframes hide{
+    form{
+        opacity:1;
+        transform:translateY(0px);
+       }
+    to{
+       opacity:0;
+       transform:translateY(10px); 
+    }
+}
+.shadow{
+    position:absolute;
+    width:100%;
+    height:100vh;
+    top:0;
+    left:0;
+}
+.shadow.one{
+    z-index:-1;
+    background:white;
+    opacity:.15;
+}
+.shadow.tow{
+    z-index:-2;
+    background:white;
+    opacity:.15;
+}
+.container.active .shadow.one{
+     animation:shadow-one 0.6s ease-out;
+     transform:perspective(1200px) rotateY(25deg) translateZ(120px) scale(0.4);
+}
+@keyframes shadow-one{
+    0%{
+        transform:translate(0);
+    }
+    5%{
+        transform:perspective(1200px) rotateY(25deg) translateZ(190px) scale(0.4);
+    }
+    100%{
+        transform:perspective(1200px) rotateY(25deg) translateZ(120px) scale(0.4);
+    }
+}
+
+.container.active .shadow.tow{
+    animation:shadow-one 0.6s ease-out;
+     transform:perspective(1200px) rotateY(25deg) translateZ(90px) scale(0.4);
+}
+@keyframes shadow-tow{
+    0%{
+        transform:translate(0);
+    }
+    5%{
+        transform:perspective(1200px) rotateY(25deg) translateZ(90px) scale(0.4);
+        transition:.6s;
+    }
+    100%{
+        transform:perspective(1200px) rotateY(25deg) translateZ(120px) scale(0.4);
+        transition:.6s;
+    }
+}
+
+/****************************/
+/*     END NAV              */
+/****************************/
+/*color:#d43031;*/
+
+/*___________content_____________*/
+
+/****************************/
+/*          begin           */
+/****************************/
+#Cards{
+    Width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    flex-direction:column;
+    margin-top:10%;
+}
+
+.my-img img{
+    width:300px;
+    height:200px;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    }
+
+.cards{
+    height:400px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+.cards.card1{
+  border:1px solid #eee;
+  border-radius: 10px;
+  width:300px;
+  height:450px;
+  box-shadow: 3px 1px 3px 3px rgba(0,0,0,0.20);
+}
+.cards.card2{
+  border:1px solid #eee;
+  border-radius: 10px;
+  width:300px;
+  height:450px;
+  box-shadow: 3px 1px 3px 3px rgba(0,0,0,0.20);
+}
+.cards.card3{
+  border:1px solid #eee;
+  border-radius: 10px;
+  width:300px;
+  height:450px;
+  box-shadow: 3px 1px 3px 3px rgba(0,0,0,0.20);
+}
+.cards p{
+    text-align:left;
+    padding-bottom:20px;
+}
+.cards h3{
+      color:#aaa;
+      padding-bottom:15px;
+}
+.text ul{
+    color:#485461;
+    padding-right:30px;
+    padding-bottom:25px;
+}
+.text ul li{
+    List-style-type:square;
+}
+.cards .icon{
+    padding-top:25px;
+    font-size:20px;
+    padding:15px 40px;
+}
+/****************************/
+/*          END             */
+/****************************/
+
+
+        </style>
+    </head>
+    <body>
+   <div class="container active">
+          <div class="menu">
+                <h3 class="logo">solo<span>learn</span></h3>
+                <div class="mymenu">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        
+            <!------------------------>
+        <div class="main-con">
+          <div class="main">
+            <header>
+             <div class="overlay">
+                <div class="inner">
+                   <div>
+                      <h2 class="title">
+                         future is here
+                      </h2>
+                    </div>
+                    <div>
+                      <p>During this course
+                       we will learn how to
+                       build modern
+                      </p>
+                    </div>
+                    <div class="zar">
+                      <a href="#"  class="btn">ReadMore</a>
+                    </div>
+                </div>
+               </div>
+             </header>
+            </div>
+            <div class="shadow one"></div>
+            <div class="shadow tow"></div>
+            
+          </div>
+        
+        
+        <div class="links">
+            <ul>
+                <li>
+                <a href="#" style="--i: 0.5s">home</a>
+                </li>
+                <li>
+                <a href="#" style="--i: 0.1s">about</                   
+                </li>
+                <li>                 
+                <a href="#" style="--i: 0.15s">contact</a>
+                </li>
+                <li>
+                <a href="#" style="--i: 0.2s">services</a>
+                </li>
+                <li>
+                <a href="#" style="--i: 0.25s">protfolio</a>
+                </li>
+                <li>
+                <a href="#" style="--i: 0.3s">content
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+             
+        <!------content------->
+        
+        <div id="Cards">
+            <div class="cards">
+                <div class="cards card1">
+                   <div class="my-img">                     <img src="https://www.pexels.com/photo/904616/download/">
+                   </div>  
+                   <h3>
+                       Market Domination 
+                   </h3>
+                   <p>
+                  You already are a reference point in <br/>your industry now you need to learn
+                   </p>
+                    <div class="text">
+                   <ul>
+                       <li>
+               About acquisitions 
+                       </li>
+                       <li>
+               Environment and competition 
+                       </li>
+                       <li>
+               Designing the marketing plan
+                       </li>
+                   </ul>
+                   </div>
+        <div class="icon">
+           <i class="fa fa-twitter"></i>
+           <i class="fa fa-facebook"></i>
+           <i class="fa fa-instagram"></i>
+           <i class="fa fa-telegram"></i>
+        </div>
+                </div>
+                <!-------card2-------->
+                <div class="cards card2">
+                   <div class="my-img">
+                      <img src="https://www.pexels.com/photo/3755755/download/">
+                   </div> 
+                   <h3>
+                       Accelerated Growth 
+                   </h3>
+                   <p>
+                   Use this service pack to give your<br/> company the necessary impulse to 
+                   </p>
+                   <div class="text">
+                   <ul>
+                       <li>
+              become an industry leader 
+                       </li>
+                       <li>
+              Environment and competition 
+                       </li>
+                       <li>
+              Designing the marketing plan
+                       </li>
+                   </ul>
+                   </div>
+        <div class="icon">
+           <i class="fa fa-twitter"></i>
+           <i class="fa fa-facebook"></i>
+           <i class="fa fa-instagram"></i>
+           <i class="fa fa-telegram"></i>
+        </div>
+                </div>
+                <!-------card3-------->
+               <div class="cards card3">
+                  <div class="my-img">
+                  <img src="https://www.pexels.com/photo/3768164/download/">
+                     </div>
+                   <h3>
+              Off The Ground Off The Ground 
+                   </h3>
+                   <p>
+                       Perfect for fresh ideas or young <br/> startups, this package will help get the
+                   </p>
+                 <div class="text">
+                   <ul>
+                       <li>
+              business off the ground  
+                       </li>
+                       <li>
+              Environment and competition
+                       </li>
+                       <li>
+              Designing the marketing plan
+                       </li>
+                   </ul>
+                   </div>
+        <div class="icon">
+           <i class="fa fa-twitter"></i>
+           <i class="fa fa-facebook"></i>
+           <i class="fa fa-instagram"></i>
+           <i class="fa fa-telegram"></i>
+        </div>
+                </div>
+                <!--------end Cards----->
+            </div>
+        </div>
+   <!-----------end content----------->   
+
+        <script>
+const mymenu = document.querySelector(".mymenu");
+ const container = document.querySelector(".container");
+ 
+ mymenu.addEventListener("click",()=>{
+               container.classList.toggle("active");
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce</title>
+     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <style>
+        *{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: lato;
+    /* overflow:hidden; */
+    overflow-x:hidden;
+}
+   
+.loading-bar{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    /* background-color:#2980b9; */
+    background-color: rgb(255, 217, 1);
+  
+    background-size: cover;
+    /* display:flex;
+    justify-content: center;
+    align-items: center; */
+    
+} 
+.spinner {
+    width: 40px;
+    height: 40px;
+  
+    position: relative;
+    margin: 100px auto;
+  }
+  
+  .double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #333;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+  }
+  
+  .double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+  
+  @-webkit-keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+  }
+  
+  @keyframes sk-bounce {
+    0%, 100% { 
+      transform: scale(0.0);
+      -webkit-transform: scale(0.0);
+    } 50% { 
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+    }
+  }
+ 
+.overflow-hidden{
+    overflow-x: hidden;
+}
+  
+ 
+/* navigation-bar-start */
+.nav{
+    position: fixed;
+    
+    width: 100%;
+    height: 80px;
+    background-color: rgb(250, 250, 39);
+    z-index: 2;
+
+  
+    
+   
+}
+ 
+.nav ul{
+    float: right;
+    margin-right: 25px;
+
+}
+.nav ul li{
+    display: inline-block;
+    line-height:80px;
+    margin: 0 15px;
+
+}
+.nav ul li a{
+    position: relative;
+    color: #000;
+    font-size: 18px;
+    padding: 5px 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    display:inline-block ;
+}
+.nav ul li a::after{
+   content: '';
+   display: block;
+   width: 0;
+   height: 2px;
+   background: #000;
+   transition: width .3s;
+   margin-top:-18px;
+}
+.nav ul li a:hover::after{
+    width: 100%;
+    transition: width .3s;
+
+}
+ 
+label #btn,
+label #cancel{
+    color: rgb(7, 7, 7);
+    font-size: 25px;
+    font-weight:100;
+    float: right;
+    line-height:80px ;
+    margin-right:30px;
+    cursor: pointer;
+    display: none;
+}
+#check{
+    display: none;
+}
+/* top-image-ads */
+.top-ads-image{
+    height: 100vh;
+    background: url("girl.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center  ;
+    
+
+}
+.heading-container{
+    width: 380px;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+     
+}
+.top-lorem-text{
+    padding-top: 20px;
+    font-weight: 400;
+    letter-spacing:2px;
+    opacity: 0.8;
+    font-size: 1rem;
+}
+.shopping-as-you-love{
+    font-size: 4.4rem;
+    opacity: 0.8;
+    
+}
+.see-whats-on-sale{
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: crimson;
+    color: #fff;
+    position: absolute;
+    margin-top: 30px;
+    border-radius: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    
+}
+/* clothing-jewelry-cosmetics */
+#clothes-jewelry-cosmetics-container{
+    display:flex;
+    flex-wrap: wrap;
+}
+.products-items{
+    width:32vw;
+    height: 440px;
+    position: relative;
+    background-color: black;
+    transition: .5s;
+}
+.product-image{
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 1;
+    transition: .5s ease ;
+    
+   
+    overflow: hidden;
+  
+}
+ 
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+   -ms-transform: translate(-50%,-50%);
+   font-size: 40px;
+   overflow: hidden;
+    
+   white-space: nowrap;
+   color: rgb(255, 255, 255);
+   text-align: center;
+}
+ 
+.overlay{
+    opacity: 0;
+
+}
+.products-items:hover .product-image{
+    opacity: 0.5;
+
+}
+.products-items:hover .overlay{
+    opacity: 1;
+
+}
+ 
+   
+    
+
+ 
+
+
+/* products-on-sale */
+ 
+.Products-on-sale{
+    padding-top: 6rem;
+    text-align: center;
+    font-family: "lato";
+    font-size: 2.3rem;
+    opacity: 0.9;
+
+}
+.clothing-flex{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+    margin-left: 20px;
+}
+.cloth-wear-products{
+    width: 220px;
+    height: 350px;
+    margin: 10px;
+    margin-left: 30px;
+    transition:0.75s;
+    /* overflow: hidden;
+    text-align: center; */
+}
+.cloth-wear-products:hover{
+    transform: scale(1.1);
+
+}
+.triangle-shape{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(214, 3, 116);
+    clip-path: polygon(38% 0, 0 0, 0 31%);
+    opacity: 0.7;
+}
+.star-shape{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background-color: #fff;
+    margin: 12px;
+}
+.product-image-handle{
+    width: 220px;
+    height: 200px;
+    margin-top:-220px;
+}
+ 
+.products-name{
+    padding:20px 20px;
+    font-size: 1.4rem;
+    
+}
+.price-products{
+    padding-left: 20px;
+    margin-top: -20px;
+   
+    
+    color: crimson;
+    font-size: 1.2rem;
+    font-weight: bold;
+   
+    margin-left: 5px;
+
+}
+.old-price{
+  opacity: 0.5;  
+  font-weight: 400;
+}
+
+
+ 
+/*Best selling products  */
+.more-btn-container{
+    width:200px;
+    height: 100px;
+    
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 20px;
+   
+
+}
+.more-products-btn{
+   
+    padding:10px 40px;
+    text-decoration: none;
+    background-color: rgb(150, 149, 149);
+    margin-top: 2rem;
+    border-radius: 20px;
+    color: #fff;
+    text-transform: capitalize;
+    
+
+
+}
+/* counting */
+#counting-container{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top:200px ;
+   
+
+}
+.counting-increment{
+    width: 300px;
+    height: 200px;
+    
+    margin:40px;
+
+}
+.number-heading{
+    text-align: center;
+    font-size: 4rem;
+
+}
+.number-lorem-heading{
+    text-align: center;
+    color: rgb(77, 74, 74);
+
+}
+ 
+.main-containe-profile{
+    display: flex;
+    flex-wrap: wrap;
+    
+
+}
+.profile-image{
+      width: 600px;
+     height:650px; 
+    background-position:center center;
+   
+
+}
+.shopping-image{
+    height:550px;
+    width:480px;
+
+}
+.profile-about{
+   width:700px;
+  
+    
+     margin-top:180px; 
+  
+   
+    letter-spacing: 1px;
+    
+   
+}
+.new-trends-fashion{
+    padding: 60px  2rem  40px 40px;
+
+}
+.fashion-lorem-text{
+    padding-left: 40px;
+    padding-bottom: 4rem;
+}
+.About-us-btn{
+    background-color:rgb(240, 240, 240);
+    padding: 10px 40px;
+    text-decoration: none;
+    border-radius: 20px;
+    color: #000;
+    font-weight: bold;
+     margin-left: 40px;
+
+}
+/* payment */
+ 
+.payment-choice-container{
+   
+    
+    display: flex;
+    flex-wrap: wrap;
+  
+    justify-content: space-around;
+   
+    
+}
+.payment-choice-container{
+  
+    margin: 60px  100px;
+}
+.payment-choice{
+    width: 150px;
+    height: 200px;
+    margin:20px;
+}
+.payment-details{
+    width: 100px;
+    height: 100px;
+    margin:25% 25% 15px ;
+   
+  
+}
+.details-heading{
+    text-align: center;
+}
+/* contact */
+ 
+.shopping-bags{
+    width: 400px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    
+    
+}
+.shopbag{
+    
+    width: 350px;
+    margin-left: 50%;
+    transform: translate(-50%);
+  
+
+}
+.contact-information-container{
+    height: 450px;
+    background-color: gold;
+    margin-top:-3px;
+    
+
+}
+.Sign-up-for-a-newsletter{
+    text-align: center;
+    padding-top: 70px;
+    font-size: 2.3rem;
+}
+.contact-heading-container{
+    width: 780px;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+.contact-lorem-heading{
+    padding: 20px;
+   
+    /* padding:20px 150px  0 30px; */
+    text-align: center;
+    padding-bottom: 60px;
+    margin-left: 110px;
+    /* font-size:1vw; */
+    
+}
+.input-box-container{
+  
+     
+       display: flex;
+   
+    
+    
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-bottom: 30px;
+  
+     
+   
+}
+.input-box1{
+    height: 20px;
+    width: 350px;
+    /* margin: 10px 0  0 25%; */
+    outline: none;
+    background:gold;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-bottom: 6px;
+    
+}
+.input-box{
+    height: 20px;
+    width: 350px;
+    margin: 0 10px ;
+    outline: none;
+    background:gold;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    
+}
+.sign-up-today-btn{
+    
+   padding: 10px 25px;
+   background-color: rgb(248, 35, 78);
+   text-decoration: none;
+   color: #fff;
+   border-radius: 20px;
+   margin-left: 44%;
+   transform: translate(-50%);
+
+}
+/* automatic slider image */
+#Automatic-slider-image-container{
+    /* width: 100%; */
+    /* height: 350px; */
+    background-color: rgb(184, 80, 11);
+    overflow-x: scroll;
+    overflow-y: hidden;
+     white-space: nowrap;
+    
+
+   
+}
+.flex-image-slider{
+    /* display:flex; */
+    display: flex;
+    /* flex-wrap: wrap; */
+     justify-content: space-between;
+     align-items: center;
+   
+}
+.image-slider{
+    width:270px;
+    height: 280px;
+    background-color: darkmagenta;  
+}
+.slide-image-handle{
+    width:270px;
+    height: 280px;
+
+}
+/* more details */
+ 
+.more-details-flex{
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: center;
+
+
+}
+.details-information{
+    width: 300px;
+    height: 300px;
+    /* background-color: darkslategrey; */
+    margin-top: 5rem;
+    margin-left: 10px;
+
+
+}
+.details-loeram-heading{
+    font-size: 20px;
+    padding: 20px 4rem;
+    color: rgb(87, 85, 85);
+
+}
+.more-details-btn{
+    padding: 10px 35px;
+    background-color: rgb(161, 161, 161);
+    text-decoration: none;
+    color: rgb(219, 217, 217);
+    font-size: 0.7rem;
+    margin-left: 60px;
+    border-radius: 20px;
+
+}
+.under-line{
+    height: 1px;
+    width:80%;
+    background-color: rgb(156, 156, 156);
+    margin-top: 3rem;
+    margin-left:60px ;
+
+}
+.social-media-icon{
+    margin-left: 60px;
+}
+ .social-media-icon i{
+     color: rgb(219, 36, 73);
+     font-size:0.8rem;
+     margin-left:0.3rem;
+     margin-top: 20px;
+ }
+ .icon-heading{
+     margin-left:70px ;
+     margin-top: 25px;
+     color: rgb(128, 128, 128);
+
+ }
+ .icon-heading i{
+     padding-right:5px;
+     color: crimson;
+ }
+ .middle-data{
+     margin-top: 5.4rem;
+
+ }
+ .deatails-lorem-heading{
+     margin-top:1rem;
+     padding: 40 20px;
+     margin-left: 50px;
+     letter-spacing: 1px;
+     color: rgb(128, 128, 128);;
+
+ }
+ .read-more-btn{
+     color: crimson;
+     margin-left: 50px;
+     position: absolute;
+     margin-top:3.5rem;
+     text-decoration: none;
+
+ }
+ .read-more-btn:hover{
+     text-decoration: underline;
+ }
+ #copyright-container{
+     width: 100%;
+    height: 10vh;
+    text-align: center;
+}
+.copyright-heading{
+   
+    padding-top: 20px;
+    color: #666666;
+    margin-top:20vh;
+    text-align: center;
+}
+@media(max-width:1768px){
+    .products-items{
+        width:32vw;
+        height: 350px;
+    }
+    .products-items2{
+        width: 33vw;
+        height: 350px;
+    }
+    .products-items3{
+        width: 34vw;
+        height: 350px;
+
+    }
+    .cloth-wear-products{
+        width:15vw ;
+        
+    }
+     
+    .products-images{
+        width:15vw;
+        
+
+    }
+    .product-image-handle{
+        width: 15vw;
+      
+        
+    }
+    /* .image-slider{
+        width: 294px;
+        height:400px ;
+    } */
+    
+   
+
+    
+}
+@media(min-width:1360px){
+   
+    .products-items{
+        width: 32.9vw;
+        height: 500px;
+    }
+    /* .products-items2{
+        width: 33vw;
+        height: 500px;
+
+    }
+    .products-items3{
+        width:32.7vw;
+        height: 500px;
+
+    } */
+    .cloth-wear-products{
+        width:16vw;
+        
+        
+    }
+    .products-images{
+        width:16vw;
+        
+        
+
+    }
+    .product-image-handle{
+        width: 16vw;
+        
+        
+    }
+       
+}
+
+ 
+
+
+ @media(max-width:960px){
+    .cloth-wear-products{
+        width:40vw;
+        margin-bottom: 30px;
+
+    }
+    .products-images{
+        width:40vw
+
+    }
+    .product-image-handle{
+        width: 40vw;
+        height:50vh;
+    }
+    .details-information{
+        width: 100%;
+    }
+    .cloth-wear-products{
+        margin-top: 40px;
+    }
+    
+
+ }
+ 
+@media(max-width:860px){
+    .cloth-wear-products{
+        width:35vw;
+    }
+    .products-images{
+        
+        width:35vw;
+       
+    }
+    .product-image-handle{
+        width: 35vw;
+        height:40vh ;
+    }
+    .input-box-container{
+        display: block;
+    }
+    .input-box1{
+        /* width: 500px; */
+        width: 85vw;
+        
+        margin-left:-90px;
+  
+        
+    }
+    .input-box{
+        /* width: 500px; */
+        width: 85vw;
+       
+        margin-left:-90px;
+        margin-top: 40px;
+    }
+     .top-lorem-text{
+        display: none;
+    }
+    .shopping-as-you-love{
+        font-size: 3rem;
+
+
+    }
+    .heading-container{
+        top: 45%;
+    }
+    label #btn{
+        display: block;
+    }
+    ul{
+        position: fixed;
+        width: 50%;
+        height: 100%;
+        background-color:  yellow;
+         top: 80px;  
+        left: -100%;
+         
+        text-align: center;
+        transition:  all.6s;
+        z-index: 2;
+    }
+    .nav ul li{
+        display: block;
+        margin: 50px 0;
+        line-height: 15px;
+    }
+    .nav ul li a{
+        font-size:20px;
+    }
+    #check:checked ~ ul{
+        left: 0;
+         
+    }
+    #check:checked ~ label #btn{
+        display: none;
+    }
+    #check:checked ~ label #cancel{
+        display:block;
+    }
+    .nav ul li a::after{
+        margin-top: 10px;
+    }
+    .profile-about{
+        
+        margin-top:-100px;
+        margin-left: 100px;
+    }
+    .products-items{
+        width:100%;
+        height: 680px;
+
+    }
+    
+    .profile-about{
+       
+        margin-left: 0;
+    }
+    .contact-lorem-heading{
+        padding:20px 150px  40px 40px;
+    }
+    .image-slider{
+        width:303px
+    }
+    .details-information{
+        margin-top: 1rem;;
+    }
+    .details-loeram-heading{
+        margin-top:3rem;
+       
+    }
+    .deatails-lorem-heading{
+        margin-left:70px
+
+    }
+    .read-more-btn{
+        margin-left:70px;
+    }
+    .copyright-heading{
+        text-align: center;
+    }
+     
+
+
+}
+@media (max-width:790px){
+    .cloth-wear-products{
+        width:40vw;
+    }
+    .products-images{
+        width:40vw;
+        height:100px ;
+        
+  
+
+    }
+    .product-image-handle{
+        width: 35vw;
+        height:30vh ;
+    }
+    
+     
+    .profile-about{
+        margin-top:0px;
+        margin-left: 0;
+        
+    }
+    /* .cloth-wear-products:hover{
+        transform: scale(1);
+        display: none; */
+
+}
+
+@media(max-width:650px){
+    .cloth-wear-products{
+        width:35vw;
+        padding-left: 20px;
+    }
+    .products-images{
+        width:35vw
+
+    }
+    .product-image-handle{
+        width: 35vw;
+        height:40vh ;
+        margin-left: 20px;
+    }
+    .profile-image{
+        width:100vw;
+    }
+    .profile-about{
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+}
+@media(max-width:510px){
+    .clothing-flex{
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+    }
+    .cloth-wear-products{
+        width:45vw;
+        padding-left: 20px;
+    }
+    .products-images{
+        width:45vw
+
+    }
+    .product-image-handle{
+        width: 45vw;
+        height:45vh ;
+        margin-left: 20px;
+    }
+    .profile-image{
+        width: 500px;
+       
+    }
+     
+
+}
+@media(max-width:414px){
+    .top-ads-image{
+        
+        height: 350px;
+    }
+    .products-items{
+        width: 100%;
+        height: 360px;
+    }
+    
+    .shopping-as-you-love{
+        font-size: 2rem;
+        margin-top: -180px;
+    }
+    .see-whats-on-sale{
+        padding:8px;
+        font-size: 0.7rem;
+        margin-top: 20px;
+    }
+    .clothing-flex{
+        display:block;
+         
+        justify-content:center;
+    }
+        
+    .cloth-wear-products{
+        
+        width:45vw ;
+         height:400px ;
+        
+    }
+    .products-images{
+        
+        width: 45vw;
+
+    }
+    .product-image-handle{
+        
+       width: 45vw;
+        height:280px ;
+  
+    }
+    .profile-image{
+       width: 350px; 
+    }
+    .shopping-image{
+        width:320px ;
+    }
+    .profile-about{
+        margin-top: 0px;
+        width: 360px;
+        margin-left:0px;
+    }
+    .new-trends-fashion{
+        font-size: 1.5rem;
+    }
+    .fashion-lorem-text{
+        font-size: 1rem;
+    }
+    .Sign-up-for-a-newsletter{
+        font-size: 1.5rem;
+    }
+    .contact-lorem-heading{
+        padding:20px 220px  40px 100px;
+   
+         
+    }
+    .input-box-container{
+        margin-left:205px;
+
+    }
+    .image-slider{
+        width:414px;
+        height: 400px;
+        background-color: darkmagenta;  
+    }
+    .slide-image-handle{
+        width:414px;
+        height: 400px;
+    
+    }
+}
+    
+    @media(max-width:320px){
+        .input-box-container{
+            margin-left: 180px;
+        }
+        .contact-lorem-heading{
+            font-size:0.8rem ;
+            padding:20px 250px  40px 150px;
+        }
+        .shopping-bags{
+            width:310px;
+
+
+        }
+        .shopbag{
+            width:310px;
+
+        }
+        .image-slider{
+            width:320px;
+            height: 320px;
+            background-color: darkmagenta;  
+        }
+        .slide-image-handle{
+            width:320px;
+            height: 320px;
+        
+        }
+
+
+
+    }
+
+@media(max-width:280px){
+    .top-ads-image{
+        height: 250px;
+    }
+    .shopping-as-you-love{
+        font-size: 1rem;
+        margin-top: -150px;
+
+    }
+    .see-whats-on-sale{
+        padding: 8px 5px;
+        margin-top: 30px;
+        font-size: 0.5rem;
+    }
+    .products-items{
+        
+        height: 300px;
+        
+    }
+    
+    .cloth-wear-products{
+        width:30vw;
+       
+    }
+    .products-images{
+        width:30vw;
+
+    }
+    .product-image-handle{
+        width:45vw;
+        height:150px ;
+        
+        
+    }
+    .more-btn-container{
+        margin-left: 20px;
+    }
+    .more-products-btn{
+         
+        padding: 10px;
+    }
+    .contact-lorem-heading{
+        padding:20px 250px  40px 140px;
+    }
+    .input-box-container{
+        margin-left:170px;
+
+    }
+    .shopping-bags{
+        width:270px ;
+    }
+    .shopbag{
+        width:270px ;
+    }
+    .image-slider{
+        width:280px;
+        height: 280px;
+        background-color: darkmagenta;  
+    }
+    .slide-image-handle{
+        width:280px;
+        height: 280px;
+    
+    }
+    
+    
+
+}
+ 
+    </style>
+</head>
+<body>
+    <!-- <div class="loading-bar">
+         <div class="spinner">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+         
+    </div> -->
+    <div class="overflow-hidden">
+    <div id="navigation-bar-container">
+       
+        <nav class="nav">
+            <input type="checkbox"id="check">
+            <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fas fa-times" id="cancel"></i>
+        </label>
+    
+           
+            <ul>
+                <li>
+                    <a href="#navigation-bar-container">Home</a>
+                </li>
+                <li>
+                    <a href="#products-on-sale-container">Products</a>
+                </li>
+                 <li>
+                    <a href="#profile-about">About</a>
+                </li>
+                <li>
+                    <a href="#Automatic-slider-image-container">Blog</a>
+                </li>
+                 
+                 <li>
+                    <a href="#more-details-container">contact</a>
+                </li>
+            </ul>
+            
+    
+        </nav>
+
+
+
+        
+        <div class="top-ads-image">
+            <div class="heading-container">
+            <h1 class="shopping-as-you-love">Shopping as </br> you love</h1>
+            <p class="top-lorem-text">Lorem ipsum dolor sit amet consectetur </br>adipisicing elit.</p>
+            <a  class="see-whats-on-sale"href="">See what's on sale</a>
+
+        </div>
+
+    </div>
+
+    </div>
+    <!-- clothes-jewelry-cosmetics -->
+
+    <div id="clothes-jewelry-cosmetics-container">
+        <div class="products-items">
+        <img  class="product-image"src="cloth.jpg" alt="">
+        <div class="overlay">
+            <div class="content">
+                Clothing 
+            </div>
+        </div>
+    
+     
+        </div>
+     
+
+        <div class="products-items">
+            <img  class="product-image"src="jew.jpg" alt="">
+            <div class="overlay">
+                <div class="content">
+                    Jewellery 
+                </div>
+            </div>
+            
+        </div>
+        <div class="products-items">
+            <img  class="product-image"src="cos.jpg" alt="">
+            <div class="overlay">
+                <div class="content">
+                    Cosmetice
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- products on sale -->
+    <div id="products-on-sale-container">
+        <h1 class="Products-on-sale">Products on sale</h1>
+        <div class="clothing-flex">
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="shoes.jpg" alt="">
+
+                </div>
+                <h3 class="products-name">Beige shoes</h3>
+                <p class="price-products"><span class="old-price"><s>$199.00</s></span> $189.00</p>
+
+            </div>
+            <!-- second -->
+
+
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="coat.jpg" alt="">
+                    
+                </div>
+                <h3 class="products-name">Coat</h3>
+                <p class="price-products"><span class="old-price"><s>$799.00 </s></span> $600.00</p>
+
+            </div>
+
+            <!-- 3rd -->
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="cream.jpg" alt="">
+                    
+                </div>
+                <h3 class="products-name">Creme</h3>
+                <p class="price-products"><span class="old-price"><s>$12.00 </s></span> $8.00</p>
+
+            </div>
+            <!-- fourth -->
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="Dress.jpg" alt="">
+                    
+                </div>
+                <h3 class="products-name">Dress</h3>
+                <p class="price-products"><span class="old-price"><s>$139.00 </s></span> $99.00</p>
+
+            </div>
+            <!-- fifth -->
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="face.jpg" alt="">
+                    
+                </div>
+                <h3 class="products-name">Face Balm</h3>
+                <p class="price-products"><span class="old-price"><s>$12.00 </s></span> $9.00</p>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+    <!-- best selling products -->
+
+    <div id="Best-selling-products-container">
+        <h1 class="Products-on-sale">Best selling products</h1>
+        <div class="clothing-flex">
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="Glasess.jpg" alt="">
+
+                </div>
+                <h3 class="products-name">Glasses</h3>
+                <p class="price-products">$99.00</p>
+
+            </div>
+
+
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="Jacket.jpg" alt="">
+                    
+                </div>
+                <h3 class="products-name">Jacket</h3>
+                <p class="price-products">$299.00</p>
+
+            </div>
+
+            <!-- 3rd -->
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="Bag.jpg" alt="">
+                    
+                </div>
+                <h3 class="products-name">Bag</h3>
+                <p class="price-products">$156.00</p>
+
+            </div>
+            <!-- fourth -->
+            <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="cream.jpg" alt="">
+                    
+                </div>
+                <h3 class="products-name">Creme</h3>
+                <p class="price-products"><span class="old-price"><s>$12.00 </s></span> $8.00 </p>
+
+            </div>
+            <!-- fifth -->
+             <div class="cloth-wear-products">
+
+                <div class="triangle-shape">
+                    <div class="star-shape"></div>
+                </div>
+                <div class="products-images">
+                    <img class="product-image-handle" src="Pant.jpg" alt="">
+
+                    
+                </div>
+                <h3 class="products-name">Pants</h3>
+                <p class="price-products"><span class="old-price"><s>$65.00 </s></span> $55.00</p>
+
+            </div>
+
+
+
+
+        </div>
+        <div class="more-btn-container">
+        <a  class="more-products-btn"href="#">more products</a>
+    </div>
+    </div>
+
+    <div id="counting-container">
+        <div class="counting-increment">
+            <h1 class="number-heading">400</h1>
+            <p class="number-lorem-heading">Lorem ipsum dolor</p>
+        </div>
+
+        <div class="counting-increment">
+            <h1 class="number-heading">130</h1>
+            <p class="number-lorem-heading">Sid es omnia es</p>
+        </div>
+
+        <div class="counting-increment">
+            <h1 class="number-heading">10</h1>
+            <p class="number-lorem-heading">Quanta fermium damus</p>
+        </div>
+    </div>
+
+    <div id="profile-about">
+        <div class="main-containe-profile">
+
+        <div class="profile-image">
+            <img class="shopping-image" src="shopping.png" alt="">
+
+
+        </div>
+        <div class="profile-about">
+            <h1 class="new-trends-fashion">We provide the newest</br> trends in fashion</h1>
+            <p class="fashion-lorem-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+            <a class="About-us-btn" href="#">About us</a>
+
+        </div>
+    </div>
+
+    </div>
+
+    <div class="payment-container">
+        <div class="payment-choice-container">
+        <div class="payment-choice">
+            <div class="payment-details">
+                <img src="Box.png" alt="">
+
+            </div>
+            <p class="details-heading">30 days </br>free return</p>
+
+        </div>
+
+ 
+
+
+        <!-- 2nd -->
+         <div class="payment-choice">
+            <div class="payment-details">
+                <img src="card.png" alt="">
+
+            </div>
+            <p class="details-heading">5 ways</br>
+                payment</p>
+
+        </div> 
+
+        <!-- 3rd -->
+          <div class="payment-choice">
+            <div class="payment-details">
+                <img src="man.png" alt="">
+
+            </div>
+            <p class="details-heading">Excellent</br>
+                support</p> 
+
+        </div> 
+        <!--fourth  -->
+ 
+        <div class="payment-choice">
+            <div class="payment-details">
+                <img src="right.png" alt="">
+
+            </div>
+            <p class="details-heading">Satisfaction</br>
+                guarantee</p>
+
+        </div>  
+        <!-- fifth -->
+        <div class="payment-choice">
+            <div class="payment-details">
+                <img src="van.png" alt="">
+
+            </div>
+            <p class="details-heading">Super fast</br>
+                delivery</p>
+
+        </div>
+    </div>
+    </div>
+
+      <div id="contact-container">
+
+        <div class="shopping-bags">
+            <img class="shopbag"src="shopbag.png" alt="">
+
+        </div>
+
+        <div class="contact-information-container">
+            <div class="contact-heading-container">
+                <h1 class="Sign-up-for-a-newsletter">Sign up for a newsletter</h1>
+                <p class="contact-lorem-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>  
+             <div class="input-box-container"> 
+               
+                <input class="input-box1" placeholder="Name" type="text"> 
+ 
+         
+                 <input class="input-box" placeholder="Email" type="text"> 
+             </div> 
+             <a class="sign-up-today-btn" href="#">Sign up today</a> 
+            </div> 
+         </div>
+
+    </div> 
+</div>
+<div id="Automatic-slider-image-container">
+    <div class="flex-image-slider">
+    <div class="image-slider">
+        <img class="slide-image-handle"src="1.jpg" alt="">
+
+    </div>
+
+     <div class="image-slider">
+        <img class="slide-image-handle"src="2.jpg" alt="">
+        
+    </div>
+
+    <div class="image-slider">
+        <img class="slide-image-handle"src="3.jpg" alt="">
+        
+    </div>
+
+    <div class="image-slider">
+        <img class="slide-image-handle"src="4.jpg" alt="">
+        
+    </div>
+
+    <div class="image-slider">
+        <img class="slide-image-handle"src="5.jpg" alt="">
+        
+    </div>
+
+    <div class="image-slider">
+        <img class="slide-image-handle"src="6.jpg" alt=""> 
+        
+    </div>
+
+    
+</div>
+
+</div>
+
+<div id="more-details-container">
+    <div class="more-details-flex">
+
+        <div class="details-information">
+            <h1 class="details-loeram-heading">Lorem ipsum dolor</br>
+                sam etomnia</h1>
+                <a class="more-details-btn" href="#">More details</a>
+                <div class="under-line">
+
+                </div>
+                <div class="social-media-icon">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+           </div>
+
+
+
+        </div>
+
+
+        <div class="details-information">
+            <h1 class="details-loeram-heading">Useful links </h1>
+           
+          <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i>  P-3400 ipsum </p>
+          <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i>  AD Conser poretel venture</p>
+          <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i>  Elisted-34 eiusmod </p>
+          <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i>  Atlabore-33</p>
+          <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i>  Tempor-Z incididunt</p>
+        </div>
+
+
+        <div class="details-information">
+            <div  class="middle-data">
+            <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i> Lorem ipsum </p>
+            <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i> Consectetur adipisicing</p>
+            <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i> Elitsed do eiusmund </p>
+            <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i> Tempor incididunt</p>
+            <p class="icon-heading"><i class="fa fa-angle-right" aria-hidden="true"></i> Altabore</p>
+        </div>
+        </div>
+        <div class="details-information">
+            <h1 class="details-loeram-heading">Our mission</h1>
+           
+         <p class="deatails-lorem-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+         <a class="read-more-btn" href="#">Read more</a>
+        </div>
+    </div>
+</div>
+
+<div id="copyright-container">
+    <p class="copyright-heading">© 2020 Afsar Alam. All Rights Reserved.</p>
+
+
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+   $("nav a").on('click', function(event) {
+    if (this.hash !== "") {
+      event.preventDefault();
+      var hash = this.hash;
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 2000, function(){
+        window.location.hash = hash;
+      });
+    } 
+  });
+});
+
+
+$(".number-heading").counterUp({delay:10,time:1000});
+
+setTimeout(() => {
+
+document.querySelector('.loading-bar').style.display = 'none';
+document.querySelector('body').setAttribute('style','overflow:scroll;');
+
+}, 9000);
+ 
+</script>
+    
+</body>
+</html>
