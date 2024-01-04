@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <style>
+    #chatbox {
+    width: 300px;
+    height: 500px;
+    border: 1px solid black;
+    padding: 10px;
+}
+#messages {
+    height: 400px;
+    overflow: auto;
+}
+#userInput {
+    width: 100%;
+}
+
+    </style>
+</head>
+<body>
+    <div id="chatbox">
+        <div id="messages"></div>
+        <select id="userInput">
+            <option value="">Select a question...</option>
+            <option value="Hello">Hello</option>
+            <option value="How are you?">How are you?</option>
+            <option value="Talk to a human">Talk to a human</option>
+        </select>
+    </div>
+    <script>
+let database = {
+    'Hello': 'Hi there!',
+    'How are you?': 'I\'m a bot, I don\'t have feelings, but thanks for asking!'
+};
+
+document.getElementById('userInput').addEventListener('change', function() {
+    let input = this.value;
+    document.getElementById('messages').innerHTML += `<p>User: ${input}</p>`;
+    getResponse(input);
+});
+
+function getResponse(input) {
+    let response;
+    if (database[input]) {
+        response = database[input];
+    } else if (input === 'Talk to a human') {
+        response = 'Redirecting you to the help page...';
+        window.location.href = 'https://www.yourwebsite.com/help'; // replace with your help page URL
+    } else {
+        response = 'Please select a question.';
+    }
+    document.getElementById('messages').innerHTML += `<p>Bot: ${response}</p>`;
+}
+    </script>
+</body>
+</html>
