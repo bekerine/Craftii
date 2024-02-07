@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Recorder</title>
+    <style>
+        button {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <button id="record">Start Recording</button>
+    <button id="stop" disabled>Stop Recording</button>
+    <video id="video" controls></video>
+    <script>
+        const recordButton = document.getElementById('record');
+        const stopButton = document.getElementById('stop');
+        const videoElement = document.getElementById('video');
+        let mediaRecorder;
+
+        recordButton.addEventListener('click', function() {
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(function(stream) {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.start();
+
+                    const videoChunks = [];
+                    mediaRecorder.addEventListener('dataavailable', function(event) {
+                        videoChunks.push(event.data);
+                    });
+
+                    mediaRecorder.addEventListener('stop', function() {
+                        const videoBlob = new Blob(videoChunks);
+                        const videoUrl = URL.createObjectURL(videoBlob);
+                        videoElement.src = videoUrl;
+                    });
+
+                    recordButton.disabled = true;
+                    stopButton.disabled = false;
+                });
+        });
+
+        stopButton.addEventListener('click', function() {
+            mediaRecorder.stop();
+            recordButton.disabled = false;
+            stopButton.disabled = true;
+        });
+    </script>
+</body>
+</html>
