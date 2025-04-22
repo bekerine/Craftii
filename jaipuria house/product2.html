@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product - Fashion Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        :root {
+            --bg-color: #fff;
+            --text-color: #333;
+            --light-text: #666;
+            --border-color: #eee;
+            --shadow-color: rgba(0,0,0,0.1);
+            --primary-color: #ff6b6b;
+            --hover-color: #20b958;
+            --footer-bg: #333333;
+            --footer-text: #ddd;
+            --card-bg: #fff;
+            --tab-active-color: #ff6b6b;
+        }
+
+        html[data-theme='dark'] {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --light-text: #b0b0b0;
+            --border-color: #333;
+            --shadow-color: rgba(0,0,0,0.3);
+            --primary-color: #ff6b6b;
+            --hover-color: #20b958;
+            --footer-bg: #111;
+            --footer-text: #ddd;
+            --card-bg: #2a2a2a;
+            --tab-active-color: #ff6b6b;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar-top {
+            background: var(--bg-color);
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-color);
+            margin-left: 15px;
+            padding: 5px;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--border-color);
+        }
+        
+        #moon-icon {
+            display: none;
+        }
+
+        html[data-theme='dark'] #sun-icon {
+            display: none;
+        }
+        
+        html[data-theme='dark'] #moon-icon {
+            display: inline;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Product Section */
+        .product-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .product-images {
+            flex: 1;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: border 0.3s;
+        }
+
+        .thumbnail:hover {
+            border: 2px solid var(--primary-color);
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .product-price {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        .size-selection {
+            margin-bottom: 20px;
+        }
+
+        .size-selection label {
+            margin-right: 10px;
+            color: var(--text-color);
+        }
+
+        .size-selection select {
+            padding: 5px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 100%;
+            max-width: 200px;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-button:hover {
+            background: var(--hover-color);
+        }
+
+        /* Tabs Section */
+        .tabs-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            color: var(--text-color);
+        }
+
+        .tab:hover {
+            color: var(--primary-color);
+        }
+
+        .tab.active {
+            border-bottom: 2px solid var(--tab-active-color);
+            color: var(--tab-active-color);
+        }
+
+        .tab-content {
+            display: none;
+            color: var(--light-text);
+        }
+
+        .tab-content h2 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Review Slider Styling */
+        .review-slider-container {
+            position: relative;
+            margin: 30px 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            background: var(--card-bg);
+        }
+
+        .review-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .review {
+            min-width: 100%;
+            padding: 25px;
+            box-sizing: border-box;
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .slider-navigation {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary-color);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            z-index: 10;
+            color: var(--text-color);
+            transition: background 0.3s;
+        }
+
+        .slider-arrow:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .arrow-left {
+            left: -10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        /* You May Also Like Section */
+        .related-products {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .related-products h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .related-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .related-card h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .related-card p {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--footer-bg);
+            padding: 40px 20px;
+            margin-top: 40px;
+            color: var(--footer-text);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .footer-section a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        .newsletter input {
+            padding: 8px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            margin-bottom: 10px;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .newsletter button {
+            padding: 8px 15px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            /* Navbar */
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-color);
+                box-shadow: 0 2px 5px var(--shadow-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                margin: 10px 0;
+                padding: 10px 20px;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .theme-toggle {
+                margin: 10px 20px;
+            }
+
+            /* Product Section */
+            .product-section {
+                flex-direction: column;
+            }
+
+            .main-image {
+                height: 300px;
+            }
+
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+
+            /* Related Products */
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Footer */
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 22px;
+            }
+
+            .product-price {
+                font-size: 20px;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-card img {
+                height: 200px;
+            }
+
+            .review-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .slider-arrow {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar-top">
+        <div class="nav-container">
+            <div class="logo">Jaipuria-House</div>
+            <div class="nav-right-section" style="display: flex; align-items: center;">
+                <button class="hamburger" onclick="toggleMenu()">☰</button>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i id="sun-icon" class="fas fa-sun"></i>
+                    <i id="moon-icon" class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="product-images">
+            <img src="https://via.placeholder.com/500x500" alt="Product" class="main-image" id="mainImage">
+            <div class="thumbnail-container">
+                <img src="https://via.placeholder.com/80x80" alt="Thumbnail 1" class="thumbnail">
+                <img src="https://via.placeholder.com/80x80" alt="Thumbnail 2" class="thumbnail">
+                <img src="https://via.placeholder.com/80x80" alt="Thumbnail 3" class="thumbnail">
+            </div>
+        </div>
+        <div class="product-details">
+            <h1 class="product-title">Product Name</h1>
+            <p class="product-price">$49.99</p>
+            <p class="product-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt 
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+            </p>
+            <div class="size-selection">
+                <label for="size">Size:</label>
+                <select id="size">
+                    <option value="s">Small</option>
+                    <option value="m">Medium</option>
+                    <option value="l">Large</option>
+                    <option value="xl">XL</option>
+                </select>
+            </div>
+            <button class="whatsapp-button" onclick="orderOnWhatsApp()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.135.558 4.246 1.615 6.094L0 24l5.906-1.615C7.754 23.442 9.865 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.46 18.462c-.304.854-.858 1.615-1.754 2.094-.896.48-2.094.72-3.594.72-1.5 0-2.93-.36-4.23-1.016l-.24-.135c-1.26-.72-2.33-1.74-3.15-3.015-.82-1.275-1.23-2.715-1.23-4.32 0-1.5.42-2.85 1.26-4.05.84-1.2 2.01-2.13 3.51-2.79l.24-.135c1.26-.66 2.67-.99 4.23-.99 1.5 0 2.85.33 4.05 1.01 1.2.66 2.13 1.59 2.79 2.79.66 1.2.99 2.55.99 4.05 0 1.5-.304 2.85-.896 4.05z"/>
+                </svg>
+                Order via WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <!-- Tabs Section -->
+    <section class="tabs-section">
+        <div class="tabs">
+            <div class="tab active" onclick="openTab('description')">Description</div>
+            <div class="tab" onclick="openTab('specifications')">Specifications</div>
+            <div class="tab" onclick="openTab('shipping')">Shipping & Returns</div>
+            <div class="tab" onclick="openTab('reviews')">Reviews</div>
+        </div>
+        <div id="description" class="tab-content active">
+            <h2>Product Description</h2>
+            <p>
+                This premium cotton T-shirt is designed with both style and comfort in mind. Crafted from 100% organic cotton, it's soft against the skin and perfect for everyday wear. The classic fit flatters all body types, while the reinforced stitching ensures long-lasting durability.
+            </p>
+            <p>
+                Available in a range of colors, this versatile T-shirt can be dressed up with a blazer for a smart-casual look or worn with jeans for a relaxed weekend outfit. The breathable fabric makes it an ideal choice for warm weather, keeping you cool and comfortable all day long.
+            </p>
+            <p>
+                Each T-shirt is ethically produced using sustainable practices, so you can feel good about your purchase. The pre-shrunk fabric means your T-shirt will maintain its perfect fit even after multiple washes.
+            </p>
+        </div>
+        <div id="specifications" class="tab-content">
+            <h2>Specifications</h2>
+            <p>Material: 100% Organic Cotton</p>
+            <p>Fit: Classic</p>
+            <p>Weight: 180 GSM</p>
+            <p>Care: Machine Washable</p>
+        </div>
+        <div id="shipping" class="tab-content">
+            <h2>Shipping & Returns</h2>
+            <p>Shipping: Free shipping on orders over $50. Estimated delivery within 5-7 business days.</p>
+            <p>Returns: 30-day return policy. Items must be unworn and in original packaging.</p>
+        </div>
+        <div id="reviews" class="tab-content">
+            <h2>Reviews (3)</h2>
+            
+            <!-- Review Slider -->
+            <div class="review-slider-container">
+                <!-- Left arrow -->
+                <div class="slider-arrow arrow-left" onclick="navigateSlider(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                
+                <div class="review-slider" id="reviewSlider">
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="reviewer-name">Sarah M.</span>
+                            <span class="review-date">February 15, 2025</span>
+                        </div>
+                        <div class="review-rating">
+                            ★★★★★ (5/5)
+                        </div>
+                        <p class="review-text">
+                            Absolutely love this T-shirt! The fabric is so soft and comfortable, and the fit is perfect. I've already worn it multiple times, and it still looks brand new after washing. Definitely worth the price!
+                        </p>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="reviewer-name">James R.</span>
+                            <span class="review-date">February 10, 2025</span>
+                        </div>
+                        <div class="review-rating">
+                            ★★★★☆ (4/5)
+                        </div>
+                        <p class="review-text">
+                            Really nice T-shirt, great quality and comfortable to wear. I deducted one star because I wish there were more color options available. Otherwise, it's a fantastic product!
+                        </p>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="reviewer-name">Maria T.</span>
+                            <span class="review-date">February 5, 2025</span>
+                        </div>
+                        <div class="review-rating">
+                            ★★★★★ (5/5)
+                        </div>
+                        <p class="review-text">
+                            I ordered this as a gift for my husband and he loves it! The material is excellent quality and the sizing was spot on. The shipping was also very fast. Will definitely order more colors in the future.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Right arrow -->
+                <div class="slider-arrow arrow-right" onclick="navigateSlider(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <!-- Dots navigation -->
+            <div class="slider-navigation" id="sliderDots">
+                <div class="slider-dot active" onclick="showSlide(0)"></div>
+                <div class="slider-dot" onclick="showSlide(1)"></div>
+                <div class="slider-dot" onclick="showSlide(2)"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- You May Also Like Section -->
+    <section class="related-products">
+        <h2>You May Also Like</h2>
+        <div class="related-grid">
+            <div class="related-card">
+                <img src="https://via.placeholder.com/200x150" alt="Related Product 1">
+                <h3>Striped Cotton Polo</h3>
+                <p>$34.99</p>
+            </div>
+            <div class="related-card">
+                <img src="https://via.placeholder.com/200x150" alt="Related Product 2">
+                <h3>V-Neck Casual Tee</h3>
+                <p>$24.99</p>
+            </div>
+            <div class="related-card">
+                <img src="https://via.placeholder.com/200x150" alt="Related Product 3">
+                <h3>Long Sleeve Henley</h3>
+                <p>$39.99</p>
+            </div>
+            <div class="related-card">
+                <img src="https://via.placeholder.com/200x150" alt="Related Product 4">
+                <h3>Graphic Print T-Shirt</h3>
+                <p>$27.99</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+            <div class="footer-section newsletter">
+                <h3>Newsletter</h3>
+                <input type="email" placeholder="Your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Fashion Store. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Menu for Mobile
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Thumbnail click handler
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.getElementById('mainImage');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', () => {
+                mainImage.src = thumbnail.src.replace('80x80', '500x500');
+            });
+        });
+
+        // WhatsApp order function
+        function orderOnWhatsApp() {
+            const productName = document.querySelector('.product-title').textContent;
+            const size = document.getElementById('size').value;
+            const price = document.querySelector('.product-price').textContent;
+            const phoneNumber = '1234567890'; // Replace with your WhatsApp Business number
+            const message = `Hello! I'd like to order:\nProduct: ${productName}\nSize: ${size}\nPrice: ${price}`;
+            
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Tab functionality
+        function openTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.onclick.toString().includes(tabName)) {
+                    tab.classList.add('active');
+                }
+            });
+
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === tabName) {
+                    content.classList.add('active');
+                }
+            });
+            
+            // Reset the slider to the first slide when opening the reviews tab
+            if (tabName === 'reviews') {
+                currentSlide = 0;
+                updateSlider();
+            }
+        }
+
+        // Theme Toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            htmlElement.setAttribute('data-theme', savedTheme);
+        } else {
+            // Check system preference
+            const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            htmlElement.setAttribute('data-theme', prefersDarkMode ? 'dark' : 'light');
+        }
+
+        // Toggle theme when button is clicked
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Review Slider functionality
+        let currentSlide = 0;
+        const reviewSlider = document.getElementById('reviewSlider');
+        const sliderDots = document.getElementById('sliderDots').querySelectorAll('.slider-dot');
+        const totalSlides = document.querySelectorAll('.review-slider .review').length;
+        let slideInterval;
+        
+        // Function to show a specific slide
+        function showSlide(slideIndex) {
+            if (slideIndex >= totalSlides) {
+                currentSlide = 0;
+            } else if (slideIndex < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = slideIndex;
+            }
+            
+            updateSlider();
+        }
+        
+        // Function to navigate between slides
+        function navigateSlider(direction) {
+            showSlide(currentSlide + direction);
+            resetInterval();
+        }
+        
+        // Update the slider position and active dot
+        function updateSlider() {
+            reviewSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update active dot
+            sliderDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // Start automatic sliding
+        function startSlideInterval() {
+            slideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000); // Change slide every 5 seconds
+        }
+        
+        // Reset the interval when manually navigating
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startSlideInterval();
+        }
+        
+        // Initialize the slider
+        startSlideInterval();
+        
+        // Stop auto-sliding when user interacts with the slider
+        document.querySelector('.review-slider-container').addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        // Resume auto-sliding when user stops interacting
+        document.querySelector('.review-slider-container').addEventListener('mouseleave', () => {
+            startSlideInterval();
+        });
+    </script>
+</body>
+</html>

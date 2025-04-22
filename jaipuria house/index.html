@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logo span {
+            color: #ff6b6b;
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Category Navbar */
+        .category-navbar {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 67px;
+            z-index: 999;
+        }
+
+        .category-btn {
+            padding: 8px 20px;
+            margin: 0 10px;
+            border: none;
+            background-color: white;
+            color: #333;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .category-btn.active {
+            background-color: #ff6b6b;
+            color: white;
+        }
+
+        /* Slider */
+        .slider-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Category Section */
+        .category-section {
+            padding: 30px 5%;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .product-price span {
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        /* Ad Banner */
+        .ad-banner {
+            width: 100%;
+            height: 150px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 5% 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .quick-links {
+            list-style: none;
+        }
+
+        .quick-links li {
+            margin-bottom: 8px;
+        }
+
+        .quick-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .quick-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .newsletter button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter button:hover {
+            background-color: #ff5252;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-navbar {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .search-box {
+                order: 3;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .category-navbar {
+                top: 120px;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 10px 5%;
+            }
+
+            .category-btn {
+                margin: 0 5px;
+                white-space: nowrap;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .slider-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 10px;
+                font-size: 14px;
+            }
+
+            .slider-container {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <div class="logo">Jaipuriya<span>House</span></div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for products...">
+            <button onclick="searchProducts()">🔍</button>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Account</a>
+            <a href="#">Cart (0)</a>
+        </div>
+    </nav>
+
+    <!-- Category Navbar -->
+    <nav class="category-navbar">
+        <button class="category-btn active" data-category="women">Women</button>
+        <button class="category-btn" data-category="men">Men</button>
+        <button class="category-btn" data-category="kids">Kids</button>
+        <button class="category-btn" data-category="accessories">Accessories</button>
+        <button class="category-btn" data-category="sale">Sale</button>
+    </nav>
+
+    <!-- Slider -->
+    <div class="slider-container">
+        <div class="slide active" style="background-image: url('https://via.placeholder.com/1600x600/ff6b6b/ffffff?text=Summer+Sale+Up+to+50%+Off');"></div>
+        <div class="slide" style="background-image: url('https://via.placeholder.com/1600x600/6b6bff/ffffff?text=New+Arrivals');"></div>
+        <div class="slide" style="background-image: url('https://via.placeholder.com/1600x600/6bff6b/ffffff?text=Free+Shipping+On+All+Orders');"></div>
+    </div>
+
+    <!-- Category Section -->
+    <section class="category-section">
+        <h2 class="section-title">Women's Collection</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded dynamically by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Ad Banner -->
+    <div class="ad-banner" style="background-image: url('https://via.placeholder.com/1600x300/ffd700/ffffff?text=Exclusive+Online+Offers');">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="quick-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul class="quick-links">
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <div class="newsletter">
+                    <p>Subscribe for exclusive offers and updates</p>
+                    <input type="email" placeholder="Your email address">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 StyleHub. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Product data for different categories with unique external links
+        const productData = {
+            women: [
+                { id: 1, title: "Floral Summer Dress", price: "$49.99", image: "https://via.placeholder.com/300x300/ffcccb/000000?text=Dress", link: "https://example.com/product/floral-summer-dress" },
+                { id: 2, title: "Denim Jacket", price: "$59.99", image: "https://via.placeholder.com/300x300/ccd9ff/000000?text=Jacket", link: "https://example.com/product/denim-jacket-women" },
+                { id: 3, title: "Midi Skirt", price: "$34.99", image: "https://via.placeholder.com/300x300/ffe6cc/000000?text=Skirt", link: "https://example.com/product/midi-skirt" },
+                { id: 4, title: "Striped Blouse", price: "$29.99", image: "https://via.placeholder.com/300x300/e6ccff/000000?text=Blouse", link: "https://example.com/product/striped-blouse" },
+                { id: 5, title: "Casual Jeans", price: "$45.99", image: "https://via.placeholder.com/300x300/ccffe6/000000?text=Jeans", link: "https://example.com/product/casual-jeans-women" },
+                { id: 6, title: "Summer Hat", price: "$19.99", image: "https://via.placeholder.com/300x300/ffffcc/000000?text=Hat", link: "https://example.com/product/summer-hat-women" },
+                { id: 7, title: "Elegant Heels", price: "$69.99", image: "https://via.placeholder.com/300x300/ffcce6/000000?text=Heels", link: "https://example.com/product/elegant-heels" },
+                { id: 8, title: "Leather Bag", price: "$79.99", image: "https://via.placeholder.com/300x300/ccffff/000000?text=Bag", link: "https://example.com/product/leather-bag-women" },
+                { id: 9, title: "Cozy Sweater", price: "$54.99", image: "https://via.placeholder.com/300x300/f2ccff/000000?text=Sweater", link: "https://example.com/product/cozy-sweater-women" },
+                { id: 10, title: "Linen Pants", price: "$39.99", image: "https://via.placeholder.com/300x300/ccffd9/000000?text=Pants", link: "https://example.com/product/linen-pants-women" },
+                { id: 11, title: "Summer Sandals", price: "$29.99", image: "https://via.placeholder.com/300x300/ffe0cc/000000?text=Sandals", link: "https://example.com/product/summer-sandals-women" },
+                { id: 12, title: "Cotton T-Shirt", price: "$24.99", image: "https://via.placeholder.com/300x300/d9ccff/000000?text=T-Shirt", link: "https://example.com/product/cotton-tshirt-women" }
+            ],
+            men: [
+                { id: 1, title: "Cotton T-Shirt", price: "$24.99", image: "https://via.placeholder.com/300x300/ccccff/000000?text=T-Shirt", link: "https://example.com/product/cotton-tshirt-men" },
+                { id: 2, title: "Slim Fit Jeans", price: "$49.99", image: "https://via.placeholder.com/300x300/cce6ff/000000?text=Jeans", link: "https://example.com/product/slim-fit-jeans-men" },
+                { id: 3, title: "Bomber Jacket", price: "$69.99", image: "https://via.placeholder.com/300x300/ccffcc/000000?text=Jacket", link: "https://example.com/product/bomber-jacket-men" },
+                { id: 4, title: "Formal Shirt", price: "$39.99", image: "https://via.placeholder.com/300x300/ffcccc/000000?text=Shirt", link: "https://example.com/product/formal-shirt-men" },
+                { id: 5, title: "Casual Shorts", price: "$29.99", image: "https://via.placeholder.com/300x300/ffffcc/000000?text=Shorts", link: "https://example.com/product/casual-shorts-men" },
+                { id: 6, title: "Leather Belt", price: "$34.99", image: "https://via.placeholder.com/300x300/ffccff/000000?text=Belt", link: "https://example.com/product/leather-belt-men" },
+                { id: 7, title: "Running Shoes", price: "$89.99", image: "https://via.placeholder.com/300x300/ccffff/000000?text=Shoes", link: "https://example.com/product/running-shoes-men" },
+                { id: 8, title: "Classic Watch", price: "$129.99", image: "https://via.placeholder.com/300x300/ffccdd/000000?text=Watch", link: "https://example.com/product/classic-watch-men" },
+                { id: 9, title: "Wool Sweater", price: "$59.99", image: "https://via.placeholder.com/300x300/ccffdd/000000?text=Sweater", link: "https://example.com/product/wool-sweater-men" },
+                { id: 10, title: "Chino Pants", price: "$45.99", image: "https://via.placeholder.com/300x300/ddccff/000000?text=Pants", link: "https://example.com/product/chino-pants-men" },
+                { id: 11, title: "Casual Sneakers", price: "$49.99", image: "https://via.placeholder.com/300x300/ffddcc/000000?text=Sneakers", link: "https://example.com/product/casual-sneakers-men" },
+                { id: 12, title: "Denim Shirt", price: "$44.99", image: "https://via.placeholder.com/300x300/ccddff/000000?text=Shirt", link: "https://example.com/product/denim-shirt-men" }
+            ],
+            kids: [
+                { id: 1, title: "Cartoon T-Shirt", price: "$19.99", image: "https://via.placeholder.com/300x300/ffcccc/000000?text=T-Shirt", link: "https://example.com/product/cartoon-tshirt-kids" },
+                { id: 2, title: "Denim Overalls", price: "$34.99", image: "https://via.placeholder.com/300x300/ccffcc/000000?text=Overalls", link: "https://example.com/product/denim-overalls-kids" },
+                { id: 3, title: "Colorful Socks", price: "$9.99", image: "https://via.placeholder.com/300x300/ccccff/000000?text=Socks", link: "https://example.com/product/colorful-socks-kids" },
+                { id: 4, title: "School Backpack", price: "$29.99", image: "https://via.placeholder.com/300x300/ffffcc/000000?text=Backpack", link: "https://example.com/product/school-backpack-kids" },
+                { id: 5, title: "Rainbow Dress", price: "$24.99", image: "https://via.placeholder.com/300x300/ffccff/000000?text=Dress", link: "https://example.com/product/rainbow-dress-kids" },
+                { id: 6, title: "Sport Shoes", price: "$39.99", image: "https://via.placeholder.com/300x300/ccffff/000000?text=Shoes", link: "https://example.com/product/sport-shoes-kids" },
+                { id: 7, title: "Winter Jacket", price: "$49.99", image: "https://via.placeholder.com/300x300/ffddcc/000000?text=Jacket", link: "https://example.com/product/winter-jacket-kids" },
+                { id: 8, title: "Cozy Pajamas", price: "$22.99", image: "https://via.placeholder.com/300x300/ccddff/000000?text=Pajamas", link: "https://example.com/product/cozy-pajamas-kids" },
+                { id: 9, title: "Swim Shorts", price: "$15.99", image: "https://via.placeholder.com/300x300/ddffcc/000000?text=Shorts", link: "https://example.com/product/swim-shorts-kids" },
+                { id: 10, title: "Summer Hat", price: "$12.99", image: "https://via.placeholder.com/300x300/ccddff/000000?text=Hat", link: "https://example.com/product/summer-hat-kids" },
+                { id: 11, title: "Casual Jeans", price: "$29.99", image: "https://via.placeholder.com/300x300/ffccdd/000000?text=Jeans", link: "https://example.com/product/casual-jeans-kids" },
+                { id: 12, title: "Dino Hoodie", price: "$32.99", image: "https://via.placeholder.com/300x300/ccffee/000000?text=Hoodie", link: "https://example.com/product/dino-hoodie-kids" }
+            ],
+            accessories: [
+                { id: 1, title: "Leather Wallet", price: "$39.99", image: "https://via.placeholder.com/300x300/ffcccc/000000?text=Wallet", link: "https://example.com/product/leather-wallet" },
+                { id: 2, title: "Silk Scarf", price: "$29.99", image: "https://via.placeholder.com/300x300/ccffcc/000000?text=Scarf", link: "https://example.com/product/silk-scarf" },
+                { id: 3, title: "Designer Sunglasses", price: "$79.99", image: "https://via.placeholder.com/300x300/ccccff/000000?text=Sunglasses", link: "https://example.com/product/designer-sunglasses" },
+                { id: 4, title: "Fashionable Watch", price: "$99.99", image: "https://via.placeholder.com/300x300/ffffcc/000000?text=Watch", link: "https://example.com/product/fashionable-watch" },
+                { id: 5, title: "Leather Belt", price: "$34.99", image: "https://via.placeholder.com/300x300/ffccff/000000?text=Belt", link: "https://example.com/product/leather-belt-accessory" },
+                { id: 6, title: "Stylish Hat", price: "$24.99", image: "https://via.placeholder.com/300x300/ccffff/000000?text=Hat", link: "https://example.com/product/stylish-hat-accessory" },
+                { id: 7, title: "Silver Necklace", price: "$59.99", image: "https://via.placeholder.com/300x300/ffddcc/000000?text=Necklace", link: "https://example.com/product/silver-necklace" },
+                { id: 8, title: "Gold Earrings", price: "$49.99", image: "https://via.placeholder.com/300x300/ccddff/000000?text=Earrings", link: "https://example.com/product/gold-earrings" },
+                { id: 9, title: "Beaded Bracelet", price: "$19.99", image: "https://via.placeholder.com/300x300/ddffcc/000000?text=Bracelet", link: "https://example.com/product/beaded-bracelet" },
+                { id: 10, title: "Fashionable Bag", price: "$69.99", image: "https://via.placeholder.com/300x300/ccddff/000000?text=Bag", link: "https://example.com/product/fashionable-bag-accessory" },
+                { id: 11, title: "Stylish Hairpin", price: "$14.99", image: "https://via.placeholder.com/300x300/ffccdd/000000?text=Hairpin", link: "https://example.com/product/stylish-hairpin" },
+                { id: 12, title: "Phone Case", price: "$19.99", image: "https://via.placeholder.com/300x300/ccffee/000000?text=PhoneCase", link: "https://example.com/product/phone-case-accessory" }
+            ],
+            sale: [
+                { id: 1, title: "Summer Dress", price: "$29.99", oldPrice: "$49.99", image: "https://via.placeholder.com/300x300/ffcccc/000000?text=Dress", link: "https://example.com/product/summer-dress-sale" },
+                { id: 2, title: "Leather Jacket", price: "$79.99", oldPrice: "$129.99", image: "https://via.placeholder.com/300x300/ccffcc/000000?text=Jacket", link: "https://example.com/product/leather-jacket-sale" },
+                { id: 3, title: "Casual Jeans", price: "$34.99", oldPrice: "$54.99", image: "https://via.placeholder.com/300x300/ccccff/000000?text=Jeans", link: "https://example.com/product/casual-jeans-sale" },
+                { id: 4, title: "Cotton T-Shirt", price: "$14.99", oldPrice: "$24.99", image: "https://via.placeholder.com/300x300/ffffcc/000000?text=T-Shirt", link: "https://example.com/product/cotton-tshirt-sale" },
+                { id: 5, title: "Stylish Watch", price: "$69.99", oldPrice: "$99.99", image: "https://via.placeholder.com/300x300/ffccff/000000?text=Watch", link: "https://example.com/product/stylish-watch-sale" },
+                { id: 6, title: "Designer Bag", price: "$89.99", oldPrice: "$149.99", image: "https://via.placeholder.com/300x300/ccffff/000000?text=Bag", link: "https://example.com/product/designer-bag-sale" },
+                { id: 7, title: "Wool Sweater", price: "$39.99", oldPrice: "$59.99", image: "https://via.placeholder.com/300x300/ffddcc/000000?text=Sweater", link: "https://example.com/product/wool-sweater-sale" },
+                { id: 8, title: "Running Shoes", price: "$59.99", oldPrice: "$89.99", image: "https://via.placeholder.com/300x300/ccddff/000000?text=Shoes", link: "https://example.com/product/running-shoes-sale" },
+                { id: 9, title: "Formal Shirt", price: "$29.99", oldPrice: "$49.99", image: "https://via.placeholder.com/300x300/ddffcc/000000?text=Shirt", link: "https://example.com/product/formal-shirt-sale" },
+                { id: 10, title: "Casual Shorts", price: "$19.99", oldPrice: "$34.99", image: "https://via.placeholder.com/300x300/ccddff/000000?text=Shorts", link: "https://example.com/product/casual-shorts-sale" },
+                { id: 11, title: "Denim Skirt", price: "$24.99", oldPrice: "$39.99", image: "https://via.placeholder.com/300x300/ffccdd/000000?text=Skirt", link: "https://example.com/product/denim-skirt-sale" },
+                { id: 12, title: "Fashion Sunglasses", price: "$49.99", oldPrice: "$79.99", image: "https://via.placeholder.com/300x300/ccffee/000000?text=Sunglasses", link: "https://example.com/product/fashion-sunglasses-sale" }
+            ]
+        };
+
+        // Function to render products
+        function renderProducts(products, title) {
+            const productsGrid = document.getElementById('productsGrid');
+            const sectionTitle = document.querySelector('.section-title');
+            
+            // Update section title
+            sectionTitle.textContent = title;
+            
+            // Clear existing products
+            productsGrid.innerHTML = '';
+            
+            // Render products
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                let priceHTML = '';
+                if (product.oldPrice) {
+                    priceHTML = `<p class="product-price">${product.price} <span style="text-decoration: line-through; color: #999; margin-left: 5px;">${product.oldPrice}</span></p>`;
+                } else {
+                    priceHTML = `<p class="product-price">${product.price}</p>`;
+                }
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        ${priceHTML}
+                    </div>
+                `;
+                
+                // Add click event to redirect to external link
+                productCard.addEventListener('click', () => {
+                    window.location.href = product.link;
+                });
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Function to filter products based on search query
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const productsGrid = document.getElementById('productsGrid');
+            const sectionTitle = document.querySelector('.section-title');
+
+            // If search query is empty, reset to the active category
+            if (query === '') {
+                const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+                renderProducts(productData[activeCategory], `${activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1)}'s Collection`);
+                return;
+            }
+
+            // Collect all products from all categories
+            let allProducts = [];
+            Object.keys(productData).forEach(category => {
+                allProducts = allProducts.concat(productData[category]);
+            });
+
+            // Filter products based on the search query
+            const filteredProducts = allProducts.filter(product => 
+                product.title.toLowerCase().includes(query)
+            );
+
+            // Update section title and render filtered products
+            if (filteredProducts.length > 0) {
+                renderProducts(filteredProducts, `Search Results for "${query}" (${filteredProducts.length} items)`);
+            } else {
+                productsGrid.innerHTML = '<p style="text-align: center; grid-column: span 4;">No products found matching your search.</p>';
+                sectionTitle.textContent = `Search Results for "${query}" (0 items)`;
+            }
+        }
+
+        // Initialize with first category
+        renderProducts(productData['women'], "Women's Collection");
+
+        // Add event listeners to category buttons
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Clear search input
+                document.getElementById('searchInput').value = '';
+
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Render products for selected category
+                const category = button.getAttribute('data-category');
+                renderProducts(productData[category], `${category.charAt(0).toUpperCase() + category.slice(1)}'s Collection`);
+            });
+        });
+
+        // Add event listeners for search input
+        document.getElementById('searchInput').addEventListener('input', searchProducts);
+        document.getElementById('searchInput').addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                searchProducts();
+            }
+        });
+
+        // Slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Brand Logo Slider</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    
+    .slider {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 28px;
+    }
+    
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      padding: 20px 0;
+      margin: 0 auto;
+      width: 100%;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    
+    .slider-track {
+      display: flex;
+      width: calc(200px * 16);
+      animation: scroll 30s linear infinite;
+    }
+    
+    /* Duplicate the animation for a seamless loop */
+    .slider-track:hover {
+      animation-play-state: paused;
+    }
+    
+    .slide {
+      height: 100px;
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      perspective: 100px;
+    }
+    
+    .brand-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      border-radius: 4px;
+    }
+    
+    .slide:hover .brand-logo {
+      transform: translateY(-5px);
+    }
+
+    /* Color placeholders for demo */
+    .logo-1 { background-color: #3b82f6; }
+    .logo-2 { background-color: #ef4444; }
+    .logo-3 { background-color: #10b981; }
+    .logo-4 { background-color: #f59e0b; }
+    .logo-5 { background-color: #8b5cf6; }
+    .logo-6 { background-color: #ec4899; }
+    .logo-7 { background-color: #6366f1; }
+    .logo-8 { background-color: #6b7280; }
+
+    /* Gradient overlay for fade effect */
+    .slider-container::before,
+    .slider-container::after {
+      content: "";
+      height: 100%;
+      width: 100px;
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      pointer-events: none;
+    }
+    
+    .slider-container::before {
+      left: 0;
+      background: linear-gradient(to right, white, transparent);
+    }
+    
+    .slider-container::after {
+      right: 0;
+      background: linear-gradient(to left, white, transparent);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .slide {
+        width: 160px;
+        height: 80px;
+      }
+      
+      .slider-container::before,
+      .slider-container::after {
+        width: 60px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .slide {
+        width: 120px;
+        height: 60px;
+      }
+      
+      .slider-container::before,
+      .slider-container::after {
+        width: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <h2>Our Trusted Partners</h2>
+    
+    <div class="slider-container">
+      <div class="slider-track">
+        <!-- First set of logos -->
+        <div class="slide">
+          <div class="brand-logo logo-1"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-2"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-3"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-4"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-5"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-6"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-7"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-8"></div>
+        </div>
+        
+        <!-- Duplicate set for seamless looping -->
+        <div class="slide">
+          <div class="brand-logo logo-1"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-2"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-3"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-4"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-5"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-6"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-7"></div>
+        </div>
+        <div class="slide">
+          <div class="brand-logo logo-8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

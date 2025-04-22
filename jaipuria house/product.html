@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Name - JaipuriyaHouse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .logo-text span {
+            color: #ff6b6b;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #25D366;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .product-section {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px 0;
+            gap: 30px;
+        }
+        
+        .product-images {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .image-thumbnails {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #25D366;
+        }
+        
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .product-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #25D366;
+            margin-bottom: 15px;
+        }
+        
+        .product-description {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .product-meta {
+            margin-bottom: 20px;
+        }
+        
+        .meta-item {
+            margin-bottom: 10px;
+        }
+        
+        .meta-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+        }
+        
+        .size-selector {
+            margin-bottom: 20px;
+        }
+        
+        .size-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .size-option {
+            border: 1px solid #ccc;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .size-option:hover, .size-option.selected {
+            background-color: #25D366;
+            color: white;
+            border-color: #25D366;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-btn {
+            width: 36px;
+            height: 36px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 36px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        .product-details-tabs {
+            margin: 40px 0;
+        }
+        
+        .tabs-header {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: #25D366;
+            border-bottom-color: #25D366;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .related-products {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .product-card-body {
+            padding: 15px;
+        }
+        
+        .product-card-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .product-card-price {
+            font-weight: bold;
+            color: #25D366;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 5% 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .quick-links {
+            list-style: none;
+        }
+
+        .quick-links li {
+            margin-bottom: 8px;
+        }
+
+        .quick-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .quick-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .newsletter button {
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter button:hover {
+            background-color: #ff5252;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                position: relative;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .product-section {
+                flex-direction: column;
+            }
+            
+            .product-images, .product-details {
+                min-width: 100%;
+            }
+            
+            .tabs-header {
+                flex-wrap: wrap;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with JaipuriyaHouse Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <div class="logo-text">Jaipuriya<span>House</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Cart (0)</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Main Product Section -->
+    <main class="container">
+        <section class="product-section">
+            <div class="product-images">
+                <img src="/api/placeholder/600/800" alt="Product Name" class="main-image" id="mainImage">
+                <div class="image-thumbnails">
+                    <img src="/api/placeholder/70/70" alt="Thumbnail 1" class="thumbnail active" onclick="changeImage(this, '/api/placeholder/600/800')">
+                    <img src="/api/placeholder/70/70" alt="Thumbnail 2" class="thumbnail" onclick="changeImage(this, '/api/placeholder/600/800')">
+                    <img src="/api/placeholder/70/70" alt="Thumbnail 3" class="thumbnail" onclick="changeImage(this, '/api/placeholder/600/800')">
+                    <img src="/api/placeholder/70/70" alt="Thumbnail 4" class="thumbnail" onclick="changeImage(this, '/api/placeholder/600/800')">
+                </div>
+            </div>
+            
+            <div class="product-details">
+                <h1 class="product-title">Premium Cotton T-Shirt</h1>
+                <p class="product-price">$29.99</p>
+                <div class="product-description">
+                    <p>This premium cotton T-shirt combines comfort with style. Made from 100% organic cotton, it features a classic fit that's perfect for any casual occasion. The breathable fabric ensures all-day comfort, while the durable construction guarantees long-lasting wear.</p>
+                </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">SKU:</span> TS12345
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Category:</span> T-Shirts
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Tags:</span> Cotton, Summer, Casual
+                    </div>
+                </div>
+                
+                <div class="size-selector">
+                    <h3>Select Size</h3>
+                    <div class="size-options">
+                        <div class="size-option" onclick="selectSize(this)">XS</div>
+                        <div class="size-option" onclick="selectSize(this)">S</div>
+                        <div class="size-option selected" onclick="selectSize(this)">M</div>
+                        <div class="size-option" onclick="selectSize(this)">L</div>
+                        <div class="size-option" onclick="selectSize(this)">XL</div>
+                        <div class="size-option" onclick="selectSize(this)">XXL</div>
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <h3>Quantity:</h3>
+                    <div style="display: flex; align-items: center; margin-left: 10px;">
+                        <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+                
+                <button class="whatsapp-btn" onclick="orderViaWhatsApp()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.196-.57-.345m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    Order via WhatsApp
+                </button>
+            </div>
+        </section>
+        
+        <!-- Product Details Tabs -->
+        <section class="product-details-tabs">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="changeTab('description')">Description</button>
+                <button class="tab-btn" onclick="changeTab('specifications')">Specifications</button>
+                <button class="tab-btn" onclick="changeTab('shipping')">Shipping & Returns</button>
+                <button class="tab-btn" onclick="changeTab('reviews')">Reviews</button>
+            </div>
+            
+            <div class="tab-content active" id="description">
+                <h3>Product Description</h3>
+                <p>This premium cotton T-shirt is designed with both style and comfort in mind. Crafted from 100% organic cotton, it's soft against the skin and perfect for everyday wear. The classic fit flatters all body types, while the reinforced stitching ensures long-lasting durability.</p>
+                <p>Available in a range of colors, this versatile T-shirt can be dressed up with a blazer for a smart-casual look or worn with jeans for a relaxed weekend outfit. The breathable fabric makes it an ideal choice for warm weather, keeping you cool and comfortable all day long.</p>
+                <p>Each T-shirt is ethically produced using sustainable practices, so you can feel good about your purchase. The pre-shrunk fabric means your T-shirt will maintain its perfect fit even after multiple washes.</p>
+            </div>
+            
+            <div class="tab-content" id="specifications">
+                <h3>Product Specifications</h3>
+                <ul>
+                    <li><strong>Material:</strong> 100% Organic Cotton</li>
+                    <li><strong>Weight:</strong> 180 GSM</li>
+                    <li><strong>Fit:</strong> Classic/Regular</li>
+                    <li><strong>Neck Type:</strong> Crew Neck</li>
+                    <li><strong>Sleeve:</strong> Short Sleeve</li>
+                    <li><strong>Care Instructions:</strong> Machine wash cold, tumble dry low</li>
+                    <li><strong>Country of Origin:</strong> Ethically manufactured</li>
+                </ul>
+            </div>
+            
+            <div class="tab-content" id="shipping">
+                <h3>Shipping & Returns</h3>
+                <h4>Shipping</h4>
+                <p>We offer free standard shipping on all orders over $50. Orders are typically processed within 1-2 business days and delivered within 3-7 business days.</p>
+                <p>Express shipping options are available at checkout for an additional fee.</p>
+                
+                <h4>Returns & Exchanges</h4>
+                <p>If you're not completely satisfied with your purchase, you can return it within 30 days for a full refund or exchange. Items must be unworn, unwashed, and in their original packaging with tags attached.</p>
+                <p>To initiate a return or exchange, please contact our customer service team through the WhatsApp button on the product page.</p>
+            </div>
+            
+            <div class="tab-content" id="reviews">
+                <h3>Customer Reviews</h3>
+                <div class="review">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; margin-right: 10px;"></div>
+                        <div>
+                            <h4 style="margin: 0;">John D.</h4>
+                            <div style="color: gold;">★★★★★</div>
+                        </div>
+                    </div>
+                    <p>Great quality t-shirt! The fabric is soft and comfortable, and the fit is perfect. Will definitely buy more colors.</p>
+                </div>
+                
+                <div class="review" style="margin-top: 20px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; margin-right: 10px;"></div>
+                        <div>
+                            <h4 style="margin: 0;">Sarah M.</h4>
+                            <div style="color: gold;">★★★★☆</div>
+                        </div>
+                    </div>
+                    <p>Very nice shirt, but it runs a bit large. I recommend sizing down if you prefer a more fitted look.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Related Products -->
+        <section class="related-products">
+            <h2 class="section-title">You May Also Like</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="/api/placeholder/250/300" alt="Related Product 1" class="product-card-img">
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Striped Cotton Polo</h3>
+                        <p class="product-card-price">$34.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="/api/placeholder/250/300" alt="Related Product 2" class="product-card-img">
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">V-Neck Casual Tee</h3>
+                        <p class="product-card-price">$24.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="/api/placeholder/250/300" alt="Related Product 3" class="product-card-img">
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Long Sleeve Henley</h3>
+                        <p class="product-card-price">$39.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="/api/placeholder/250/300" alt="Related Product 4" class="product-card-img">
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Graphic Print T-Shirt</h3>
+                        <p class="product-card-price">$27.99</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="quick-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul class="quick-links">
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <!-- <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">TW</a>
+                    <a href="#">PT</a> -->
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <div class="newsletter">
+                    <p>Subscribe for exclusive offers and updates</p>
+                    <input type="email" placeholder="Your email address">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 StyleHub. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Function to toggle mobile menu
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Function to change the main product image
+        function changeImage(thumbnail, imageSrc) {
+            document.getElementById('mainImage').src = imageSrc;
+            
+            // Update active thumbnail
+            let thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        }
+        
+        // Function to select size
+        function selectSize(sizeElement) {
+            let sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.classList.remove('selected');
+            });
+            sizeElement.classList.add('selected');
+        }
+        
+        // Function to change quantity
+        function changeQuantity(change) {
+            let quantityInput = document.getElementById('quantity');
+            let currentValue = parseInt(quantityInput.value);
+            let newValue = currentValue + change;
+            
+            if (newValue >= 1 && newValue <= 10) {
+                quantityInput.value = newValue;
+            }
+        }
+        
+        // Function to change active tab
+        function changeTab(tabId) {
+            // Hide all tab contents
+            let tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show the selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update active tab button
+            let tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Function to order via WhatsApp
+        function orderViaWhatsApp() {
+            // Get selected options
+            let productTitle = document.querySelector('.product-title').innerText;
+            let productPrice = document.querySelector('.product-price').innerText;
+            let selectedSize = document.querySelector('.size-option.selected').innerText;
+            let quantity = document.getElementById('quantity').value;
+            
+            // Construct the WhatsApp message
+            let message = `Hello! I would like to order:\n\n`;
+            message += `Product: ${productTitle}\n`;
+            message += `Price: ${productPrice}\n`;
+            message += `Size: ${selectedSize}\n`;
+            message += `Quantity: ${quantity}\n\n`;
+            message += `Please confirm if this is available.`;
+            
+            // Replace this number with your actual WhatsApp business number
+            let phoneNumber = "1234567890";
+            
+            // Encode the message for URL
+            let encodedMessage = encodeURIComponent(message);
+            
+            // Open WhatsApp with the pre-filled message
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>

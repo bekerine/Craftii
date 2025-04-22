@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shri Balaji Tiles and Marble Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-brown: #8B4513;
+            --secondary-brown: #A0522D;
+            --light-brown: #D2B48C;
+            --cream: #F5F5DC;
+            --dark-brown: #5D4037;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: rgba(93, 64, 55, 0.7);
+            /* Initial transparent background */
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            /* Smooth transition for background changes */
+        }
+
+        header.scrolled {
+            background-color: var(--dark-brown);
+            /* Fully opaque when scrolled */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            /* color: var(--cream); */
+            text-decoration: none;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-left: 10px;
+            color: var(--cream);
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 25px;
+        }
+
+        .nav-link {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            background-color: var(--light-brown);
+            color: var(--dark-brown);
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 22px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger .line {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background-color: var(--cream);
+            border-radius: 3px;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger .line-1 {
+            top: 0;
+        }
+
+        .hamburger .line-2 {
+            top: 9px;
+        }
+
+        .hamburger .line-3 {
+            top: 18px;
+        }
+
+        /* X transformation */
+        .hamburger.active .line-1 {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active .line-2 {
+            opacity: 0;
+        }
+
+        .hamburger.active .line-3 {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 100px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            background-color: rgba(93, 64, 55, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            color: var(--cream);
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--light-brown);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--secondary-brown);
+            color: var(--cream);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin: 0 10px;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .sliders {
+            min-height: 5rem;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        .slide {
+            height: 250px;
+            margin: auto;
+            position: relative;
+            width: 90%;
+            display: grid;
+            place-items: center;
+        }
+
+        .slide {
+            height: 200px;
+            width: 250px;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .slide-track {
+            display: flex;
+            animation: scroll 40s linear infinite;
+        }
+
+        img {
+            width: 100%;
+            padding-right: 10px;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-250px*9));
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-brown);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-brown);
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .about-text h3 {
+            color: var(--primary-brown);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: var(--cream);
+        }
+
+        .product-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .category-btn {
+            background-color: var(--light-brown);
+            color: var(--dark-brown);
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--primary-brown);
+            color: var(--cream);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: #fff;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--cream);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-brown);
+            margin-bottom: 20px;
+        }
+
+        .contact-detail {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-brown);
+            margin-right: 15px;
+            width: 30px;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-text h4 {
+            color: var(--dark-brown);
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: #666;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-brown);
+        }
+
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--secondary-brown);
+            color: var(--cream);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-brown);
+        }
+
+        /* WhatsApp Chat Bubble */
+        .whatsapp-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .whatsapp-chat:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: var(--cream);
+            padding: 40px 0 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-section h3 {
+            color: var(--light-brown);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-brown);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-brown);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-brown);
+            color: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--light-brown);
+            color: var(--dark-brown);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Enhanced Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                flex-direction: column;
+                background-color: var(--dark-brown);
+                width: 100%;
+                height: 100vh;
+                text-align: center;
+                transition: 0.4s ease-in-out;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 80px 0;
+                z-index: 999;
+                justify-content: flex-start;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 20px 0;
+                opacity: 0;
+                transform: translateX(-20px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+                transition-delay: 0s;
+            }
+
+            .nav-menu.active .nav-item {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Staggered animation for nav items */
+            .nav-menu.active .nav-item:nth-child(1) {
+                transition-delay: 0.1s;
+            }
+
+            .nav-menu.active .nav-item:nth-child(2) {
+                transition-delay: 0.2s;
+            }
+
+            .nav-menu.active .nav-item:nth-child(3) {
+                transition-delay: 0.3s;
+            }
+
+            .nav-menu.active .nav-item:nth-child(4) {
+                transition-delay: 0.4s;
+            }
+
+            .nav-menu.active .nav-item:nth-child(5) {
+                transition-delay: 0.5s;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+                display: block;
+                padding: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero-content {
+                padding: 20px;
+            }
+
+            .about-content,
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .about-image {
+                margin-top: 30px;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .logo-img {
+                height: 40px;
+            }
+
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header with Navigation -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="SBJ.png" alt="Shri Balaji Tiles Logo" class="logo-img">
+                <!-- <h1>Shri Balaji Tiles</h1> -->
+            </a>
+            <!-- Modified hamburger menu with spans for animation -->
+            <div class="hamburger" id="hamburger">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section with 3D Effect -->
+    <section class="hero" id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h2>Shri Balaji Tiles and Marble Home</h2>
+            <p>Exclusive Showroom for Premium Tiles, Marbles, Granites and Bathroom Fittings</p>
+            <div class="cta-buttons">
+                <a href="#products" class="cta-btn">View Products</a>
+                <a href="#contact" class="cta-btn">Contact Us</a>
+            </div>
+            <h2>Brands We Deal With</h2>
+            <section class="sliders">
+                <div class="slider">
+                    <div class="slide-track">
+                        <div class="slide">
+                            <img src="1sbj.jpeg" alt="">
+                            <img src="2sbj.jpeg" alt="">
+                            <img src="3sbj.jpeg" alt="">
+                            <img src="4sbj.jpeg" alt="">
+                            <img src="5sbj.jpeg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Welcome to Shri Balaji Tiles and Marble Home</h3>
+                    <p>We are Aligarh's premier destination for exclusive tiles, marbles, granites, and bathroom
+                        fittings. With years of experience in the industry, we bring you the finest collection of
+                        branded products to enhance your living spaces.</p>
+                    <p>At Shri Balaji Tiles, we believe in providing quality products along with excellent customer
+                        service. Our team of experts will help you select the perfect materials for your home or
+                        project, ensuring customer satisfaction at every step.</p>
+                    <p>We also specialize in manufacturing modern kitchens and wardrobes that blend functionality with
+                        aesthetic appeal, making your living spaces both beautiful and practical.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://www.balajimarbles.in/images/balaji-marbles-09.jpg"
+                        alt="Shri Balaji Tiles Showroom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Nexion-Marble-Gallery_page-0048-scaled.jpg"
+                            alt="Wall Tiles">
+                    </div>
+                    <div class="product-info">
+                        <h3>Wall Tiles</h3>
+                        <p>Premium quality wall tiles from top brands with various designs and textures.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://balajiceramics.in/uploads/menu_logo/jyhcTM.jpg" alt="Floor Tiles">
+                    </div>
+                    <div class="product-info">
+                        <h3>Floor Tiles</h3>
+                        <p>Durable and elegant floor tiles perfect for both residential and commercial spaces.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/NEXION-Terraelino-Catalogue_page-0014.jpg"
+                            alt="Marble Collection">
+                    </div>
+                    <div class="product-info">
+                        <h3>Marble Collection</h3>
+                        <p>Exquisite marble varieties that add a touch of luxury to your spaces.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/QUARTZ-BROCHURE-DOMESTIC-compressed_page-0008.jpg"
+                            alt="Granite Slabs">
+                    </div>
+                    <div class="product-info">
+                        <h3>Granite Slabs</h3>
+                        <p>Sturdy and elegant granite options for countertops and flooring.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Nexion-Marble-Gallery_page-0052-scaled.jpg"
+                            alt="Bathroom Fittings">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bathroom Fittings</h3>
+                        <p>Modern bathroom fixtures and accessories from leading brands.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/QUARTZ-BROCHURE-DOMESTIC-compressed_page-0009.jpg"
+                            alt="Modern Kitchen">
+                    </div>
+                    <div class="product-info">
+                        <h3>Modern Kitchen</h3>
+                        <p>Custom-designed modern kitchens that combine style and functionality.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://cdn.shopify.com/s/files/1/0179/3055/files/wardrobes_14.jpg?5821390230637891669"
+                            alt="Wardrobes">
+                    </div>
+                    <div class="product-info">
+                        <h3>Wardrobes</h3>
+                        <p>Elegant wardrobes crafted with precision to maximize your storage space.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Nexion-Marble-Gallery_page-0072-scaled.jpg"
+                            alt="Outdoor Tiles">
+                    </div>
+                    <div class="product-info">
+                        <h3>Outdoor Tiles</h3>
+                        <p>Weather-resistant tiles specially designed for outdoor applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Nexion-Marble-Gallery_page-0034-scaled.jpg"
+                        alt="Project 1">
+                    <div class="gallery-caption">
+                        <h4>Luxury Bathroom Design</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Untitled-design-38-2048x1120.jpg"
+                        alt="Project 2">
+                    <div class="gallery-caption">
+                        <h4>Modern Kitchen Installation</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Nexion-Marble-Gallery_page-0070-1-scaled.jpg"
+                        alt="Project 3">
+                    <div class="gallery-caption">
+                        <h4>Marble Flooring</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Nexion-Marble-Gallery_page-0076-2048x1152.jpg"
+                        alt="Project 4">
+                    <div class="gallery-caption">
+                        <h4>Granite Countertops</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Nexion-Marble-Gallery_page-0080-2048x1152.jpg"
+                        alt="Project 5">
+                    <div class="gallery-caption">
+                        <h4>Wall Tile Installation</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://shreebalajimarbles.com/wp-content/uploads/2023/11/Untitled-design-39-2048x1120.jpg"
+                        alt="Project 6">
+                    <div class="gallery-caption">
+                        <h4>Custom Outdoor</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>Sasni Gate Mathura Road, Lodhi Vihar, Aligarh</p>
+                            <p>Quasi Chauraha near Tarun valley guest house, Ramgarh Road, Aligarh</p>
+                            <p>Near Vishal Mega Mart, Etach Chungi Chauraha naurangabad, Aligarh</p>
+                            <p>Sarai Radha, near telephone Ex.... Delhi Gate, Aligarh</p>
+                            <p>Sasni Gate, Mathura Road, in front of doltabad Mand Aligarh</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>+91 70373 10787</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>info@shribalajitiles.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Opening Hours</h4>
+                            <p>Monday - Saturday: 10:00 AM - 8:00 PM</p>
+                            <p>Sunday: 11:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option value="" disabled selected>Select Inquiry Type</option>
+                                <option value="product">Product Inquiry</option>
+                                <option value="price">Price Quote</option>
+                                <option value="installation">Installation Services</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/917037310787" class="whatsapp-chat" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>Shri Balaji Tiles</h3>
+                <p>Your one-stop destination for premium tiles, marbles, granites, and bathroom fittings in Aligarh.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/917037310787" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Products</h3>
+                <ul class="footer-links">
+                    <li><a href="#products">Wall Tiles</a></li>
+                    <li><a href="#products">Floor Tiles</a></li>
+                    <li><a href="#products">Marble Collection</a></li>
+                    <li><a href="#products">Granite Slabs</a></li>
+                    <li><a href="#products">Bathroom Fittings</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i>Sasni Gate Mathura Road, Lodhi Vihar, Aligarh</li>
+                    <li><i class="fas fa-map-marker-alt"></i>Quasi Chauraha near Tarun valley guest house, Ramgarh Road, Aligarh</li>
+                    <li><i class="fas fa-map-marker-alt"></i>Near Vishal Mega Mart, Etach Chungi Chauraha naurangabad, Aligarh</li>
+                    <li><i class="fas fa-map-marker-alt"></i>Sarai Radha, near telephone Ex.... Delhi Gate, Aligarh</li>
+                    <li><i class="fas fa-map-marker-alt"></i>Sasni Gate, Mathura Road, in front of doltabad Mand Aligarh</li>
+                    <li><i class="fas fa-phone"></i> +91 9876543210</li>
+                    <li><i class="fas fa-envelope"></i> info@shribalajitiles.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2025 Shri Balaji Tiles and Marble Home. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Code -->
+    <script>
+        // Menu Toggle Functionality
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Toggle mobile menu
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Header background change on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Here you would typically add AJAX code to submit the form data
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+        }
+
+        // 3D Tile Background Effect for Hero Section
+        const canvas = document.getElementById('hero-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        // Set renderer size
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Create tiles
+        const tiles = [];
+        const tileGeometry = new THREE.BoxGeometry(2, 0.2, 2);
+        const tileMaterials = [
+            new THREE.MeshBasicMaterial({ color: 0x8B4513, transparent: true, opacity: 0.7 }),
+            new THREE.MeshBasicMaterial({ color: 0xA0522D, transparent: true, opacity: 0.7 }),
+            new THREE.MeshBasicMaterial({ color: 0xD2B48C, transparent: true, opacity: 0.7 })
+        ];
+
+        // Create grid of tiles
+        for (let x = -10; x <= 10; x += 3) {
+            for (let z = -10; z <= 10; z += 3) {
+                const material = tileMaterials[Math.floor(Math.random() * tileMaterials.length)];
+                const tile = new THREE.Mesh(tileGeometry, material);
+                tile.position.set(x, 0, z);
+                tile.rotation.y = Math.random() * Math.PI * 2;
+                scene.add(tile);
+                tiles.push({
+                    mesh: tile,
+                    baseY: 0,
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        // Position camera
+        camera.position.set(0, 10, 20);
+        camera.lookAt(0, 0, 0);
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate scene slowly
+            scene.rotation.y += 0.002;
+
+            // Animate tiles floating up and down
+            const time = Date.now() * 0.001;
+            tiles.forEach(tile => {
+                tile.mesh.position.y = tile.baseY + Math.sin(time + tile.phase) * 0.5;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Start animation
+        animate();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
