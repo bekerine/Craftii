@@ -1084,10 +1084,13 @@
                 <h3>Contact Info</h3>
                 <ul class="footer-links">
                     <li><i class="fas fa-map-marker-alt"></i>Sasni Gate Mathura Road, Lodhi Vihar, Aligarh</li>
-                    <li><i class="fas fa-map-marker-alt"></i>Quasi Chauraha near Tarun valley guest house, Ramgarh Road, Aligarh</li>
-                    <li><i class="fas fa-map-marker-alt"></i>Near Vishal Mega Mart, Etach Chungi Chauraha naurangabad, Aligarh</li>
+                    <li><i class="fas fa-map-marker-alt"></i>Quasi Chauraha near Tarun valley guest house, Ramgarh Road,
+                        Aligarh</li>
+                    <li><i class="fas fa-map-marker-alt"></i>Near Vishal Mega Mart, Etach Chungi Chauraha naurangabad,
+                        Aligarh</li>
                     <li><i class="fas fa-map-marker-alt"></i>Sarai Radha, near telephone Ex.... Delhi Gate, Aligarh</li>
-                    <li><i class="fas fa-map-marker-alt"></i>Sasni Gate, Mathura Road, in front of doltabad Mand Aligarh</li>
+                    <li><i class="fas fa-map-marker-alt"></i>Sasni Gate, Mathura Road, in front of doltabad Mand Aligarh
+                    </li>
                     <li><i class="fas fa-phone"></i> +91 9876543210</li>
                     <li><i class="fas fa-envelope"></i> info@shribalajitiles.com</li>
                 </ul>
@@ -1224,6 +1227,17 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function (e) {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74))) {
+                return false;
+            }
+        }
+    </script>
+
+
 </body>
 
 </html>
