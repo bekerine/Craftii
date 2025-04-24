@@ -142,6 +142,19 @@
             border: none;
             cursor: pointer;
             color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        /* Add the hamburger to X transformation styles */
+        .hamburger::before {
+            content: "☰";
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger.active::before {
+            content: "×";
+            transform: rotate(90deg);
         }
 
         /* Second Navbar */
@@ -404,7 +417,7 @@
     <nav class="navbar-top">
         <div class="nav-container">
             <div class="logo">Print-Store</div>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <button class="hamburger" onclick="toggleMenu()"></button>
             <div class="dropdown-search">
                 <input type="text" id="searchInput" placeholder="Search products..." oninput="searchProducts()" onkeyup="if(event.key === 'Enter') searchProducts()">
                 <span class="search-icon"><i class="fas fa-search"></i></span>
@@ -611,7 +624,10 @@
 
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            
             navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
         }
 
         // Theme toggle functionality

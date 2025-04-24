@@ -128,6 +128,19 @@
             border: none;
             cursor: pointer;
             color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        /* Add the hamburger to X transformation styles */
+        .hamburger::before {
+            content: "☰";
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger.active::before {
+            content: "×";
+            transform: rotate(90deg);
         }
 
         /* Product Section */
@@ -545,7 +558,7 @@
         <div class="nav-container">
             <div class="logo">Print-Store</div>
             <div class="nav-right-section" style="display: flex; align-items: center;">
-                <button class="hamburger" onclick="toggleMenu()">☰</button>
+                <button class="hamburger" onclick="toggleMenu()"></button>
                 <div class="nav-links">
                     <a href="#">Home</a>
                     <!-- <a href="#">About</a> -->
@@ -745,7 +758,10 @@
         // Toggle Menu for Mobile
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+
             navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
         }
 
         // Thumbnail click handler
