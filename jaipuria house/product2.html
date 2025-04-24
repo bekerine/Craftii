@@ -26,6 +26,7 @@
             --footer-text: #ddd;
             --card-bg: #fff;
             --tab-active-color: #ff6b6b;
+            --overlay-bg: rgba(0,0,0,0.7);
         }
 
         html[data-theme='dark'] {
@@ -40,12 +41,14 @@
             --footer-text: #ddd;
             --card-bg: #2a2a2a;
             --tab-active-color: #ff6b6b;
+            --overlay-bg: rgba(0,0,0,0.85);
         }
 
         body {
             background: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Navbar */
@@ -128,19 +131,102 @@
             border: none;
             cursor: pointer;
             color: var(--text-color);
-            transition: transform 0.3s ease;
+            z-index: 1001;
         }
 
-        /* Add the hamburger to X transformation styles */
-        .hamburger::before {
-            content: "☰";
-            display: block;
-            transition: transform 0.3s ease;
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--overlay-bg);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
         }
 
-        .hamburger.active::before {
-            content: "×";
-            transform: rotate(90deg);
+        .mobile-menu-overlay.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .mobile-search-container {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-search-form {
+            display: flex;
+            width: 100%;
+        }
+
+        .mobile-search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .mobile-search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .mobile-search-button {
+            padding: 10px 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+        }
+
+        .mobile-menu-links a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-links a:hover {
+            color: var(--primary-color);
         }
 
         /* Product Section */
@@ -474,27 +560,6 @@
 
             .nav-links {
                 display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: var(--bg-color);
-                box-shadow: 0 2px 5px var(--shadow-color);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                margin: 10px 0;
-                padding: 10px 20px;
-                border-bottom: 1px solid var(--border-color);
-            }
-            
-            .theme-toggle {
-                margin: 10px 20px;
             }
 
             /* Product Section */
@@ -558,19 +623,38 @@
         <div class="nav-container">
             <div class="logo">Print-Store</div>
             <div class="nav-right-section" style="display: flex; align-items: center;">
-                <button class="hamburger" onclick="toggleMenu()"></button>
+                <button class="hamburger" onclick="toggleMenu()">☰</button>
                 <div class="nav-links">
                     <a href="#">Home</a>
-                    <!-- <a href="#">About</a> -->
                     <a href="#">Contact</a>
                 </div>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <!-- <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
                     <i id="sun-icon" class="fas fa-sun"></i>
                     <i id="moon-icon" class="fas fa-moon"></i>
-                </button>
+                </button> -->
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">Print-Store</div>
+            <button class="close-menu" onclick="toggleMenu()">×</button>
+        </div>
+        <!-- <div class="mobile-search-container">
+            <form class="mobile-search-form">
+                <input type="text" class="mobile-search-input" placeholder="Search products...">
+                <button type="submit" class="mobile-search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div> -->
+        <div class="mobile-menu-links">
+            <a href="#">Home</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
 
     <!-- Product Section -->
     <section class="product-section">
@@ -612,7 +696,7 @@
             <div class="tab active" onclick="openTab('description')">Description</div>
             <div class="tab" onclick="openTab('specifications')">Specifications</div>
             <div class="tab" onclick="openTab('shipping')">Shipping & Returns</div>
-            <div class="tab" onclick="openTab('reviews')">Reviews</div>
+            <!-- <div class="tab" onclick="openTab('reviews')">Reviews</div> -->
         </div>
         <div id="description" class="tab-content active">
             <h2>Product Description</h2>
@@ -638,17 +722,15 @@
             <p>Estimated delivery within 5-7 business days.</p>
             <p>Returns: 30-day return policy. Items must be unworn and in original packaging.</p>
         </div>
-        <div id="reviews" class="tab-content">
-            <!-- <h2>Reviews (3)</h2> -->
-            
+        <!-- <div id="reviews" class="tab-content"> -->
             <!-- Review Slider -->
-            <div class="review-slider-container">
+            <!-- <div class="review-slider-container"> -->
                 <!-- Left arrow -->
-                <div class="slider-arrow arrow-left" onclick="navigateSlider(-1)">
+                <!-- <div class="slider-arrow arrow-left" onclick="navigateSlider(-1)">
                     <i class="fas fa-chevron-left"></i>
                 </div>
                 
-                <!-- <div class="review-slider" id="reviewSlider">
+                <div class="review-slider" id="reviewSlider">
                     <div class="review">
                         <div class="review-header">
                             <span class="reviewer-name">Sarah M.</span>
@@ -684,22 +766,22 @@
                         <p class="review-text">
                             I ordered this as a gift for my husband and he loves it! The material is excellent quality and the sizing was spot on. The shipping was also very fast. Will definitely order more colors in the future.
                         </p>
-                    </div> -->
-                </div>
+                    </div>
+                </div> -->
                 
                 <!-- Right arrow -->
-                <div class="slider-arrow arrow-right" onclick="navigateSlider(1)">
+                <!-- <div class="slider-arrow arrow-right" onclick="navigateSlider(1)">
                     <i class="fas fa-chevron-right"></i>
                 </div>
-            </div>
+            </div> -->
             
             <!-- Dots navigation -->
-            <div class="slider-navigation" id="sliderDots">
+            <!-- <div class="slider-navigation" id="sliderDots">
                 <div class="slider-dot active" onclick="showSlide(0)"></div>
                 <div class="slider-dot" onclick="showSlide(1)"></div>
                 <div class="slider-dot" onclick="showSlide(2)"></div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <!-- You May Also Like Section -->
@@ -757,11 +839,9 @@
     <script>
         // Toggle Menu for Mobile
         function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const hamburger = document.querySelector('.hamburger');
-
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         }
 
         // Thumbnail click handler
@@ -770,7 +850,7 @@
 
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', () => {
-                mainImage.src = thumbnail.src.replace('80x80', '500x500');
+                mainImage.src = thumbnail.src;
             });
         });
 
@@ -813,89 +893,62 @@
         }
 
         // Theme Toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
+        // const themeToggle = document.getElementById('theme-toggle');
+        // const htmlElement = document.documentElement;
         
-        // Check for saved theme preference or use system preference
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            htmlElement.setAttribute('data-theme', savedTheme);
-        } else {
-            // Check system preference
-            const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            htmlElement.setAttribute('data-theme', prefersDarkMode ? 'dark' : 'light');
-        }
+        // // Check for saved theme preference or use system preference
+        // const savedTheme = localStorage.getItem('theme');
+        // if (savedTheme) {
+        //     htmlElement.setAttribute('data-theme', savedTheme);
+        // } else {
+        //     // Check system preference
+        //     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        //     htmlElement.setAttribute('data-theme', prefersDarkMode ? 'dark' : 'light');
+        // }
 
         // Toggle theme when button is clicked
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        // themeToggle.addEventListener('click', () => {
+        //     const currentTheme = htmlElement.getAttribute('data-theme');
+        //     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-        
-        // Review Slider functionality
+        //     htmlElement.setAttribute('data-theme', newTheme);
+        //     localStorage.setItem('theme', newTheme);
+        // });
+
+        // Review slider functionality
         let currentSlide = 0;
-        const reviewSlider = document.getElementById('reviewSlider');
-        const sliderDots = document.getElementById('sliderDots').querySelectorAll('.slider-dot');
-        const totalSlides = document.querySelectorAll('.review-slider .review').length;
-        let slideInterval;
-        
-        // Function to show a specific slide
-        function showSlide(slideIndex) {
-            if (slideIndex >= totalSlides) {
-                currentSlide = 0;
-            } else if (slideIndex < 0) {
+        const slider = document.getElementById('reviewSlider');
+        const dots = document.querySelectorAll('.slider-dot');
+        const totalSlides = document.querySelectorAll('.review').length;
+
+        function showSlide(index) {
+            if (index < 0) {
                 currentSlide = totalSlides - 1;
+            } else if (index >= totalSlides) {
+                currentSlide = 0;
             } else {
-                currentSlide = slideIndex;
+                currentSlide = index;
             }
             
             updateSlider();
         }
-        
-        // Function to navigate between slides
+
         function navigateSlider(direction) {
             showSlide(currentSlide + direction);
-            resetInterval();
         }
-        
-        // Update the slider position and active dot
+
         function updateSlider() {
-            reviewSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            // Update slider position
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
             
-            // Update active dot
-            sliderDots.forEach((dot, index) => {
+            // Update dots
+            dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
         }
-        
-        // Start automatic sliding
-        function startSlideInterval() {
-            slideInterval = setInterval(() => {
-                showSlide(currentSlide + 1);
-            }, 5000); // Change slide every 5 seconds
-        }
-        
-        // Reset the interval when manually navigating
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startSlideInterval();
-        }
-        
+
         // Initialize the slider
-        startSlideInterval();
-        
-        // Stop auto-sliding when user interacts with the slider
-        document.querySelector('.review-slider-container').addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
-        
-        // Resume auto-sliding when user stops interacting
-        document.querySelector('.review-slider-container').addEventListener('mouseleave', () => {
-            startSlideInterval();
-        });
+        updateSlider();
     </script>
 </body>
 </html>
