@@ -28,6 +28,7 @@
             --input-border: #ddd;
             --box-shadow: rgba(0,0,0,0.1);
             --border-bottom: #eee;
+            --mobile-menu-bg: rgba(255,255,255,0.95);
         }
 
         [data-theme="dark"] {
@@ -44,12 +45,18 @@
             --input-border: #444;
             --box-shadow: rgba(0,0,0,0.3);
             --border-bottom: #444;
+            --mobile-menu-bg: rgba(42,42,42,0.95);
         }
 
         body {
             background: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
         }
 
         /* First Navbar */
@@ -142,19 +149,110 @@
             border: none;
             cursor: pointer;
             color: var(--text-color);
-            transition: transform 0.3s ease;
+            z-index: 1001; /* Higher than the menu to stay on top */
         }
 
-        /* Add the hamburger to X transformation styles */
-        .hamburger::before {
-            content: "☰";
-            display: block;
-            transition: transform 0.3s ease;
+        /* Mobile Menu - Full Screen Side Menu */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: -100%; /* Start off-screen */
+            width: 100%;
+            height: 100vh;
+            background-color: var(--mobile-menu-bg);
+            z-index: 1000;
+            transition: left 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
         }
 
-        .hamburger.active::before {
-            content: "×";
-            transform: rotate(90deg);
+        .mobile-menu-overlay.active {
+            left: 0; /* Slide in from left */
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-bottom);
+        }
+
+        .mobile-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .mobile-close {
+            font-size: 28px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .mobile-search {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-bottom);
+        }
+
+        .mobile-search input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .mobile-nav-links a {
+            margin: 15px 0;
+            padding: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 20px;
+            border-bottom: 1px solid var(--border-bottom);
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--hover-color);
+            transform: translateX(10px);
+        }
+
+        /* Animation for menu items */
+        .mobile-nav-links a {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .mobile-menu-overlay.active .mobile-nav-links a {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Staggered animation for menu items */
+        .mobile-menu-overlay.active .mobile-nav-links a:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .mobile-menu-overlay.active .mobile-nav-links a:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .mobile-menu-overlay.active .mobile-nav-links a:nth-child(3) {
+            transition-delay: 0.3s;
         }
 
         /* Second Navbar */
@@ -165,6 +263,14 @@
             position: sticky;
             top: 60px;
             z-index: 99;
+            position: fixed;
+            width: 100%;
+        }
+
+        @media (min-width: 480px) {
+            .navbar-categories {
+            margin-top: .5rem;
+          }
         }
 
         .category-buttons {
@@ -192,34 +298,6 @@
         .category-buttons button.active {
             border-bottom: 2px solid var(--hover-color);
             color: var(--hover-color);
-        }
-
-        /* Slider */
-        .slider {
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-            position: relative;
-            margin-top: 50px;
-        }
-
-        .slides {
-            display: flex;
-            width: 300%;
-            animation: slide 15s infinite;
-        }
-
-        .slide {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            33% { transform: translateX(-33.33%); }
-            66% { transform: translateX(-66.66%); }
-            100% { transform: translateX(0); }
         }
 
         /* Category Section */
@@ -253,18 +331,6 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-        }
-
-        /* Ads Space */
-        .ad-space {
-            width: 100%;
-            height: 200px;
-            background: var(--ad-bg);
-            margin: 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
         }
 
         /* Footer */
@@ -343,20 +409,6 @@
 
             .nav-links {
                 display: none;
-                flex-direction: column;
-                width: 100%;
-                background: var(--navbar-bg);
-                box-shadow: 0 2px 5px var(--box-shadow);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                margin: 10px 0;
-                padding: 10px 20px;
-                border-bottom: 1px solid var(--border-bottom);
             }
 
             /* Second Navbar */
@@ -366,16 +418,6 @@
 
             .category-buttons {
                 justify-content: flex-start;
-            }
-
-            /* Slider */
-            .slider {
-                height: 200px;
-                margin-top: 100px;
-            }
-
-            .slide {
-                height: 200px;
             }
 
             /* Category Section */
@@ -405,10 +447,6 @@
             .navbar-categories {
                 top: 70px;
             }
-
-            .slider {
-                margin-top: 90px;
-            }
         }
     </style>
 </head>
@@ -417,15 +455,13 @@
     <nav class="navbar-top">
         <div class="nav-container">
             <div class="logo">Print-Store</div>
-            <button class="hamburger" onclick="toggleMenu()"></button>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
             <div class="dropdown-search">
                 <input type="text" id="searchInput" placeholder="Search products..." oninput="searchProducts()" onkeyup="if(event.key === 'Enter') searchProducts()">
                 <span class="search-icon"><i class="fas fa-search"></i></span>
             </div>
             <div class="nav-links">
                 <a href="#">Home</a>
-                <!-- <a href="#">Shop</a> -->
-                <!-- <a href="#">About</a> -->
                 <a href="#">Contact</a>
                 <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()">
                     <i class="fas fa-sun"></i>
@@ -434,25 +470,32 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-logo">Print-Store</div>
+            <button class="mobile-close" onclick="toggleMenu()">×</button>
+        </div>
+        <div class="mobile-search">
+            <input type="text" id="mobileSearchInput" placeholder="Search products..." oninput="mobileSearchProducts()" onkeyup="if(event.key === 'Enter') mobileSearchProducts()">
+        </div>
+        <div class="mobile-nav-links">
+            <a href="#">Home</a>
+            <a href="#">Contact</a>
+            <a href="#" onclick="toggleTheme(); return false;">
+                <span id="mobileThemeIcon"><i class="fas fa-sun"></i></span> Theme
+            </a>
+        </div>
+    </div>
+
     <!-- Second Navbar -->
     <nav class="navbar-categories">
         <div class="category-buttons">
             <button class="active" onclick="showCategory('all')">All</button>
-             <button onclick="showCategory('men')">Men</button>
-             <button onclick="showCategory('women')">Women</button>
-            <!-- <button onclick="showCategory('kids')">Kids</button> -->
-            <!-- <button onclick="showCategory('accessories')">Accessories</button> -->
+            <button onclick="showCategory('men')">Men</button>
+            <button onclick="showCategory('women')">Women</button>
         </div>
     </nav>
-
-    <!-- Image Slider -->
-    <!-- <div class="slider">
-        <div class="slides">
-            <img class="slide" src="https://via.placeholder.com/1200x400?text=Ad+1" alt="Ad 1">
-            <img class="slide" src="https://via.placeholder.com/1200x400?text=Ad+2" alt="Ad 2">
-            <img class="slide" src="https://via.placeholder.com/1200x400?text=Ad+3" alt="Ad 3">
-        </div>
-    </div> -->
 
     <!-- Category Section -->
     <section class="category-section">
@@ -460,9 +503,6 @@
             <!-- Cards will be populated by JavaScript -->
         </div>
     </section>
-
-    <!-- Ad Space -->
-    <!-- <div class="ad-space">Advertisement Space</div> -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -491,7 +531,7 @@
 
     <script>
         const categories = {
-             all: [
+            all: [
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
@@ -505,7 +545,7 @@
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' }
             ],
-             men: [
+            men: [
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
@@ -518,8 +558,8 @@
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' }
-             ],
-             women: [
+            ],
+            women: [
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
@@ -532,35 +572,7 @@
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' },
                 { img: 'editor_back.png', title: 'T-shirt', price: '₹399', link: 'product2.html' }
-             ],
-            // kids: [
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Shirt 1', price: '$29.99', link: 'https://example.com/product/kids-shirt-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Shirt 2', price: '$29.99', link: 'https://example.com/product/kids-shirt-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Hoodie 1', price: '$39.99', link: 'https://example.com/product/kids-hoodie-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Hoodie 2', price: '$39.99', link: 'https://example.com/product/kids-hoodie-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Pants 1', price: '$34.99', link: 'https://example.com/product/kids-pants-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Pants 2', price: '$34.99', link: 'https://example.com/product/kids-pants-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Dress 1', price: '$44.99', link: 'https://example.com/product/kids-dress-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Dress 2', price: '$44.99', link: 'https://example.com/product/kids-dress-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Shorts 1', price: '$24.99', link: 'https://example.com/product/kids-shorts-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Shorts 2', price: '$24.99', link: 'https://example.com/product/kids-shorts-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Jacket 1', price: '$49.99', link: 'https://example.com/product/kids-jacket-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Kids', title: 'Kids Jacket 2', price: '$49.99', link: 'https://example.com/product/kids-jacket-2' }
-            // ],
-            // accessories: [
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Leather Belt 1', price: '$29.99', link: 'https://example.com/product/leather-belt-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Leather Belt 2', price: '$29.99', link: 'https://example.com/product/leather-belt-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Scarf 1', price: '$19.99', link: 'https://example.com/product/scarf-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Scarf 2', price: '$19.99', link: 'https://example.com/product/scarf-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Cap 1', price: '$14.99', link: 'https://example.com/product/cap-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Cap 2', price: '$14.99', link: 'https://example.com/product/cap-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Sunglasses 1', price: '$39.99', link: 'https://example.com/product/sunglasses-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Sunglasses 2', price: '$39.99', link: 'https://example.com/product/sunglasses-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Watch 1', price: '$59.99', link: 'https://example.com/product/watch-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Watch 2', price: '$59.99', link: 'https://example.com/product/watch-2' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Wallet 1', price: '$34.99', link: 'https://example.com/product/wallet-1' },
-            //     { img: 'https://via.placeholder.com/300x200?text=Accessories', title: 'Wallet 2', price: '$34.99', link: 'https://example.com/product/wallet-2' }
-            // ]
+            ]
         };
 
         function renderProducts(products) {
@@ -593,12 +605,23 @@
             });
 
             document.getElementById('searchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
             renderProducts(categories[category]);
         }
 
         function searchProducts() {
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            performSearch(query);
+        }
 
+        function mobileSearchProducts() {
+            const query = document.getElementById('mobileSearchInput').value.trim().toLowerCase();
+            performSearch(query);
+            // Sync the search boxes
+            document.getElementById('searchInput').value = query;
+        }
+
+        function performSearch(query) {
             if (query === '') {
                 const activeCategory = document.querySelector('.category-buttons button.active').innerText.toLowerCase();
                 renderProducts(categories['all']);
@@ -623,26 +646,32 @@
         }
 
         function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const body = document.body;
             
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
         }
 
         // Theme toggle functionality
         function toggleTheme() {
             const html = document.documentElement;
             const themeToggleBtn = document.getElementById('themeToggle');
+            const mobileThemeIcon = document.getElementById('mobileThemeIcon');
             const currentTheme = html.getAttribute('data-theme');
             
             if (currentTheme === 'light') {
                 html.setAttribute('data-theme', 'dark');
                 themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                mobileThemeIcon.innerHTML = '<i class="fas fa-moon"></i>';
             } else {
                 html.setAttribute('data-theme', 'light');
                 themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                mobileThemeIcon.innerHTML = '<i class="fas fa-sun"></i>';
             }
+            
+            // Save theme preference
+            saveThemePreference();
         }
 
         // Check for saved theme preference or respect OS preference
@@ -650,6 +679,7 @@
             const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const html = document.documentElement;
             const themeToggleBtn = document.getElementById('themeToggle');
+            const mobileThemeIcon = document.getElementById('mobileThemeIcon');
             
             let savedTheme = localStorage.getItem('theme');
             
@@ -657,12 +687,15 @@
                 html.setAttribute('data-theme', savedTheme);
                 if (savedTheme === 'dark') {
                     themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                    mobileThemeIcon.innerHTML = '<i class="fas fa-moon"></i>';
                 } else {
                     themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                    mobileThemeIcon.innerHTML = '<i class="fas fa-sun"></i>';
                 }
             } else if (prefersDarkMode) {
                 html.setAttribute('data-theme', 'dark');
                 themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                mobileThemeIcon.innerHTML = '<i class="fas fa-moon"></i>';
             }
         }
 
@@ -674,7 +707,6 @@
 
         // Event listener for theme changes
         document.addEventListener('DOMContentLoaded', initTheme);
-        document.getElementById('themeToggle').addEventListener('click', saveThemePreference);
 
         // Initial load
         showCategory('all');
