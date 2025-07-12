@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .video-container {
+            max-width: 800px;
+            width: 100%;
+            background: #000;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+        }
+        .controls button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .controls input[type="range"] {
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+        .upload-container {
+            margin: 20px 0;
+        }
+        .upload-container input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .upload-container p {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <input type="file" id="videoUpload" accept="video/*">
+        <p id="videoName">Selected video: jwrb.mkv</p>
+    </div>
+    <div class="video-container">
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="https://archive.org/download/jwrb_20250712/jwrb.mkv" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button id="playPauseBtn">Play</button>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+            <button id="fullScreenBtn">Full Screen</button>
+        </div>
+    </div>
+
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoSource = document.getElementById('videoSource');
+        const videoUpload = document.getElementById('videoUpload');
+        const videoNameDisplay = document.getElementById('videoName');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const volumeControl = document.getElementById('volumeControl');
+        const fullScreenBtn = document.getElementById('fullScreenBtn');
+
+        // Handle video upload
+        videoUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                videoSource.src = url;
+                videoSource.type = `video/${file.name.split('.').pop().toLowerCase()}`;
+                videoPlayer.load();
+                videoPlayer.play();
+                videoNameDisplay.textContent = `Selected video: ${file.name}`;
+            } else {
+                videoNameDisplay.textContent = 'Selected video: jwrb.mkv';
+            }
+        });
+
+        // Play/Pause toggle
+        playPauseBtn.addEventListener('click', () => {
+            if (videoPlayer.paused) {
+                videoPlayer.play();
+                playPauseBtn.textContent = 'Pause';
+            } else {
+                videoPlayer.pause();
+                playPauseBtn.textContent = 'Play';
+            }
+        });
+
+        // Volume control
+        volumeControl.addEventListener('input', () => {
+            videoPlayer.volume = volumeControl.value;
+        });
+
+        // Full screen toggle
+        fullScreenBtn.addEventListener('click', () => {
+            if (videoPlayer.requestFullscreen) {
+                videoPlayer.requestFullscreen();
+            } else if (videoPlayer.webkitRequestFullscreen) {
+                videoPlayer.webkitRequestFullscreen();
+            } else if (videoPlayer.msRequestFullscreen) {
+                videoPlayer.msRequestFullscreen();
+            }
+        });
+
+        // Update play/pause button on video play/pause events
+        videoPlayer.addEventListener('play', () => {
+            playPauseBtn.textContent = 'Pause';
+        });
+        videoPlayer.addEventListener('pause', () => {
+            playPauseBtn.textContent = 'Play';
+        });
+    </script>
+</body>
+</html>
